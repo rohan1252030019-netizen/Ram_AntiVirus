@@ -6,7 +6,7 @@
 
 *Detect, block, and recover from ransomware and intrusions in milliseconds — 168 Sigma rules + 6 chain detections, <1 ms in-memory evaluation, no LLM in the hot path.*
 
-[![CI](https://github.com/rohan1252030019-netizen/AEGIS/actions/workflows/ci.yml/badge.svg)](https://github.com/rohan1252030019-netizen/AEGIS/actions)
+[![CI](https://github.com/rohan1252030019-netizen/Ram_AntiVirus/actions/workflows/ci.yml/badge.svg)](https://github.com/rohan1252030019-netizen/Ram_AntiVirus/actions)
 [![License](https://img.shields.io/badge/license-AGPL--3.0-blue)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.12-blue)]()
 [![Docker](https://img.shields.io/badge/docker-compose-blue)]()
@@ -32,7 +32,7 @@ Set `AEGIS_AI_MODE=disabled` and the entire stack runs on deterministic rules an
 - **Phantom** — deception layer (SSH honeypot on :2222, HTTP decoy on :8888, breadcrumb credential traps)
 
 ```bash
-git clone https://github.com/rohan1252030019-netizen/AEGIS.git && cd AEGIS
+git clone https://github.com/rohan1252030019-netizen/Ram_AntiVirus.git && cd Ram_AntiVirus
 docker compose up -d
 # Dashboard: http://localhost:3007 · API: http://localhost:8000
 ```
@@ -47,8 +47,8 @@ Ram Antivirus v1.6 ships **12 ransomware-specific Sigma rules + 1 kill-chain** m
 
 Specific behaviors detected:
 - **Shadow-copy deletion** — `vssadmin delete shadows`, `wbadmin delete catalog`, `bcdedit /set {default} recoveryenabled No`, tmutil, btrfs snapshot delete
-- **Mass file encryption** — ≥50 write events/second via the Rust endpoint agent; entropy analysis (≥7.5 bits/byte) is in development
-- **Canary file trips** — 10 hidden sentinel files in Documents/Desktop/Downloads; any modification triggers an immediate critical incident
+- **Mass file encryption** — ≥50 write events/second via the Rust endpoint agent; entropy analysis (≥7.5 bits/byte) is (planned)
+- **Canary file trips** — 10 hidden sentinel files in Documents/Desktop/Downloads; modification generates a critical tripwire event (note: canary file access alone on userland monitors does not supply the offending PID; process termination requires correlating with an associated EDR process-creation event)
 - **Ransom note drop** — filename pattern detection for `README.txt`, `HOW_TO_DECRYPT`, `RECOVER_FILES`, and 40+ known ransom note variants
 - **LOLBin staging** — `certutil -urlcache`, `rundll32` abuse for payload delivery (MITRE T1105/T1218)
 - **RDP-then-encrypt lateral movement** — T1021.001 RDP session followed by encryption events on the same host
@@ -108,7 +108,7 @@ v1.6 ships full ransomware defense end-to-end. Everything below ships in the ope
 | `ransomware_mass_extension_change` | T1486 | ≥20 extension-change events in 5 s |
 | `ransomware_canary_tripped` | T1486 | Sentinel file modified |
 | `ransomware_ransom_note` | T1486 | Known ransom note filename patterns |
-| `ransomware_entropy_spike` | T1486 | ≥7.5 bits/byte mean entropy on ≥50 writes/s (experimental) |
+| `ransomware_entropy_spike` | T1486 | ≥7.5 bits/byte mean entropy on ≥50 writes/s (planned) |
 | `ransomware_vss_inhibit` | T1490 | Registry: DisableAutomaticSystemRestorePoint |
 | `ransomware_backup_delete` | T1490 | wbadmin delete backup / bcdedit recoveryenabled No |
 
@@ -135,18 +135,18 @@ POST /api/v1/ransomware/restore
 GET /api/v1/ransomware/decryptors
 ```
 
-`SnapshotManager` wraps: tmutil (macOS), btrfs/zfs (Linux), VSS via Rust agent (Windows), Noop (default). Gated by `AEGIS_REAL_RECOVERY=1`.
+`SnapshotManager` wraps: tmutil (macOS), btrfs/zfs (Linux), VSS via Rust agent (Windows), Noop (default). (Simulated in current release; real VSS/Btrfs snapshot rollback requires agent driver integration - roadmap item). Gated by `AEGIS_REAL_RECOVERY=1`.
 
 `DecryptorLibrary` ships a NoMoreRansom seed list for: Akira, Babuk, REvil, LockBit, WannaCry, Conti, Locky, and others.
 
 ### Endpoint Agent (Rust)
 
 The hardened Rust agent in `agent-rust/` provides:
-- **Canary watcher** — filesystem notify on 10 hidden sentinel files
-- **Entropy classifier** — sliding-window entropy analysis (mean ≥7.5 bits/byte at ≥50 writes/s) is in development
+- **Canary watcher** — filesystem notify on 10 hidden sentinel files (generates tripwire telemetry; process tree termination requires correlating with an associated EDR process-creation event)
+- **Entropy classifier** — sliding-window entropy analysis (mean ≥7.5 bits/byte at ≥50 writes/s) is (planned)
 - **Process killer** — forensic snapshot captured before `SIGKILL` (Linux) / `TerminateProcess` (Windows)
 - **Self-protection** — `prctl(PR_SET_DUMPABLE, 0)` on Linux; `SetProcessMitigationPolicy` on Windows
-- **Rollback** — calls SnapshotManager via API (gated by `AEGIS_REAL_RECOVERY=1`)
+- **Rollback** — (Simulated in current release; real VSS/Btrfs snapshot rollback requires agent driver integration - roadmap item) calls SnapshotManager via API (gated by `AEGIS_REAL_RECOVERY=1`)
 
 ### Dashboard
 
@@ -159,10 +159,10 @@ The hardened Rust agent in `agent-rust/` provides:
 ### Test Harness
 
 ```bash
-AEGIS_LIVEFIRE=1 python -m pytest backend/tests/e2e/test_livefire.py
+python -m pytest backend/tests/e2e/test_livefire.py -v
 ```
 
-Generates 100 entropy-padded dummy files in a tempdir, drops a ransom note, races the agent. Asserts: kill within 500 ms, incident reaches API, chain rule fires, ≥1 recovery snapshot available, synthetic C2 IP blocked.
+Executes a safe synthetic end-to-end livefire simulation: deploys decoy sentinel canary files in an isolated temporary directory, streams synthetic process creation, shadow copy deletion, canary touch, and mass extension change events through the CorrelationEngine, asserting individual Sigma rule firings and multi-stage kill-chain incident opening without killing real host processes.
 
 ---
 
@@ -242,8 +242,8 @@ No default credentials. Create the initial admin account through the first-run w
 **Prerequisites:** Docker and Docker Compose.
 
 ```bash
-git clone https://github.com/rohan1252030019-netizen/AEGIS.git
-cd AEGIS
+git clone https://github.com/rohan1252030019-netizen/Ram_AntiVirus.git
+cd Ram_AntiVirus
 
 # Configure
 cp .env.example .env
@@ -587,9 +587,9 @@ Paste this block into any HTML landing page <head> to enable rich results.
       "softwareVersion": "1.6.5.1",
       "datePublished": "2026-05-01",
       "license": "https://www.gnu.org/licenses/agpl-3.0.html",
-      "url": "https://github.com/rohan1252030019-netizen/AEGIS",
-      "downloadUrl": "https://github.com/rohan1252030019-netizen/AEGIS/releases/latest",
-      "codeRepository": "https://github.com/rohan1252030019-netizen/AEGIS",
+      "url": "https://github.com/rohan1252030019-netizen/Ram_AntiVirus",
+      "downloadUrl": "https://github.com/rohan1252030019-netizen/Ram_AntiVirus/releases/latest",
+      "codeRepository": "https://github.com/rohan1252030019-netizen/Ram_AntiVirus",
       "programmingLanguage": ["Python", "TypeScript", "Rust"],
       "keywords": [
         "open source EDR",
@@ -673,6 +673,6 @@ Paste this block into any HTML landing page <head> to enable rich results.
 
 <div align="center">
 
-Built by the Ram Antivirus contributors · [GitHub](https://github.com/rohan1252030019-netizen/AEGIS) · [Releases](https://github.com/rohan1252030019-netizen/AEGIS/releases) · AGPL-3.0
+Built by the Ram Antivirus contributors · [GitHub](https://github.com/rohan1252030019-netizen/Ram_AntiVirus) · [Releases](https://github.com/rohan1252030019-netizen/Ram_AntiVirus/releases) · AGPL-3.0
 
 </div>
