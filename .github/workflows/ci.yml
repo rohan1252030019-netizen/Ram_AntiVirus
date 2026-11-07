@@ -13,7 +13,40 @@ concurrency:
 
 jobs:
   # ------------------------------------------------------------------
-  # Lint backend (ruff)
+  # Secrets Leak Detection
+  # ------------------------------------------------------------------
+  secrets-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check for committed secrets and key patterns
+        run: |
+          echo "Scanning for forbidden secret patterns..."
+          ERRORS=0
+          if git grep -EI "c6_vOo[A-Za-z0-9_-]{37}" -- ':!.github/workflows/ci.yml' ':!*.log'; then
+            echo "ERROR: Found compromised legacy master API key in tracked files!"
+            ERRORS=1
+          fi
+
+          if git grep -EI "-----BEGIN (RSA|EC|DSA|OPENSSH) PRIVATE KEY-----" -- ':!*.log'; then
+            echo "ERROR: Found plaintext private key header in tracked files!"
+            ERRORS=1
+          fi
+
+          if git grep -EI "hooks\.slack\.com/services/T[0-9A-Z]{8}/B[0-9A-Z]{8}/[0-9A-Za-z]{24}" -- ':!*.log'; then
+            echo "ERROR: Found live webhook URL in tracked files!"
+            ERRORS=1
+          fi
+
+          if [ $ERRORS -ne 0 ]; then
+            echo "Secrets scan failed! Please remove secrets from tracked files."
+            exit 1
+          fi
+          echo "Secrets scan passed cleanly."
+
+  # ------------------------------------------------------------------
+  # Lint backend (ruff) - strict exit codes
   # ------------------------------------------------------------------
   lint-backend:
     runs-on: ubuntu-latest
@@ -30,7 +63,7 @@ jobs:
       - name: Lint
         run: |
           cd backend
-          ruff check app/ --select E,F,W --ignore E501 --exit-zero
+          ruff check app/
 
   # ------------------------------------------------------------------
   # Backend unit tests (pytest)
@@ -54,11 +87,49 @@ jobs:
       - name: Run unit tests
         run: |
           cd backend
-          # `python -m pytest` (not the bare `pytest` script) so the cwd
-          # (backend/) is prepended to sys.path — tests/unit/ has an
-          # __init__.py but tests/ itself doesn't, which defeats pytest's
-          # own rootdir insertion and makes `app.*` imports fail otherwise.
           python -m pytest tests/unit tests/integration -q
+
+  # ------------------------------------------------------------------
+  # Agent Rust unit & emulation tests
+  # ------------------------------------------------------------------
+  test-agent-rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Run agent-rust tests
+        run: |
+          cd agent-rust
+          cargo test --verbose
+
+  # Note: desktop-tauri and node-tauri require native Linux GUI libraries
+  # (WebKitGTK 4.1, libsoup-3.0, libappindicator3-dev) which are omitted on
+  # headless Ubuntu runners to avoid 15+ minute build timeouts. They are
+  # verified in desktop release packaging pipelines.
+
+  # ------------------------------------------------------------------
+  # Agent Python unit tests
+  # ------------------------------------------------------------------
+  test-agent-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          cd agent
+          pip install -r requirements.txt pytest
+
+      - name: Run agent tests
+        run: |
+          cd agent
+          python -m pytest test_windows_isolation.py test_persistence_monitor.py -v
 
   # ------------------------------------------------------------------
   # Frontend build

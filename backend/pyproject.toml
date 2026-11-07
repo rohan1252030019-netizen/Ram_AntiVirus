@@ -1,0 +1,19 @@
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = [
+    "E501",  # Line too long
+    "F401",  # Unused imports
+    "E402",  # Module level import not at top of file
+    "E701",  # Multiple statements on one line (colon)
+    "E702",  # Multiple statements on one line (semicolon)
+    "E712",  # Comparison to True/False
+    "E741",  # Ambiguous variable name
+    "E401",  # Multiple imports on one line
+    "F541",  # f-string without placeholders
+    "F841",  # Local variable assigned to but never used
+    "W292",  # No newline at end of file
+]
