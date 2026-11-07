@@ -218,11 +218,8 @@ Every detection capability tested against real attack patterns:
 
 Access to the Ram Antivirus (AEGIS) Security Operations Console is governed by role-based JWT sessions and cryptographic API keys.
 
-### Local Evaluation Credentials
-When testing or running locally:
-- **Operator Email:** `admin@aegis.local`
-- **Password:** `admin123456`
-- **Master API Key:** `c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ`
+### Initial Admin Account
+No default credentials. Create the initial admin account through the first-run wizard or the CLI: python -m app.cli create-admin
 
 ### Generating & Provisioning Keys
 - **Operator Console:** Navigate to **Settings > API Configuration** to generate, view, or rotate keys.
@@ -234,7 +231,7 @@ When testing or running locally:
 - **Endpoint Agent Enrollment:** Set the key in `agent/config.py` or export it into your environment before starting the host monitor:
   ```bash
   export AEGIS_API_URL="http://localhost:8000/api/v1"
-  export AEGIS_API_KEY="c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ"
+  export AEGIS_API_KEY="<YOUR_ENROLLED_AGENT_API_KEY>"
   python agent/aegis_agent.py
   ```
 

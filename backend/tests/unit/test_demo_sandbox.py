@@ -13,7 +13,7 @@ from app.core import demo
 from app.core.demo_sandbox import DemoSandboxMiddleware
 
 
-PUBLISHED = "c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ"
+PUBLISHED = "test-demo-key-for-unit-tests-only"
 
 
 @pytest.fixture(autouse=True)

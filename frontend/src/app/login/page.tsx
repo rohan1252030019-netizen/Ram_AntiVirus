@@ -48,9 +48,9 @@ function LoginCard() {
   const nextParam = searchParams.get('next') || '/dashboard';
 
   const [mode, setMode] = useState<AuthMode>('credentials');
-  const [key, setKey] = useState('c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ');
-  const [email, setEmail] = useState('admin@aegis.local');
-  const [password, setPassword] = useState('admin123456');
+  const [key, setKey] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -136,12 +136,12 @@ function LoginCard() {
     try {
       localStorage.removeItem('aegis_api_key');
       localStorage.removeItem('aegis_jwt_token');
-      const result = await api.auth.loginCredentials('admin@aegis.local', 'admin123456');
+      const result = await api.auth.loginCredentials(process.env.NEXT_PUBLIC_DEMO_EMAIL || '', process.env.NEXT_PUBLIC_DEMO_PASSWORD || '');
       if (result?.token) setJwtToken(result.token);
       router.replace(nextParam);
     } catch {
       try {
-        const rootKey = 'c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ';
+        const rootKey = process.env.NEXT_PUBLIC_DEMO_API_KEY || '';
         setApiKey(rootKey);
         const result = await api.auth.login(rootKey);
         if (result?.token) setJwtToken(result.token);

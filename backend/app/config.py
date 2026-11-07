@@ -1,3 +1,4 @@
+from pydantic import model_validator
 from pydantic_settings import BaseSettings
 from typing import Optional
 
@@ -19,7 +20,7 @@ class Settings(BaseSettings):
     # Defence in depth: this is the one API key that is public in the repo and
     # in the hosted dashboard. It is *always* sandboxed, even if demo mode was
     # left off by mistake, because anybody on the internet knows it.
-    AEGIS_PUBLIC_DEMO_API_KEY: str = "c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ"
+    AEGIS_PUBLIC_DEMO_API_KEY: str = ""
     # Master switch for the request sandbox. Do not disable on a public host.
     AEGIS_DEMO_SANDBOX: bool = True
 
@@ -215,6 +216,18 @@ class Settings(BaseSettings):
         "http://localhost:3000,http://127.0.0.1:3000,"
         "http://localhost:3007,http://127.0.0.1:3007"
     )
+
+    @model_validator(mode="after")
+    def validate_production_secrets(self) -> "Settings":
+        from app.core.boot_guard import assert_production_secrets
+        assert_production_secrets(
+            env=self.AEGIS_ENV,
+            secret_key=self.AEGIS_SECRET_KEY,
+            admin_password=self.AEGIS_ADMIN_PASSWORD,
+            demo_mode=self.AEGIS_DEMO_MODE,
+            database_url=self.DATABASE_URL,
+        )
+        return self
 
     model_config = {"env_file": [".env", "../.env"], "extra": "ignore"}
 

@@ -319,6 +319,7 @@ async def lifespan(app: FastAPI):
         secret_key=settings.AEGIS_SECRET_KEY,
         admin_password=settings.AEGIS_ADMIN_PASSWORD,
         demo_mode=settings.AEGIS_DEMO_MODE,
+        database_url=settings.DATABASE_URL,
     )
 
     # P0-7: DeceptionCampaign isn't imported by app/models/__init__.py (out of

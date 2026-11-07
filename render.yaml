@@ -21,9 +21,9 @@ services:
       - key: AEGIS_DEMO_SANDBOX
         value: "true"
       - key: AEGIS_PUBLIC_DEMO_API_KEY
-        value: "c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ"
+        value: ""
       - key: AEGIS_ADMIN_PASSWORD
-        value: "admin123456"
+        value: ""
       - key: AEGIS_ALLOW_SIGNUP
         value: "false"
       - key: AEGIS_CORS_ORIGINS
