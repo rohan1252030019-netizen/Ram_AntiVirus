@@ -217,7 +217,7 @@ class Settings(BaseSettings):
         "http://localhost:3007,http://127.0.0.1:3007"
     )
 
-        @model_validator(mode="before")
+    @model_validator(mode="before")
     @classmethod
     def apply_ram_env_fallbacks(cls, data: Any) -> Any:
         import os, logging
