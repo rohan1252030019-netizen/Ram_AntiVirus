@@ -281,18 +281,25 @@ mod rollback_tests {
     use std::path::Path;
 
     #[tokio::test]
-    async fn simulated_when_env_var_absent() {
+    async fn dry_run_when_env_var_absent() {
         std::env::remove_var("AEGIS_REAL_RECOVERY");
+        std::env::remove_var("RAM_REAL_RECOVERY");
         let outcome = restore(Path::new("/tmp/victim.docx")).await.unwrap();
-        assert_eq!(outcome, RestoreOutcome::Simulated);
+        match outcome {
+            RestoreOutcome::Restored(cmds) => {
+                assert!(cmds[0].starts_with("DRY-RUN:"));
+            }
+            RestoreOutcome::Unsupported(_) => {}
+            other => panic!("Unexpected outcome in dry-run mode: {:?}", other),
+        }
     }
 
     #[test]
     fn restore_outcome_all_variants_serde() {
         for variant in [
-            RestoreOutcome::Executed,
-            RestoreOutcome::Simulated,
+            RestoreOutcome::Restored(vec!["file1.txt".to_string()]),
             RestoreOutcome::Failed("tmutil: error code 1".to_string()),
+            RestoreOutcome::Unsupported("No snapshot support".to_string()),
         ] {
             let json = serde_json::to_string(&variant).unwrap();
             let back: RestoreOutcome = serde_json::from_str(&json).unwrap();
