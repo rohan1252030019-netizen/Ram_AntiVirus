@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 //! Cryptographic telemetry client with replay protection envelope and HTTPS enforcement.
 
 use hmac::{Hmac, Mac};

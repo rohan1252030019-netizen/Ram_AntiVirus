@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """
 Unit tests for AEGIS Windows Host Network Isolation (FR-09).
 Covers state machine, firewall rule construction, control plane preservation,

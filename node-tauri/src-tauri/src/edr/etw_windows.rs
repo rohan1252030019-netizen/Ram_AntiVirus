@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // ---------------------------------------------------------------------------
 // ETW-based telemetry collector (Task #5, Windows Tier 2)
 //

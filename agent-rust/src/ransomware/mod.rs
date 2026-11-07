@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 //! Ransomware defense module — Phase R-E
 //!
 //! Provides [`RansomwareGuard`]: the public entry-point that orchestrates

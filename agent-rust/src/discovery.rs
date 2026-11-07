@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 //! Network discovery module.
 //!
 //! Provides async TCP port scanning and local network host detection.

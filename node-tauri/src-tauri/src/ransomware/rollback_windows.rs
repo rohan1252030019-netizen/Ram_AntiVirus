@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // ---------------------------------------------------------------------------
 // Windows VSS (Volume Shadow Copy) rollback (Task #2)
 //

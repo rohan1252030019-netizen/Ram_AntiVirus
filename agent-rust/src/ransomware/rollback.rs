@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 //! Snapshot-based rollback orchestration — Phase R-E / Phase A
 //!
 //! Invokes platform snapshot restore mechanisms after a ransomware event:

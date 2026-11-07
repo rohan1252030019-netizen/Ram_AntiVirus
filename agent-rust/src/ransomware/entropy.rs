@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 //! Write-rate + Shannon-entropy classifier — Phase R-E
 //!
 //! Tracks per-PID write activity and classifies a process as ransomware-like

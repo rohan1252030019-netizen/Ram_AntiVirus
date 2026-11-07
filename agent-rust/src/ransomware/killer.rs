@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 //! Process killer with forensic chain capture — Phase R-E
 //!
 //! Terminates the offending process and its descendants (children, grandchildren,

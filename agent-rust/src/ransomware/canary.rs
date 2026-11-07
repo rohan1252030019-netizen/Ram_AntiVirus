@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 //! Canary file watcher — Phase R-E
 //!
 //! Watches a set of sentinel files. Any modification, deletion, or rename

@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 //! File Integrity Monitoring (FIM) module.
 //!
 //! Uses the `notify` crate to watch filesystem paths for changes,

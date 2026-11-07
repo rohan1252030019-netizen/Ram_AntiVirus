@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 use aegis_agent::{discovery, fim, monitor};
 use chrono::Utc;
 use rand::Rng;

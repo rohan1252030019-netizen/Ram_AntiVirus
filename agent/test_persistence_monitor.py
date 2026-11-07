@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """
 Unit tests for AEGIS Persistence Monitor (FR-03).
 Covers Windows Registry autorun keys and Scheduled Tasks persistence detection.
