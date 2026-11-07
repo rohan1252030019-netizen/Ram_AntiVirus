@@ -1,0 +1,25 @@
+id: ransomware_mass_extension_change
+name: Mass file extension alteration indicative of encryption
+kind: sigma
+severity: critical
+enabled: true
+tactics:
+- Impact
+techniques:
+- T1486
+data_sources:
+- fim
+- edr
+condition:
+  event_type: file_extension_change
+  count_threshold: 20
+  time_window_seconds: 60
+  group_by: process_pid
+  filter:
+    new_extension_regex: '(?i)\.(locked|crypt|encrypted|enc|aes|rsa|pwnd|wcry|wncry|cryptolocker|locky|petya|ransom)$'
+entityMappings:
+- type: Host
+  field: hostname
+description: Detects rapid renaming of multiple files to known ransomware extensions indicating active bulk encryption.
+references:
+- https://attack.mitre.org/techniques/T1486/

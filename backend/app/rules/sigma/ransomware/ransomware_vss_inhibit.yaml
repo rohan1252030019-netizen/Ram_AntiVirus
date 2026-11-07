@@ -1,0 +1,30 @@
+id: ransomware_vss_inhibit
+name: Volume shadow copy and system recovery inhibition via registry
+kind: sigma
+severity: high
+enabled: true
+tactics:
+- Impact
+- Defense Evasion
+techniques:
+- T1490
+data_sources:
+- registry_modification
+- edr
+condition:
+  event_type: registry_modification
+  count_threshold: 1
+  time_window_seconds: 60
+  group_by: hostname
+  filter:
+    path_contains:
+    - DisableAutomaticSystemRestorePoint
+    - SystemRestore
+    - DisableConfig
+    - DisableSR
+entityMappings:
+- type: Host
+  field: hostname
+description: Detects registry modifications inhibiting Windows System Restore or disabling automatic system restore points.
+references:
+- https://attack.mitre.org/techniques/T1490/

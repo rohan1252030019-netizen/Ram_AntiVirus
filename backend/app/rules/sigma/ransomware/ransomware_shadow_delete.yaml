@@ -1,0 +1,27 @@
+id: ransomware_shadow_delete
+name: Shadow copy and system snapshot deletion
+kind: sigma
+severity: critical
+enabled: true
+tactics:
+- Impact
+techniques:
+- T1490
+data_sources:
+- process_creation
+- edr
+condition:
+  event_type: process_creation
+  count_threshold: 1
+  time_window_seconds: 60
+  group_by: hostname
+  filter:
+    command_line_regex: '(?i)(vssadmin(\.exe)?\s+delete\s+shadows|wmic(\.exe)?\s+shadowcopy\s+delete|tmutil\s+delete|Resize-Partition.*ShadowCopy)'
+entityMappings:
+- type: Host
+  field: hostname
+- type: Account
+  field: username
+description: Detects process commands deleting volume shadow copies or APFS/system snapshots prior to ransomware encryption.
+references:
+- https://attack.mitre.org/techniques/T1490/

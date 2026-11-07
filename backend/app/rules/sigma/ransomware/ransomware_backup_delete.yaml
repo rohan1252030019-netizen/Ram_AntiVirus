@@ -1,0 +1,27 @@
+id: ransomware_backup_delete
+name: Windows backup catalog or system recovery deletion
+kind: sigma
+severity: critical
+enabled: true
+tactics:
+- Impact
+techniques:
+- T1490
+data_sources:
+- process_creation
+- edr
+condition:
+  event_type: process_creation
+  count_threshold: 1
+  time_window_seconds: 60
+  group_by: hostname
+  filter:
+    command_line_regex: '(?i)(wbadmin(\.exe)?\s+delete\s+(catalog|systemstatebackup|backup)|bcdedit(\.exe)?.*(bootstatuspolicy\s+ignoreallfailures|recoveryenabled\s+no))'
+entityMappings:
+- type: Host
+  field: hostname
+- type: Account
+  field: username
+description: Detects execution of wbadmin or bcdedit commands disabling Windows recovery or deleting backup catalogs.
+references:
+- https://attack.mitre.org/techniques/T1490/
