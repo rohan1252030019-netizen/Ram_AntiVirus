@@ -125,6 +125,21 @@ jobs:
   # verified in desktop release packaging pipelines.
 
   # ------------------------------------------------------------------
+  # Windows ETW Telemetry Test (Task B1)
+  # ------------------------------------------------------------------
+  test-windows-etw:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Run ETW canary PID correlation test
+        run: |
+          cd node-tauri/src-tauri
+          cargo test --test test_etw_canary --features ferrisetw -- --nocapture
+
+  # ------------------------------------------------------------------
   # Agent Python unit tests
   # ------------------------------------------------------------------
   test-agent-python:
