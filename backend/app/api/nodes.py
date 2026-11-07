@@ -11,9 +11,9 @@ import os
 import secrets
 import string
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Optional, Any
 
-from fastapi import APIRouter, Depends, Header, HTTPException
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, Request
 from pydantic import BaseModel
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -23,6 +23,9 @@ from app.core.auth import AuthContext, require_analyst, require_viewer
 from app.core.events import event_bus
 from app.models.endpoint_agent import EndpointAgent, AgentStatus
 from app.services import asset_risk
+from app.core.ca import default_ca
+from app.core.replay_guard import default_replay_guard, validate_envelope_or_legacy, ReplayProtectionError
+from app.core.mtls import verify_agent_mtls
 
 logger = logging.getLogger("aegis.nodes")
 router = APIRouter(prefix="/nodes", tags=["nodes"])
@@ -88,6 +91,23 @@ def _cleanup_expired():
 # Schemas
 # ---------------------------------------------------------------------------
 
+class IssueCertResponse(BaseModel):
+    agent_id: str
+    cert_pem: str
+    key_pem: str
+    fingerprint: str
+    valid_days: int
+
+
+class RevokeCertRequest(BaseModel):
+    fingerprint: str
+
+
+class RevokeCertResponse(BaseModel):
+    status: str
+    fingerprint: str
+
+
 class HeartbeatRequest(BaseModel):
     node_id: str
     # Accept both naming conventions (node-tauri uses cpu_usage, Python agent uses cpu)
@@ -104,6 +124,10 @@ class HeartbeatRequest(BaseModel):
     uptime_seconds: int = 0
     suspicious_processes: list = []
     timestamp: str | None = None
+    seq: Optional[int] = None
+    nonce: Optional[str] = None
+    signature: Optional[str] = None
+    payload: Optional[dict] = None
 
 
 class HeartbeatResponse(BaseModel):
@@ -186,9 +210,22 @@ async def generate_enrollment_code(
 
 @router.post("/heartbeat", response_model=HeartbeatResponse, dependencies=[Depends(_verify_node_secret)])
 async def node_heartbeat(
+    request: Request,
     body: HeartbeatRequest,
     db: AsyncSession = Depends(get_db),
 ):
+    await verify_agent_mtls(request, agent_id=body.node_id, db=db)
+    node_sec = os.getenv("RAM_NODE_SECRET") or os.getenv("AEGIS_NODE_SECRET", "default-node-secret")
+    try:
+        validate_envelope_or_legacy(
+            body=body.model_dump(),
+            secret_key=node_sec,
+            agent_id=body.node_id,
+            method="POST",
+            path="/nodes/heartbeat",
+        )
+    except ReplayProtectionError as e:
+        raise HTTPException(status_code=401, detail=str(e))
     """
     Called periodically by the AEGIS Node agent to report health metrics.
     Updates the agent record with latest metrics and marks it as online.
@@ -512,13 +549,30 @@ class NodeEventRequest(BaseModel):
     severity: str = "medium"
     details: dict = {}
     timestamp: str | None = None
+    seq: Optional[int] = None
+    nonce: Optional[str] = None
+    signature: Optional[str] = None
+    payload: Optional[dict] = None
 
 
 @router.post("/events", dependencies=[Depends(_verify_node_secret)])
 async def receive_node_event(
+    request: Request,
     body: NodeEventRequest,
     db: AsyncSession = Depends(get_db),
 ):
+    await verify_agent_mtls(request, agent_id=body.node_id, db=db)
+    node_sec = os.getenv("RAM_NODE_SECRET") or os.getenv("AEGIS_NODE_SECRET", "default-node-secret")
+    try:
+        validate_envelope_or_legacy(
+            body=body.model_dump(),
+            secret_key=node_sec,
+            agent_id=body.node_id,
+            method="POST",
+            path="/nodes/events",
+        )
+    except ReplayProtectionError as e:
+        raise HTTPException(status_code=401, detail=str(e))
     result = await db.execute(
         select(EndpointAgent).where(EndpointAgent.id == body.node_id)
     )
@@ -652,3 +706,57 @@ async def report_assets(
         "assets_created": assets_created,
         "assets_updated": assets_updated,
     }
+
+
+@router.post("/{node_id}/issue-cert", response_model=IssueCertResponse)
+async def issue_node_cert(
+    node_id: str,
+    days_valid: int = Query(default=90, ge=1, le=365),
+    auth: AuthContext = Depends(require_analyst),
+    db: AsyncSession = Depends(get_db),
+):
+    """Issue a new X.509 client certificate for this enrolled node signed by internal CA."""
+    result = await db.execute(
+        select(EndpointAgent).where(
+            EndpointAgent.id == node_id,
+            EndpointAgent.client_id == auth.client.id,
+        )
+    )
+    if not result.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Node not found")
+    try:
+        cert_pem, key_pem, fp = default_ca.issue_agent_cert(node_id, days_valid=days_valid)
+    except Exception as e:
+        logger.error(f"Failed to issue cert for node {node_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Certificate issuance failed: {e}")
+
+    logger.info(f"Issued client certificate for node {node_id} (fingerprint: {fp})")
+    return IssueCertResponse(
+        agent_id=node_id,
+        cert_pem=cert_pem.decode("utf-8"),
+        key_pem=key_pem.decode("utf-8"),
+        fingerprint=fp,
+        valid_days=days_valid,
+    )
+
+
+@router.post("/{node_id}/revoke-cert", response_model=RevokeCertResponse)
+async def revoke_node_cert(
+    node_id: str,
+    body: RevokeCertRequest,
+    auth: AuthContext = Depends(require_analyst),
+    db: AsyncSession = Depends(get_db),
+):
+    """Revoke a node's client certificate fingerprint."""
+    result = await db.execute(
+        select(EndpointAgent).where(
+            EndpointAgent.id == node_id,
+            EndpointAgent.client_id == auth.client.id,
+        )
+    )
+    if not result.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Node not found")
+    fp = body.fingerprint.lower().strip()
+    default_ca.revoke_fingerprint(fp)
+    logger.info(f"Revoked certificate for node {node_id} (fingerprint: {fp})")
+    return RevokeCertResponse(status="revoked", fingerprint=fp)

@@ -15,8 +15,12 @@ IS_WINDOWS = platform.system() == "Windows"
 # ---------------------------------------------------------------------------
 # Connection
 # ---------------------------------------------------------------------------
-AEGIS_API_URL: str = os.getenv("AEGIS_API_URL", "http://localhost:8000/api/v1")
-AEGIS_API_KEY: str = os.getenv("AEGIS_API_KEY", "")
+AEGIS_API_URL: str = os.getenv("RAM_API_URL", os.getenv("AEGIS_API_URL", "https://localhost:8443/api/v1"))
+AEGIS_API_KEY: str = os.getenv("RAM_API_KEY", os.getenv("AEGIS_API_KEY", ""))
+AEGIS_ALLOW_INSECURE_HTTP: str = os.getenv("RAM_ALLOW_INSECURE_HTTP", os.getenv("AEGIS_ALLOW_INSECURE_HTTP", "0"))
+AEGIS_CLIENT_CERT: str = os.getenv("RAM_CLIENT_CERT", os.getenv("AEGIS_CLIENT_CERT", ""))
+AEGIS_CLIENT_KEY: str = os.getenv("RAM_CLIENT_KEY", os.getenv("AEGIS_CLIENT_KEY", ""))
+AEGIS_CA_CERT: str = os.getenv("RAM_CA_CERT", os.getenv("AEGIS_CA_CERT", ""))
 
 # ---------------------------------------------------------------------------
 # Agent identity (auto-generated on first run, persisted to .agent_id file)
