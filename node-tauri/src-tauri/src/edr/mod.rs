@@ -2,7 +2,7 @@
 // ---------------------------------------------------------------------------
 // EDR/XDR Core (Task #5)
 //
-// Streams kernel-level telemetry from the endpoint to the AEGIS backend:
+// Streams kernel-level telemetry from the endpoint to the Ram Antivirus backend:
 //   - Process events  (start, stop, image load)
 //   - Network events  (connect, accept)
 //   - File events     (create, write, delete)

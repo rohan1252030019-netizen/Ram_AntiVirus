@@ -1,7 +1,7 @@
 """
 SharedIOC — Community-shared threat intelligence model.
 
-Stores IOCs submitted by AEGIS instances to the shared threat intel cloud.
+Stores IOCs submitted by Ram Antivirus instances to the shared threat intel cloud.
 Each IOC is anonymized (no client-identifying data, only a hashed source ID)
 and enriched with MITRE ATT&CK technique references.
 

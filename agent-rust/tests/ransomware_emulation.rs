@@ -127,7 +127,7 @@ fn write_ransom_note(dir: &Path) -> PathBuf {
         "--- AEGIS TEST RANSOM NOTE ---\n\
          THIS IS A SYNTHETIC EMULATION — NOT REAL RANSOMWARE\n\
          \n\
-         Your files have been encrypted by the AEGIS livefire emulator.\n\
+         Your files have been encrypted by the Ram Antivirus livefire emulator.\n\
          C2 server: {C2_IP}\n\
          To recover: set AEGIS_LIVEFIRE=1 and run the recovery workflow.\n\
          \n\

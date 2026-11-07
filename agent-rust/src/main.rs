@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
-//! AEGIS EDR-lite Endpoint Agent — Rust Prototype
+//! Ram Antivirus EDR-lite Endpoint Agent — Rust Prototype
 //! =================================================
 //!
 //! Minimal Rust implementation proving core agent capabilities:
@@ -112,7 +112,7 @@ async fn main() {
 
 fn print_usage() {
     println!(
-        r#"AEGIS Agent (Rust Prototype) v0.1.0
+        r#"Ram Antivirus Agent (Rust Prototype) v0.1.0
 
 USAGE:
     aegis-agent-rust <COMMAND> [OPTIONS]
@@ -134,7 +134,7 @@ COMMANDS:
 // ---------------------------------------------------------------------------
 
 async fn run_demo() {
-    println!("=== AEGIS Agent (Rust Prototype) v0.1.0 ===\n");
+    println!("=== Ram Antivirus Agent (Rust Prototype) v0.1.0 ===\n");
 
     // 1. System info
     println!("[1/4] Collecting system information...");

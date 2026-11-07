@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ═══════════════════════════════════════════════════════════════
-   AEGIS — Unified Design System
+   Ram Antivirus — Unified Design System
    Inspired by Sentry (structure) + Linear (polish) + x.ai (quiet)
    Brand: cyan primary · orange accent · data-dense typography
    ═══════════════════════════════════════════════════════════════ */
@@ -46,7 +46,7 @@
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
 
-    /* Charts — AEGIS brand spectrum */
+    /* Charts — Ram Antivirus brand spectrum */
     --color-chart-1: var(--chart-1);
     --color-chart-2: var(--chart-2);
     --color-chart-3: var(--chart-3);
@@ -56,7 +56,7 @@
        (StatusBadge 'info' variant — see :root / .dark below for ratios). */
     --color-chart-5-text: var(--chart-5-text);
 
-    /* AEGIS brand + status tokens (both modes swap via .dark) */
+    /* Ram Antivirus brand + status tokens (both modes swap via .dark) */
     --color-brand: var(--brand);
     --color-brand-foreground: var(--brand-foreground);
     --color-brand-muted: var(--brand-muted);
@@ -160,7 +160,7 @@
     --input: rgba(15, 17, 20, 0.12);
     --ring: #0891B2;
 
-    /* AEGIS elevation ladder */
+    /* Ram Antivirus elevation ladder */
     --surface: #FFFFFF;
     --elevated: #F7F9FC;
     --subtle: #F1F4F8;
@@ -399,7 +399,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   UTILITY CLASSES — AEGIS design system
+   UTILITY CLASSES — Ram Antivirus design system
    ═══════════════════════════════════════════════════════════════ */
 
 /* Elevation (c6-card kept for legacy) */

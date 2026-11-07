@@ -1,5 +1,5 @@
 """
-Tests for the deep-mode ip_intel enrichment (AEGIS v1.7).
+Tests for the deep-mode ip_intel enrichment (Ram Antivirus v1.7).
 
 Covers:
   - new free providers (greynoise, ipapi, geojs) mocked

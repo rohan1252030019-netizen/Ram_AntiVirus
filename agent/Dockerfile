@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
-LABEL maintainer="AEGIS Defense Platform"
-LABEL description="AEGIS EDR-lite Endpoint Agent"
+LABEL maintainer="Ram Antivirus Defense Platform"
+LABEL description="Ram Antivirus EDR-lite Endpoint Agent"
 
 # System deps for psutil (gcc needed to compile C extension)
 RUN apt-get update && \

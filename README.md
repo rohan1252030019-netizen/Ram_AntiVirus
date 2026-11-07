@@ -216,7 +216,7 @@ Every detection capability tested against real attack patterns:
 ## API Keys & Authentication {#api-keys}
 <a id="api-keys"></a>
 
-Access to the Ram Antivirus (AEGIS) Security Operations Console is governed by role-based JWT sessions and cryptographic API keys.
+Access to the Ram Antivirus (Ram Antivirus) Security Operations Console is governed by role-based JWT sessions and cryptographic API keys.
 
 ### Initial Admin Account
 No default credentials. Create the initial admin account through the first-run wizard or the CLI: python -m app.cli create-admin
@@ -479,7 +479,7 @@ See [Ransomware Defense](#ransomware-defense-v16) above and [docs/seo/ransomware
 ## Project Structure
 
 ```
-aegis/
+ram_antivirus/
 ├── backend/                    # FastAPI application
 │   ├── app/
 │   │   ├── api/                # 25 API routers (140+ endpoints)

@@ -1,4 +1,4 @@
-"""Hot-reloadable YAML rule pack loader for AEGIS correlation engine."""
+"""Hot-reloadable YAML rule pack loader for Ram Antivirus correlation engine."""
 
 from __future__ import annotations
 

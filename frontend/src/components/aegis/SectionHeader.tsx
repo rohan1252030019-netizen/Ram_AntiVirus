@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 /**
  * SectionHeader — the strip atop a <Panel>.
  *
- * Canonical AEGIS pattern: uppercase tracking label on the left, optional
+ * Canonical Ram Antivirus pattern: uppercase tracking label on the left, optional
  * subtitle/count, action slot on the right. Replaces 6+ inline header
  * strips currently duplicated across dashboard components.
  *

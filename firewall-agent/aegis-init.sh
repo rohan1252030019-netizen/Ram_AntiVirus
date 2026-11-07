@@ -1,5 +1,5 @@
 #!/bin/bash
-# Idempotent AEGIS gateway init: AEGIS_BLOCK (dynamic IP blocks) + AEGIS_DOS
+# Idempotent Ram Antivirus gateway init: AEGIS_BLOCK (dynamic IP blocks) + AEGIS_DOS
 # (DoS/DDoS hardening). Re-runnable; flushes DoS chains before repopulating so
 # reruns never duplicate. rp_filter stays 0 (multi-homed gateway).
 set -e

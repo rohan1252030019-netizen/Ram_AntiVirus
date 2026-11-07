@@ -32,7 +32,7 @@ function startWebServer() {
     stdio: isPackaged ? 'ignore' : 'inherit',
     windowsHide: true,
   });
-  nextProcess.on('error', (error) => console.error('Unable to start AEGIS web server:', error));
+  nextProcess.on('error', (error) => console.error('Unable to start Ram Antivirus web server:', error));
 }
 
 async function waitForWebServer(timeoutMs = 30000) {
@@ -46,7 +46,7 @@ async function waitForWebServer(timeoutMs = 30000) {
     }
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
-  throw new Error(`AEGIS web server did not start at ${webUrl}`);
+  throw new Error(`Ram Antivirus web server did not start at ${webUrl}`);
 }
 
 async function createWindow() {

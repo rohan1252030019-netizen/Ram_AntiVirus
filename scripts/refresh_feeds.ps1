@@ -1,4 +1,4 @@
-# AEGIS Feed Refresher for Windows / PowerShell
+# Ram Antivirus Feed Refresher for Windows / PowerShell
 $ErrorActionPreference = "Stop"
 
 $baseDir = if ($env:AEGIS_DATA_DIR) { $env:AEGIS_DATA_DIR } else { "$PSScriptRoot\..\backend\app\data" }

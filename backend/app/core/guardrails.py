@@ -19,7 +19,7 @@ _IP_TARGET_ACTIONS = frozenset({"block_ip", "firewall_rule", "isolate_host", "ne
 # legally-sensitive actions (host isolation, credential revocation, service
 # shutdown, network segmentation, process/file destructive ops, active
 # counter-attack/recon against third-party infrastructure, deception,
-# tarpitting) default to require_approval so a human signs off before AEGIS
+# tarpitting) default to require_approval so a human signs off before Ram Antivirus
 # acts. Users can still override any of these per-client in client.guardrails.
 DEFAULT_GUARDRAILS = {
     "block_ip": "auto_approve",

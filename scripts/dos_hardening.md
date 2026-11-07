@@ -1,4 +1,4 @@
-# AEGIS DoS Netshield — Network Tier Operator Runbook
+# Ram Antivirus DoS Netshield — Network Tier Operator Runbook
 
 **Status: DEFAULT OFF. This is the network tier (Tier 2) of the DoS Shield and it runs on the
 Raspberry Pi, which is the Mac Pro's network GATEWAY. A wrong `DROP` rule here can cut the Mac Pro
@@ -124,7 +124,7 @@ sudo systemctl restart aegis-firewall
 ### 2. Mac Pro: enable the backend gate
 
 ```bash
-# In the AEGIS backend .env on the Mac Pro:
+# In the Ram Antivirus backend .env on the Mac Pro:
 #   AEGIS_DOS_NETSHIELD=1
 pm2 restart cayde6-api
 ```
@@ -166,7 +166,7 @@ asyncio.run(firewall_client.apply_dos_ratelimit(rate=50, burst=100, connlimit=10
 ping -c 3 1.1.1.1
 ping -c 3 <PI>
 
-# From your workstation / Tailscale peer: does the AEGIS API still answer?
+# From your workstation / Tailscale peer: does the Ram Antivirus API still answer?
 curl -sf http://<MACPRO_IP>:8000/health
 
 # Inspect the applied chain on the Pi — host-safety ACCEPTs MUST be at the top:

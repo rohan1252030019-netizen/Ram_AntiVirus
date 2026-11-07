@@ -1,5 +1,5 @@
 """
-AEGIS Report API Routes
+Ram Antivirus Report API Routes
 GET/POST endpoints for generating and managing PDF security reports.
 """
 

@@ -23,7 +23,7 @@ export interface KPIProps {
   /** Tone drives the dot + hover edge color. */
   tone?: KPITone;
   href?: string;
-  /** Warm orange wash on the right edge — matches AEGIS hero KPI tile. */
+  /** Warm orange wash on the right edge — matches Ram Antivirus hero KPI tile. */
   warm?: boolean;
   /** Optional sparkline / delta slot rendered at the bottom-right. */
   trend?: React.ReactNode;

@@ -454,7 +454,7 @@ def _resolve_quarantinable_file(raw_path: str) -> Path:
     quarantine_dir = QUARANTINE_DIR.resolve()
     for forbidden in (aegis_dir, quarantine_dir):
         if resolved == forbidden or forbidden in resolved.parents:
-            raise HTTPException(status_code=403, detail="Cannot quarantine AEGIS system files")
+            raise HTTPException(status_code=403, detail="Cannot quarantine Ram Antivirus system files")
 
     if not any(root == resolved.parent or root in resolved.parents for root in roots):
         raise HTTPException(
@@ -489,7 +489,7 @@ async def quarantine_file(
       * only paths under AEGIS_QUARANTINE_ROOTS (empty = disabled);
       * absolute, non-symlink, regular files only;
       * caller must supply the file's SHA-256 and explicit confirmation;
-      * AEGIS's own files and the quarantine directory are never touched;
+      * Ram Antivirus's own files and the quarantine directory are never touched;
       * the copy is fsynced before the original is unlinked.
     """
     if not body.confirm:
@@ -628,7 +628,7 @@ async def isolate_host_endpoint(
     """
     Safely isolate managed host endpoint via Windows Defender Firewall.
     Requires admin role and explicit confirmation.
-    Preserves AEGIS control plane, DNS, DHCP, and loopback traffic.
+    Preserves Ram Antivirus control plane, DNS, DHCP, and loopback traffic.
     """
     if not body.confirm:
         raise HTTPException(status_code=400, detail="Confirmation required to isolate host")
@@ -694,7 +694,7 @@ async def unisolate_host_endpoint(
     auth: AuthContext = Depends(require_admin),
 ):
     """
-    Restore host endpoint network connectivity by removing only AEGIS-owned firewall rules.
+    Restore host endpoint network connectivity by removing only Ram Antivirus-owned firewall rules.
     Requires admin role.
     """
     agent = await db.get(EndpointAgent, agent_id)

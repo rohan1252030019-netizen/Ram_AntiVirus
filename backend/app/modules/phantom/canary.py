@@ -1,11 +1,11 @@
 """
-Honeypot Canary capture endpoint — AEGIS Phantom.
+Honeypot Canary capture endpoint — Ram Antivirus Phantom.
 
 DEFENSIVE-ONLY. This endpoint receives information voluntarily disclosed
-by browsers visiting AEGIS HTTP honeypot decoy pages. The JS payload that
+by browsers visiting Ram Antivirus HTTP honeypot decoy pages. The JS payload that
 collects this data is embedded ONLY in honeypot templates
 (`http_honeypot.py`, `pi-deploy/aegis_honeypot.py`). It is never served by
-the real AEGIS dashboard.
+the real Ram Antivirus dashboard.
 
 Rationale: honeypot visitors are by definition probing infrastructure they
 are not authorised to access. Capturing leaked WebRTC candidates, browser
@@ -110,7 +110,7 @@ class CanaryIn(BaseModel):
     browser_meta: dict[str, Any] = Field(default_factory=dict)
     honeypot_source: Optional[str] = None  # e.g. "mac_http_8888" / "pi_http_8081"
     # Optional explicit source_ip override (Pi POSTs the original attacker IP
-    # when forwarding to the central AEGIS API). Only honored when the request
+    # when forwarding to the central Ram Antivirus API). Only honored when the request
     # itself originates from a trusted/internal CIDR.
     source_ip_override: Optional[str] = None
 
@@ -144,7 +144,7 @@ async def submit_canary(
 ):
     """
     Receive a canary payload from an attacker's browser on a honeypot page.
-    Open auth: the attacker's browser cannot present an AEGIS API key. Rate-
+    Open auth: the attacker's browser cannot present an Ram Antivirus API key. Rate-
     limited implicitly by the upstream honeypot's connection caps.
     """
     network_ip = _client_ip(request)

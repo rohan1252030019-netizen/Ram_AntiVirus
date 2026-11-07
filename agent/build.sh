@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build the AEGIS agent and copy it to the Tauri binaries directory
+# Build the Ram Antivirus agent and copy it to the Tauri binaries directory
 # with the correct platform-specific naming convention.
 #
 # Usage: ./build.sh
@@ -9,7 +9,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 TAURI_BIN_DIR="$SCRIPT_DIR/../desktop-tauri/src-tauri/binaries"
 
-echo "=== AEGIS Agent Build ==="
+echo "=== Ram Antivirus Agent Build ==="
 echo "Script dir: $SCRIPT_DIR"
 
 # Ensure PyInstaller is installed

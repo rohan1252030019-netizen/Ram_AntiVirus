@@ -1,8 +1,8 @@
 /**
- * MITRE ATT&CK technique lookup for AEGIS.
+ * MITRE ATT&CK technique lookup for Ram Antivirus.
  *
  * Provides a typed map of technique codes to human-readable plain-language
- * descriptions. Used everywhere AEGIS renders a T1xxx code in the UI so that
+ * descriptions. Used everywhere Ram Antivirus renders a T1xxx code in the UI so that
  * non-security users can understand what each technique means.
  *
  * Plain-language field uses simple English that works for both English and

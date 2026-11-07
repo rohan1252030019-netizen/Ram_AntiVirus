@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AEGIS OpenRouter API Test
+Ram Antivirus OpenRouter API Test
 Tests connectivity and response times for all configured free models.
 
 Usage:
@@ -50,7 +50,7 @@ TEST_PROMPT = "Analyze this security alert in one sentence: SSH brute force atta
 HEADERS = {
     "Authorization": f"Bearer {API_KEY}",
     "HTTP-Referer": "https://github.com/aegis-defense/aegis",
-    "X-Title": "AEGIS Defense Platform",
+    "X-Title": "Ram Antivirus Defense Platform",
     "Content-Type": "application/json",
 }
 
@@ -96,7 +96,7 @@ def test_model(task: str, model: str) -> dict:
 
 def main():
     print("=" * 70)
-    print("  AEGIS OpenRouter Model Test")
+    print("  Ram Antivirus OpenRouter Model Test")
     print("=" * 70)
     print(f"  API Key: {API_KEY[:12]}...{API_KEY[-4:]}")
     print(f"  Testing {len(MODEL_ROUTING)} models")
@@ -133,9 +133,9 @@ def main():
     print(f"  {ok_count}/{len(results)} models responding")
 
     if ok_count == len(results):
-        print("  All models operational. AEGIS AI engine ready.")
+        print("  All models operational. Ram Antivirus AI engine ready.")
     elif ok_count > 0:
-        print("  Some models unavailable. AEGIS will use fallback routing.")
+        print("  Some models unavailable. Ram Antivirus will use fallback routing.")
     else:
         print("  No models responding. Check API key and network connectivity.")
 

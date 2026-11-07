@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Migrate AEGIS data from SQLite to PostgreSQL.
+Migrate Ram Antivirus data from SQLite to PostgreSQL.
 
 Usage:
     python scripts/migrate_to_postgres.py
@@ -160,7 +160,7 @@ def verify_counts(sqlite_conn, pg_conn):
 
 
 def main():
-    print(f"=== AEGIS SQLite -> PostgreSQL Migration ===")
+    print(f"=== Ram Antivirus SQLite -> PostgreSQL Migration ===")
     print(f"SQLite: {SQLITE_PATH}")
     print(f"PostgreSQL: {PG_USER}@{PG_HOST}:{PG_PORT}/{PG_DATABASE}")
     print()

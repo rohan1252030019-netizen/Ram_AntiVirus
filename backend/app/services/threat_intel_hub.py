@@ -192,7 +192,7 @@ class ThreatIntelHub:
         return count
 
     # ------------------------------------------------------------------
-    # AEGIS THREATS (own detections only)
+    # Ram Antivirus THREATS (own detections only)
     # ------------------------------------------------------------------
 
     async def share_ioc(self, data: dict) -> dict:

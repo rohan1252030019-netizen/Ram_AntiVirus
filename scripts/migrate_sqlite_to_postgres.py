@@ -126,7 +126,7 @@ def migrate_table(sqlite_conn, pg_conn, table: str):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Migrate AEGIS data from SQLite to PostgreSQL")
+    parser = argparse.ArgumentParser(description="Migrate Ram Antivirus data from SQLite to PostgreSQL")
     parser.add_argument(
         "--sqlite",
         default="backend/aegis.db",

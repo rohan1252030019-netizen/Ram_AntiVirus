@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AEGIS Development Server
+# Ram Antivirus Development Server
 # Starts backend and frontend in parallel
 set -euo pipefail
 
@@ -10,14 +10,14 @@ NC='\033[0m'
 
 cleanup() {
     echo ""
-    echo "Shutting down AEGIS..."
+    echo "Shutting down Ram Antivirus..."
     kill $BACKEND_PID $FRONTEND_PID 2>/dev/null || true
     wait $BACKEND_PID $FRONTEND_PID 2>/dev/null || true
     echo "Stopped."
 }
 trap cleanup EXIT INT TERM
 
-echo -e "${CYAN}[AEGIS]${NC} Starting development servers..."
+echo -e "${CYAN}[RAM ANTIVIRUS]${NC} Starting development servers..."
 
 # Start backend
 cd "$PROJECT_ROOT/backend"
@@ -42,7 +42,7 @@ else
 fi
 
 echo ""
-echo -e "${CYAN}[AEGIS]${NC} Both servers running. Press Ctrl+C to stop."
+echo -e "${CYAN}[RAM ANTIVIRUS]${NC} Both servers running. Press Ctrl+C to stop."
 echo ""
 
 wait

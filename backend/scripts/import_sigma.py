@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Import Sigma rules from SigmaHQ YAML files into AEGIS correlation engine.
+Import Sigma rules from SigmaHQ YAML files into Ram Antivirus correlation engine.
 
 Usage:
     # Import from a directory of .yml Sigma rule files
@@ -15,7 +15,7 @@ Usage:
     python scripts/import_sigma.py /tmp/sigma/rules/windows/
     python scripts/import_sigma.py /tmp/sigma/rules/network/
 
-The script converts Sigma YAML format into AEGIS correlation engine rules
+The script converts Sigma YAML format into Ram Antivirus correlation engine rules
 and adds them via the /api/v1/correlation/rules API endpoint.
 """
 
@@ -38,7 +38,7 @@ except ImportError:
     print("ERROR: httpx required. Install with: pip install httpx")
     sys.exit(1)
 
-# Sigma severity -> AEGIS severity mapping
+# Sigma severity -> Ram Antivirus severity mapping
 SEVERITY_MAP = {
     "informational": "low",
     "low": "low",
@@ -62,7 +62,7 @@ MITRE_TACTIC_RE = re.compile(
 
 
 def parse_sigma_yaml(filepath: Path) -> dict | None:
-    """Parse a single Sigma YAML rule file and convert to AEGIS format."""
+    """Parse a single Sigma YAML rule file and convert to Ram Antivirus format."""
     try:
         with open(filepath, "r", encoding="utf-8") as f:
             sigma = yaml.safe_load(f)
@@ -108,7 +108,7 @@ def parse_sigma_yaml(filepath: Path) -> dict | None:
     detection = sigma.get("detection", {})
     condition_filter = _build_condition(detection, sigma.get("logsource", {}))
 
-    # Build the AEGIS rule
+    # Build the Ram Antivirus rule
     aegis_rule = {
         "id": rule_id,
         "title": title[:120],
@@ -130,7 +130,7 @@ def parse_sigma_yaml(filepath: Path) -> dict | None:
 
 
 def _build_condition(detection: dict, logsource: dict) -> dict:
-    """Convert Sigma detection block to AEGIS condition filter."""
+    """Convert Sigma detection block to Ram Antivirus condition filter."""
     condition = {}
 
     # Map logsource to event_type
@@ -202,7 +202,7 @@ def import_rules(
     max_rules: int = 0,
     dry_run: bool = False,
 ) -> dict:
-    """Import Sigma rules from a path (file or directory) into AEGIS."""
+    """Import Sigma rules from a path (file or directory) into Ram Antivirus."""
     stats = {"parsed": 0, "imported": 0, "skipped": 0, "errors": 0, "duplicates": 0}
 
     # Collect YAML files
@@ -258,13 +258,13 @@ def import_rules(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Import Sigma rules into AEGIS correlation engine"
+        description="Import Sigma rules into Ram Antivirus correlation engine"
     )
     parser.add_argument("path", type=Path, help="Path to Sigma YAML file or directory")
     parser.add_argument(
         "--api-url",
         default=os.environ.get("AEGIS_API_URL", "http://localhost:8000"),
-        help="AEGIS API base URL (default: from AEGIS_API_URL env var or localhost)",
+        help="Ram Antivirus API base URL (default: from AEGIS_API_URL env var or localhost)",
     )
     parser.add_argument(
         "--api-key",

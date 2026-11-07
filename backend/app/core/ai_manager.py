@@ -1,5 +1,5 @@
 """
-AI Manager -- central hub for multi-provider AI access in AEGIS.
+AI Manager -- central hub for multi-provider AI access in Ram Antivirus.
 
 Manages provider registration, active provider selection, fallback chains,
 and per-client API key resolution.  The rest of the codebase continues to

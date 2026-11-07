@@ -109,9 +109,9 @@ frontend/scripts/deploy-sync.mjs
 
 # ---------------------------------------------------------------------------
 # Other projects' source. These are separate private products (SID, WilabIA,
-# landing-wilab, Sable) that only ever landed here because AEGIS instruments
+# landing-wilab, Sable) that only ever landed here because Ram Antivirus instruments
 # them. Their business logic does not belong in a public security repo.
-# Allow-list style: ignore pi-deploy wholesale, then re-admit AEGIS's own parts.
+# Allow-list style: ignore pi-deploy wholesale, then re-admit Ram Antivirus's own parts.
 # ---------------------------------------------------------------------------
 pi-deploy/*
 !pi-deploy/aegis-feed/

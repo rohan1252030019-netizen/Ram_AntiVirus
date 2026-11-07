@@ -20,7 +20,7 @@ from app.core import ip_blocker as ip_blocker_mod
 def isolated_blocklist(tmp_path, monkeypatch):
     """Point ip_blocker at a tmp file and reset the in-memory set."""
     blocked_file = tmp_path / "blocked_ips.txt"
-    blocked_file.write_text("# AEGIS Blocked IPs\n# Managed automatically\n45.155.205.233\n")
+    blocked_file.write_text("# Ram Antivirus Blocked IPs\n# Managed automatically\n45.155.205.233\n")
     monkeypatch.setattr(ip_blocker_mod, "BLOCKED_IPS_FILE", blocked_file)
     # Reset in-memory state to match the new file
     ip_blocker_mod.ip_blocker_service._blocked = ip_blocker_mod._load_blocked_ips()
@@ -46,7 +46,7 @@ async def test_pull_appends_new_pi_ips(isolated_blocklist):
 @pytest.mark.asyncio
 async def test_pull_skips_safe_ips(isolated_blocklist):
     """Googlebot IP must not be appended even if Pi has it."""
-    # 66.249.0.0/16 should be in AEGIS_SAFE_IPS in prod; force it for the test
+    # 66.249.0.0/16 should be in Ram Antivirus_SAFE_IPS in prod; force it for the test
     # via the configured _SAFE_NETWORKS list at runtime.
     import ipaddress
     from app.core import attack_detector

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================================
-# AEGIS EDR-lite Agent Installer
+# Ram Antivirus EDR-lite Agent Installer
 # ============================================================================
 # Usage:
 #   curl -sSL https://your-server/install.sh | bash -s -- \
@@ -52,7 +52,7 @@ if [[ -z "$API_KEY" ]]; then
     exit 1
 fi
 
-log "AEGIS EDR-lite Agent Installer"
+log "Ram Antivirus EDR-lite Agent Installer"
 log "API URL: $API_URL"
 log "Mode:    $INSTALL_MODE"
 echo ""
@@ -125,7 +125,7 @@ install_native() {
     log "Creating systemd service..."
     sudo tee /etc/systemd/system/aegis-agent.service > /dev/null <<EOSVC
 [Unit]
-Description=AEGIS EDR-lite Endpoint Agent
+Description=Ram Antivirus EDR-lite Endpoint Agent
 After=network-online.target
 Wants=network-online.target
 
@@ -166,4 +166,4 @@ else
 fi
 
 echo ""
-ok "AEGIS EDR-lite agent installation complete."
+ok "Ram Antivirus EDR-lite agent installation complete."

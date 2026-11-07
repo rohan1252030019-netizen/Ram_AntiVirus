@@ -95,7 +95,7 @@ class ThreatIntelGenerator:
     async def generate_threat_feed(self, db: AsyncSession, format: str = "json", limit: int = 1000) -> dict:
         """Export threat intelligence as a feed.
 
-        `limit` is bounded to [1, 10000] so remote AEGIS nodes can pull the
+        `limit` is bounded to [1, 10000] so remote Ram Antivirus nodes can pull the
         full indicator set (default 1000) instead of being silently capped.
         """
         bounded_limit = max(1, min(int(limit), 10000))
@@ -108,7 +108,7 @@ class ThreatIntelGenerator:
             return self._to_stix(iocs)
 
         return {
-            "feed_name": "AEGIS Threat Intel Feed",
+            "feed_name": "Ram Antivirus Threat Intel Feed",
             "generated_at": datetime.utcnow().isoformat(),
             "total_indicators": len(iocs),
             "indicators": [

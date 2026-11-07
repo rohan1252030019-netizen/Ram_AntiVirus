@@ -2,7 +2,7 @@
 RAG (Retrieval-Augmented Generation) API endpoints.
 
 Provides semantic search, document ingestion, and knowledge base management
-for the AEGIS embedded RAG service.
+for the Ram Antivirus embedded RAG service.
 """
 
 from typing import Optional

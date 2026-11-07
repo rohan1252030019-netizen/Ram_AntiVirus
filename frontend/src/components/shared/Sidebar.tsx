@@ -1,6 +1,6 @@
 'use client';
 
-// Deprecated: AEGIS uses a horizontal TopNav as of v1.6.2.
+// Deprecated: Ram Antivirus uses a horizontal TopNav as of v1.6.2.
 // This file is preserved as a no-op to keep historical imports compiling.
 // New code should import from '@/components/shared/TopNav' instead.
 

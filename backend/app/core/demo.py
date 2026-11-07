@@ -1,6 +1,6 @@
 """Public-demo identity and sandbox.
 
-The hosted AEGIS demo publishes one API key and one admin login on purpose so
+The hosted Ram Antivirus demo publishes one API key and one admin login on purpose so
 that anybody can look around. Those credentials must never be able to change
 host state, reach the network, or destroy data.
 
@@ -47,7 +47,7 @@ _demo_client_id: Optional[str] = None
 _demo_admin_user_id: Optional[str] = None
 # True when the seeded demo tenant actually owns the published demo key. A
 # fresh self-host also seeds a "demo" tenant, but with a random key — that
-# deployment must NOT be sandboxed unless it opted into AEGIS_DEMO_MODE.
+# deployment must NOT be sandboxed unless it opted into Ram Antivirus_DEMO_MODE.
 _demo_client_is_published = False
 
 

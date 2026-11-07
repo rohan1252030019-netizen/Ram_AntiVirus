@@ -1,5 +1,5 @@
 """
-Unit tests for AEGIS Windows Host Network Isolation (FR-09).
+Unit tests for Ram Antivirus Windows Host Network Isolation (FR-09).
 Runs in backend test suite.
 """
 

@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """
-AEGIS EDR-lite Agent Configuration.
+Ram Antivirus EDR-lite Agent Configuration.
 
-All values can be overridden via environment variables prefixed with AEGIS_.
+All values can be overridden via environment variables prefixed with Ram Antivirus_.
 Supports Linux, macOS, and Windows platforms.
 """
 
@@ -10,18 +10,36 @@ import os
 import uuid
 import platform
 import socket
+import logging
+
+_cfg_logger = logging.getLogger("ram_antivirus.config")
+
+
+def _get_env_with_fallback(ram_key: str, aegis_key: str, default: str = "") -> str:
+    """Retrieve configuration preferring RAM_* with deprecated AEGIS_* fallback."""
+    if ram_key in os.environ:
+        return os.environ[ram_key]
+    if aegis_key in os.environ:
+        _cfg_logger.warning(
+            "DEPRECATION: Environment variable '%s' is deprecated; please use '%s' instead.",
+            aegis_key,
+            ram_key,
+        )
+        return os.environ[aegis_key]
+    return default
+
 
 IS_WINDOWS = platform.system() == "Windows"
 
 # ---------------------------------------------------------------------------
 # Connection
 # ---------------------------------------------------------------------------
-AEGIS_API_URL: str = os.getenv("RAM_API_URL", os.getenv("AEGIS_API_URL", "https://localhost:8443/api/v1"))
-AEGIS_API_KEY: str = os.getenv("RAM_API_KEY", os.getenv("AEGIS_API_KEY", ""))
-AEGIS_ALLOW_INSECURE_HTTP: str = os.getenv("RAM_ALLOW_INSECURE_HTTP", os.getenv("AEGIS_ALLOW_INSECURE_HTTP", "0"))
-AEGIS_CLIENT_CERT: str = os.getenv("RAM_CLIENT_CERT", os.getenv("AEGIS_CLIENT_CERT", ""))
-AEGIS_CLIENT_KEY: str = os.getenv("RAM_CLIENT_KEY", os.getenv("AEGIS_CLIENT_KEY", ""))
-AEGIS_CA_CERT: str = os.getenv("RAM_CA_CERT", os.getenv("AEGIS_CA_CERT", ""))
+AEGIS_API_URL: str = _get_env_with_fallback("RAM_API_URL", "AEGIS_API_URL", "https://localhost:8443/api/v1")
+AEGIS_API_KEY: str = _get_env_with_fallback("RAM_API_KEY", "AEGIS_API_KEY", "")
+AEGIS_ALLOW_INSECURE_HTTP: str = _get_env_with_fallback("RAM_ALLOW_INSECURE_HTTP", "AEGIS_ALLOW_INSECURE_HTTP", "0")
+AEGIS_CLIENT_CERT: str = _get_env_with_fallback("RAM_CLIENT_CERT", "AEGIS_CLIENT_CERT", "")
+AEGIS_CLIENT_KEY: str = _get_env_with_fallback("RAM_CLIENT_KEY", "AEGIS_CLIENT_KEY", "")
+AEGIS_CA_CERT: str = _get_env_with_fallback("RAM_CA_CERT", "AEGIS_CA_CERT", "")
 
 # ---------------------------------------------------------------------------
 # Agent identity (auto-generated on first run, persisted to .agent_id file)
@@ -44,19 +62,19 @@ def _load_or_create_agent_id() -> str:
     return new_id
 
 
-AGENT_ID: str = os.getenv("AEGIS_AGENT_ID", _load_or_create_agent_id())
-HOSTNAME: str = os.getenv("AEGIS_HOSTNAME", socket.gethostname())
+AGENT_ID: str = _get_env_with_fallback("RAM_AGENT_ID", "AEGIS_AGENT_ID", _load_or_create_agent_id())
+HOSTNAME: str = _get_env_with_fallback("RAM_HOSTNAME", "AEGIS_HOSTNAME", socket.gethostname())
 OS_INFO: str = f"{platform.system()} {platform.release()} ({platform.machine()})"
 AGENT_VERSION: str = "1.0.0"
 
 # ---------------------------------------------------------------------------
 # Monitoring intervals (seconds)
 # ---------------------------------------------------------------------------
-PROCESS_INTERVAL: int = int(os.getenv("AEGIS_PROCESS_INTERVAL", "10"))
-NETWORK_INTERVAL: int = int(os.getenv("AEGIS_NETWORK_INTERVAL", "10"))
-HEARTBEAT_INTERVAL: int = int(os.getenv("AEGIS_HEARTBEAT_INTERVAL", "30"))
-EVENT_FLUSH_INTERVAL: int = int(os.getenv("AEGIS_EVENT_FLUSH_INTERVAL", "5"))
-PERSISTENCE_INTERVAL: int = int(os.getenv("AEGIS_PERSISTENCE_INTERVAL", "30"))
+PROCESS_INTERVAL: int = int(_get_env_with_fallback("RAM_PROCESS_INTERVAL", "AEGIS_PROCESS_INTERVAL", "10"))
+NETWORK_INTERVAL: int = int(_get_env_with_fallback("RAM_NETWORK_INTERVAL", "AEGIS_NETWORK_INTERVAL", "10"))
+HEARTBEAT_INTERVAL: int = int(_get_env_with_fallback("RAM_HEARTBEAT_INTERVAL", "AEGIS_HEARTBEAT_INTERVAL", "30"))
+EVENT_FLUSH_INTERVAL: int = int(_get_env_with_fallback("RAM_EVENT_FLUSH_INTERVAL", "AEGIS_EVENT_FLUSH_INTERVAL", "5"))
+PERSISTENCE_INTERVAL: int = int(_get_env_with_fallback("RAM_PERSISTENCE_INTERVAL", "AEGIS_PERSISTENCE_INTERVAL", "30"))
 
 # ---------------------------------------------------------------------------
 # File Integrity Monitoring (platform-aware)
@@ -64,12 +82,12 @@ PERSISTENCE_INTERVAL: int = int(os.getenv("AEGIS_PERSISTENCE_INTERVAL", "30"))
 if IS_WINDOWS:
     from config_windows import FIM_PATHS as _win_fim_paths, FIM_USER_PATHS as _win_fim_user_paths
     _default_fim_paths = ",".join(_win_fim_paths)
-    FIM_PATHS: list[str] = os.getenv("AEGIS_FIM_PATHS", _default_fim_paths).split(",")
+    FIM_PATHS: list[str] = _get_env_with_fallback("RAM_FIM_PATHS", "AEGIS_FIM_PATHS", _default_fim_paths).split(",")
     FIM_PATHS = [p.strip() for p in FIM_PATHS if p.strip()]
     FIM_USER_PATHS: list[str] = _win_fim_user_paths
 else:
     _default_fim_paths = "/etc/,/usr/bin/,/usr/sbin/"
-    FIM_PATHS: list[str] = os.getenv("AEGIS_FIM_PATHS", _default_fim_paths).split(",")
+    FIM_PATHS: list[str] = _get_env_with_fallback("RAM_FIM_PATHS", "AEGIS_FIM_PATHS", _default_fim_paths).split(",")
     FIM_PATHS = [p.strip() for p in FIM_PATHS if p.strip()]
     FIM_USER_PATHS: list[str] = [
         os.path.expanduser("~/.ssh/"),
@@ -81,7 +99,7 @@ else:
 # ---------------------------------------------------------------------------
 # Deception breadcrumbs (platform-aware)
 # ---------------------------------------------------------------------------
-BREADCRUMBS_ENABLED: bool = os.getenv("AEGIS_BREADCRUMBS_ENABLED", "true").lower() == "true"
+BREADCRUMBS_ENABLED: bool = _get_env_with_fallback("RAM_BREADCRUMBS_ENABLED", "AEGIS_BREADCRUMBS_ENABLED", "true").lower() == "true"
 
 if IS_WINDOWS:
     from config_windows import BREADCRUMB_PATHS as _win_breadcrumbs
@@ -90,7 +108,7 @@ else:
     _default_breadcrumb_paths = "~/.aws/credentials,~/passwords.txt,~/.env.production"
     BREADCRUMB_PATHS: list[str] = [
         os.path.expanduser(p.strip())
-        for p in os.getenv("AEGIS_BREADCRUMB_PATHS", _default_breadcrumb_paths).split(",")
+        for p in _get_env_with_fallback("RAM_BREADCRUMB_PATHS", "AEGIS_BREADCRUMB_PATHS", _default_breadcrumb_paths).split(",")
         if p.strip()
     ]
 
@@ -141,3 +159,11 @@ DATA_SHARING_INTERVAL: int = int(os.getenv("AEGIS_DATA_SHARING_INTERVAL", str(36
 # Logging
 # ---------------------------------------------------------------------------
 LOG_LEVEL: str = os.getenv("AEGIS_LOG_LEVEL", "INFO")
+
+
+# Backwards-compatible aliases
+RAM_API_URL = AEGIS_API_URL
+RAM_API_KEY = AEGIS_API_KEY
+RAM_AGENT_ID = AGENT_ID
+RAM_HOSTNAME = HOSTNAME
+RAM_ALLOW_INSECURE_HTTP = AEGIS_ALLOW_INSECURE_HTTP

@@ -1,7 +1,7 @@
 """
-IP Intelligence — internal history helpers (AEGIS v1.8).
+IP Intelligence — internal history helpers (Ram Antivirus v1.8).
 
-Pure DB / local-file lookups against AEGIS's own observations:
+Pure DB / local-file lookups against Ram Antivirus's own observations:
   - incidents table          → past detections involving this IP
   - honeypot_interactions    → deception engagement history
   - attacker_profiles        → phantom profiler output
@@ -13,7 +13,7 @@ NO external HTTP. The optional AI threat brief lives in `_ai_threat_brief`
 and is the ONE place ai_manager may be called from the intel pipeline;
 it's gated behind deep=True AND AEGIS_AI_MODE != offline.
 
-Global view (no client_id filter): AEGIS prod runs single-tenant on Mac Pro
+Global view (no client_id filter): Ram Antivirus prod runs single-tenant on Mac Pro
 and the public ip_intel API is already global by design (the behavioral
 feed in the parent module is a global file). Operators see all clients.
 
@@ -363,7 +363,7 @@ async def _ai_threat_brief(ip: str, intel: dict[str, Any]) -> dict[str, Any] | N
     inc = hist.get("incidents") or {}
     if inc.get("count"):
         facts.append(
-            f"AEGIS history: {inc.get('count')} incidents, severities={inc.get('severities')}, "
+            f"Ram Antivirus history: {inc.get('count')} incidents, severities={inc.get('severities')}, "
             f"top MITRE={inc.get('mitre_top')}"
         )
     hp = hist.get("honeypot") or {}
@@ -382,7 +382,7 @@ async def _ai_threat_brief(ip: str, intel: dict[str, Any]) -> dict[str, Any] | N
         )
 
     system_msg = (
-        "You are AEGIS, an autonomous cybersecurity defense system. "
+        "You are Ram Antivirus, an autonomous cybersecurity defense system. "
         "Write a concise 100-180 word threat assessment for an IP based ONLY on "
         "the facts provided. Be specific. Cite the strongest signals. State the "
         "recommended action (block / monitor / allow) and confidence (low/med/high). "

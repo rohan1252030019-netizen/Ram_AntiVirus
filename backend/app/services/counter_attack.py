@@ -1,5 +1,5 @@
 """
-AEGIS Counter-Attack Module -- Active Defense
+Ram Antivirus Counter-Attack Module -- Active Defense
 
 When a high/critical attack is detected:
 1. AI (dolphin-mistral uncensored via OpenRouter) analyzes attacker IP, methods, patterns
@@ -53,7 +53,7 @@ except Exception:
     _STATIC_COUNTER_ACTIONS = {}
 
 
-# Counter-attack action types (all auto-approved — AEGIS is autonomous)
+# Counter-attack action types (all auto-approved — Ram Antivirus is autonomous)
 COUNTER_ATTACK_ACTIONS = {
     "recon_attacker": {
         "description": "Reconnaissance scan of attacker infrastructure",
@@ -84,11 +84,11 @@ COUNTER_ATTACK_ACTIONS = {
 
 
 COUNTER_ATTACK_SYSTEM_PROMPT = (
-    "You are a defensive security analyst assisting the AEGIS active defense system. "
+    "You are a defensive security analyst assisting the Ram Antivirus active defense system. "
     "Your role is to analyze attackers and recommend proportionate, legally defensible "
     "counter-measures, and every action you recommend is subject to human approval and "
     "operator opt-in before execution. Recommend only actions that are lawful in the "
-    "jurisdiction where AEGIS operates and proportionate to the observed threat; do not "
+    "jurisdiction where Ram Antivirus operates and proportionate to the observed threat; do not "
     "recommend actions against infrastructure that is clearly not the attacker's own "
     "(e.g. shared hosting, CDNs, or likely-innocent relays), and flag any recommendation "
     "that could affect third parties so a human can review it before it runs.\n\n"
@@ -323,7 +323,7 @@ class CounterAttackEngine:
         """Scan attacker IP with nmap to fingerprint their infrastructure.
 
         Active reconnaissance against third-party infrastructure carries legal
-        risk (the target may not be under AEGIS's control) and is disabled by
+        risk (the target may not be under Ram Antivirus's control) and is disabled by
         default. It only runs when the operator explicitly opts in via
         AEGIS_ACTIVE_RECON=1, in addition to the require_approval guardrail
         already gating this action type.
@@ -485,7 +485,7 @@ class CounterAttackEngine:
             "ip": target_ip,
             "categories": "14,15,18,21",  # port scan, brute force, DDoS, web app attack
             "comment": (
-                f"Automated attack detected by AEGIS Defense Platform. "
+                f"Automated attack detected by Ram Antivirus Defense Platform. "
                 f"Attack type: {attack_type[:200]}. "
                 f"Incident ID: {incident_id}"
             ),

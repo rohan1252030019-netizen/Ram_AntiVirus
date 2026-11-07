@@ -3,7 +3,7 @@ Threat Intel Cloud API — Community IOC sharing and hub endpoints.
 
 Router prefix: /intel (mounted under /api/v1 in main.py)
 
-Client endpoints (any AEGIS instance):
+Client endpoints (any Ram Antivirus instance):
   POST   /intel/share            — submit an IOC to the cloud (requires opt-in)
   GET    /intel/community        — get community IOCs (paginated, filtered)
   GET    /intel/community/stats  — sharing statistics
@@ -114,7 +114,7 @@ class SyncResponse(BaseModel):
 
 
 class HubSubmission(BaseModel):
-    """Schema for IOC received from another AEGIS instance (hub endpoint)."""
+    """Schema for IOC received from another Ram Antivirus instance (hub endpoint)."""
     ioc_type: str
     ioc_value: str
     threat_type: str
@@ -173,7 +173,7 @@ async def get_community_iocs(
     """
     Get community-shared IOCs with pagination and filtering.
 
-    Returns IOCs that have been shared by the AEGIS community.
+    Returns IOCs that have been shared by the Ram Antivirus community.
     Verified IOCs have been independently confirmed by multiple sources.
     """
     result = await intel_cloud.get_community_iocs(
@@ -271,9 +271,9 @@ async def manual_sync(
 @router.post("/hub/submit", response_model=IOCSubmissionResponse)
 async def hub_receive_ioc(body: HubSubmission):
     """
-    Receive an IOC from another AEGIS instance.
+    Receive an IOC from another Ram Antivirus instance.
 
-    This endpoint is called by remote AEGIS clients that have configured
+    This endpoint is called by remote Ram Antivirus clients that have configured
     this instance as their hub. No auth required (HMAC signature verification
     provides authentication).
 
@@ -301,7 +301,7 @@ async def hub_serve_feed(
     limit: int = Query(500, ge=1, le=5000, description="Maximum IOCs to return"),
 ):
     """
-    Serve community IOCs to other AEGIS instances (JSON format).
+    Serve community IOCs to other Ram Antivirus instances (JSON format).
 
     This is the primary feed endpoint that clients poll every 15 minutes.
     Supports incremental sync via the `since` parameter.

@@ -75,9 +75,9 @@ jobs:
           projectPath: desktop-tauri
           tauriScript: npx tauri
           tagName: ${{ github.ref_name }}
-          releaseName: "AEGIS ${{ github.ref_name }}"
+          releaseName: "Ram Antivirus ${{ github.ref_name }}"
           releaseBody: |
-            AEGIS Defense Platform ${{ github.ref_name }}
+            Ram Antivirus Defense Platform ${{ github.ref_name }}
 
             ## Changes
             See [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details.

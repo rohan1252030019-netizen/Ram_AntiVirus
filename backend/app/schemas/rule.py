@@ -1,4 +1,4 @@
-"""Pydantic v2 models for AEGIS YAML rule pack (Sigma + chain rules)."""
+"""Pydantic v2 models for Ram Antivirus YAML rule pack (Sigma + chain rules)."""
 
 from __future__ import annotations
 

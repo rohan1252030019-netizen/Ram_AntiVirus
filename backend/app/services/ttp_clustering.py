@@ -1,5 +1,5 @@
 """
-TTP Sequence Clustering for AEGIS.
+TTP Sequence Clustering for Ram Antivirus.
 
 Detects repeated attack patterns even when source IPs rotate (Tor exits, VPN
 hopping, botnets). Groups incidents by their MITRE TTP fingerprint —

@@ -46,6 +46,21 @@ jobs:
           echo "Secrets scan passed cleanly."
 
   # ------------------------------------------------------------------
+  # Branding Verification (AEGIS -> Ram Antivirus)
+  # ------------------------------------------------------------------
+  branding-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify Ram Antivirus branding compliance
+        run: python scripts/verify_ram_rename.py
+
+  # ------------------------------------------------------------------
   # Lint backend (ruff) - strict exit codes
   # ------------------------------------------------------------------
   lint-backend:

@@ -198,7 +198,7 @@ pub async fn run_correlator(state: Arc<Mutex<RansomwareState>>) {
 }
 
 /// Best-effort Tier-1 heuristic: find the most recently started process
-/// that is neither a system process nor AEGIS itself. This is intentionally
+/// that is neither a system process nor Ram Antivirus itself. This is intentionally
 /// coarse; the ETW integration in Task #5 gives us precise per-write PIDs.
 fn guess_offending_pid() -> Option<u32> {
     let mut sys = System::new_all();

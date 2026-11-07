@@ -1,7 +1,7 @@
 """
-AEGIS DoS Netshield — Pi gateway network-tier DoS mitigation (DEFAULT OFF).
+Ram Antivirus DoS Netshield — Pi gateway network-tier DoS mitigation (DEFAULT OFF).
 
-This module is the NETWORK TIER (Tier 2) of the AEGIS DoS Shield. It runs on the
+This module is the NETWORK TIER (Tier 2) of the Ram Antivirus DoS Shield. It runs on the
 Raspberry Pi 5, which is the Mac Pro's network GATEWAY. Because a wrong DROP rule
 here can cut the Mac Pro off from the internet, EVERYTHING in this module is:
 
@@ -106,10 +106,10 @@ _SYNFLOOD_SYSCTL: dict[str, str] = {
 DEFAULT_SYN_RATE = 50       # SYN packets/sec per source
 DEFAULT_SYN_BURST = 100     # burst allowance
 DEFAULT_CONNLIMIT = 100     # max concurrent conns per source IP
-DEFAULT_PORT = 8000         # AEGIS API port to protect
+DEFAULT_PORT = 8000         # Ram Antivirus API port to protect
 
 # --- Baseline chain protections ------------------------------------------
-# These mirror the rules aegis-init.sh installs into AEGIS_DOS at boot:
+# These mirror the rules aegis-init.sh installs into Ram Antivirus_DOS at boot:
 # conntrack hygiene, an ICMP flood cap, and an all-ports SYN cap.
 #
 # They are re-applied by _ensure_chain() because that function FLUSHES the

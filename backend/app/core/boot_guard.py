@@ -1,5 +1,5 @@
 """
-Boot-time guard against booting AEGIS in non-development environments with default secrets.
+Boot-time guard against booting Ram Antivirus in non-development environments with default secrets.
 """
 
 from __future__ import annotations

@@ -3,7 +3,7 @@ Seed the RAG knowledge base with built-in security knowledge.
 
 Run once on first startup or via the /api/v1/rag/rebuild endpoint.
 Includes MITRE ATT&CK top techniques, common vulnerability patterns,
-remediation guides, and AEGIS usage documentation.
+remediation guides, and Ram Antivirus usage documentation.
 """
 
 import logging
@@ -647,14 +647,14 @@ VULNERABILITY_PATTERNS = [
 ]
 
 # ---------------------------------------------------------------------------
-# AEGIS usage documentation
+# Ram Antivirus usage documentation
 # ---------------------------------------------------------------------------
 
 AEGIS_DOCS = [
     {
-        "title": "AEGIS Overview",
+        "title": "Ram Antivirus Overview",
         "content": (
-            "AEGIS is an AI-powered autonomous cybersecurity defense platform. It provides "
+            "Ram Antivirus is an AI-powered autonomous cybersecurity defense platform. It provides "
             "real-time threat detection, automated incident response, vulnerability scanning, "
             "honeypot deployment, and threat intelligence correlation. The platform uses a "
             "multi-model AI pipeline with fast triage (sub-300ms deterministic path) and full "
@@ -662,7 +662,7 @@ AEGIS_DOCS = [
         ),
     },
     {
-        "title": "AEGIS Alert Pipeline",
+        "title": "Ram Antivirus Alert Pipeline",
         "content": (
             "The alert pipeline has two modes: Fast Triage and Full AI. Fast Triage handles "
             "80%+ of alerts in under 300ms using Sigma rules, IOC cache, and playbook automation. "
@@ -672,16 +672,16 @@ AEGIS_DOCS = [
         ),
     },
     {
-        "title": "AEGIS Scanning Capabilities",
+        "title": "Ram Antivirus Scanning Capabilities",
         "content": (
-            "AEGIS supports multiple scan types: Nuclei (vulnerability scanning), Nmap (port "
+            "Ram Antivirus supports multiple scan types: Nuclei (vulnerability scanning), Nmap (port "
             "and service discovery), Subfinder (subdomain enumeration), HTTPX (HTTP probing). "
             "Scans can be scheduled or triggered manually. Results are correlated with threat "
             "intelligence feeds and stored for historical analysis."
         ),
     },
     {
-        "title": "AEGIS Honeypot System",
+        "title": "Ram Antivirus Honeypot System",
         "content": (
             "The phantom module deploys configurable honeypots that emulate services like SSH, "
             "HTTP, FTP, MySQL, and Redis. Honeypots capture attacker TTPs, commands, payloads, "
@@ -690,7 +690,7 @@ AEGIS_DOCS = [
         ),
     },
     {
-        "title": "AEGIS Incident Response",
+        "title": "Ram Antivirus Incident Response",
         "content": (
             "Automated response actions include: block_ip (firewall rule), isolate_host (network "
             "isolation), revoke_creds (credential revocation), kill_process (process termination), "
@@ -700,7 +700,7 @@ AEGIS_DOCS = [
         ),
     },
     {
-        "title": "AEGIS Correlation Engine",
+        "title": "Ram Antivirus Correlation Engine",
         "content": (
             "The Sigma-based correlation engine detects attack patterns across multiple events. "
             "It supports chain rules, temporal correlation, and IOC enrichment. When correlation "
@@ -709,7 +709,7 @@ AEGIS_DOCS = [
         ),
     },
     {
-        "title": "AEGIS Threat Intelligence",
+        "title": "Ram Antivirus Threat Intelligence",
         "content": (
             "Threat intelligence feeds provide real-time IOC data including malicious IPs, "
             "domains, hashes, and URLs. Sources include community feeds, commercial feeds, and "
@@ -718,10 +718,10 @@ AEGIS_DOCS = [
         ),
     },
     {
-        "title": "AEGIS RAG Knowledge Base",
+        "title": "Ram Antivirus RAG Knowledge Base",
         "content": (
             "The embedded RAG (Retrieval-Augmented Generation) system provides semantic search "
-            "over AEGIS's accumulated knowledge. It stores incidents, scan results, threat "
+            "over Ram Antivirus's accumulated knowledge. It stores incidents, scan results, threat "
             "intel, correlation events, and security reference material. When Ask AI receives "
             "a question, it queries the RAG for relevant context before sending to the LLM, "
             "enabling answers grounded in the platform's actual data and history."
@@ -833,8 +833,8 @@ async def seed_knowledge(rag) -> int:
         )
         count += 1
 
-    # AEGIS docs
-    for doc in AEGIS_DOCS:
+    # Ram Antivirus docs
+    for doc in Ram Antivirus_DOCS:
         await rag.ingest(
             f"{doc['title']}\n{doc['content']}",
             {"category": "documentation", "title": doc["title"]},

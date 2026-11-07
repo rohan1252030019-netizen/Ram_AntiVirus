@@ -1,5 +1,5 @@
 """
-Multi-provider AI adapter for AEGIS.
+Multi-provider AI adapter for Ram Antivirus.
 
 Defines the abstract AIProvider interface and concrete implementations
 for OpenRouter, Anthropic, OpenAI, and Ollama.
@@ -123,7 +123,7 @@ class OpenRouterProvider(AIProvider):
             headers={
                 "Authorization": f"Bearer {self.api_key}",
                 "HTTP-Referer": "https://github.com/aegis-defense/aegis",
-                "X-Title": "AEGIS Defense Platform",
+                "X-Title": "Ram Antivirus Defense Platform",
             },
             json={
                 "model": model,
@@ -174,7 +174,7 @@ class OmniRouteProvider(OpenRouterProvider):
     """Self-hosted OmniRoute gateway, OpenAI-compatible on /v1.
 
     MUST STREAM. This is not a preference — the gateway's non-streaming path is
-    broken, and using it is what made AEGIS believe it had no AI at all. Proven
+    broken, and using it is what made Ram Antivirus believe it had no AI at all. Proven
     by holding everything else constant and flipping one flag:
 
         auto/cheap  stream=true  -> 200, real completion from xiaomi/mimo-v2.5
@@ -237,7 +237,7 @@ class OmniRouteProvider(OpenRouterProvider):
             headers={
                 "Authorization": f"Bearer {self.api_key}",
                 "HTTP-Referer": "https://github.com/aegis-defense/aegis",
-                "X-Title": "AEGIS Defense Platform",
+                "X-Title": "Ram Antivirus Defense Platform",
                 "Accept": "text/event-stream",
             },
             json={
@@ -595,7 +595,7 @@ class InceptionProvider(AIProvider):
         {"id": "mercury-2", "name": "Mercury-2 (Diffusion LLM)"},
     ]
 
-    # Map AEGIS task types to Mercury reasoning effort levels
+    # Map Ram Antivirus task types to Mercury reasoning effort levels
     TASK_REASONING: dict[str, str] = {
         "triage": "instant",        # Fastest — sub-second decisions
         "quick_decision": "instant",
@@ -713,7 +713,7 @@ class GeminiProvider(AIProvider):
     """Google Gemini via Generative Language REST API.
 
     Default model: gemini-flash-lite-latest (cheap + fast, suitable for
-    enrichment + triage on the AEGIS hot path).
+    enrichment + triage on the Ram Antivirus hot path).
     """
 
     KNOWN_MODELS = [

@@ -9,7 +9,7 @@ import { cn, formatRelativeTime } from '@/lib/utils';
 /**
  * CommandBar — the sticky 52px instrument strip that opens every dashboard
  * page. It is the ENTIRE replacement for the old 11-step blocking
- * "Welcome to AEGIS" modal (GuideTour): a one-click-dismissible 34px strip
+ * "Welcome to Ram Antivirus" modal (GuideTour): a one-click-dismissible 34px strip
  * instead of a full-screen scrim.
  *
  * Rules applied:
@@ -141,7 +141,7 @@ export function CommandBar({
         }}
       >
         <div className="max-w-[1400px] mx-auto px-4 md:px-6 h-[52px] flex items-center">
-          {/* LEFT CLUSTER — hidden below md: TopNav already shows the AEGIS
+          {/* LEFT CLUSTER — hidden below md: TopNav already shows the Ram Antivirus
               wordmark + version, so duplicating it here below md wasted the
               entire left slot on a phone. */}
           <div className="hidden md:flex items-center gap-[10px] shrink-0">

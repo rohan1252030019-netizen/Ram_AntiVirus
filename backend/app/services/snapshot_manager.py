@@ -1,5 +1,5 @@
 """
-Snapshot provider abstraction for AEGIS recovery orchestration (Phase R-C).
+Snapshot provider abstraction for Ram Antivirus recovery orchestration (Phase R-C).
 
 Gated by AEGIS_REAL_RECOVERY=1 (mirrors AEGIS_REAL_FW).
 Without the flag, NoopSnapshotProvider returns synthetic data so dev/CI

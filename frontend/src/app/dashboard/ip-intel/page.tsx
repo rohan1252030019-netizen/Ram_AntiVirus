@@ -157,7 +157,7 @@ type IPIntel = {
   vt_network?: string;
   ipinfo_lite_continent?: string;
   ipinfo_lite_as_domain?: string;
-  // JA4 TLS fingerprints captured at the AEGIS TLS honeypot (port 8889)
+  // JA4 TLS fingerprints captured at the Ram Antivirus TLS honeypot (port 8889)
   tls_fingerprints?: Array<{
     ja4: string;
     known_tool?: string | null;

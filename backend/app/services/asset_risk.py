@@ -9,7 +9,7 @@ the UI), so the displayed number and the stored number can never drift for
 long: the API always recomputes fresh, with fleet-wide host-share damping
 that the single-asset scan path cannot see.
 
-Model summary (see AEGIS product notes for the full derivation):
+Model summary (see Ram Antivirus product notes for the full derivation):
   1. Normalise ``asset.ports`` into deduped, open-only port dicts.
   2. Classify each port into a risk class + weight (exact port map, then
      service-name substrings, then a port-range fallback).

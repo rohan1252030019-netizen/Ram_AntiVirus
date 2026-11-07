@@ -1,4 +1,4 @@
-# Network monitoring dependencies for AEGIS DNS/NDR modules
+# Network monitoring dependencies for Ram Antivirus DNS/NDR modules
 # Install with: pip install -r requirements-network.txt
 dnspython>=2.6.0
 scapy>=2.5.0

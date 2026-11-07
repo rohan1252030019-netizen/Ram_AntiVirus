@@ -1,4 +1,4 @@
-"""Updates API — check for new AEGIS versions and trigger installs."""
+"""Updates API — check for new Ram Antivirus versions and trigger installs."""
 import logging
 
 from fastapi import APIRouter, Depends, HTTPException

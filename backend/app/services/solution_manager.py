@@ -1,4 +1,4 @@
-"""AEGIS solution package manager — install/uninstall/validate solution bundles."""
+"""Ram Antivirus solution package manager — install/uninstall/validate solution bundles."""
 
 from __future__ import annotations
 

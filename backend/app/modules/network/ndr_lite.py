@@ -1,5 +1,5 @@
 """
-Lightweight Network Detection & Response (NDR) for AEGIS.
+Lightweight Network Detection & Response (NDR) for Ram Antivirus.
 
 Monitors network connections via psutil to detect:
   - New listening ports (unexpected services)
@@ -9,7 +9,7 @@ Monitors network connections via psutil to detect:
   - Internal lateral movement patterns
 
 NOT a full packet capture system. Designed to be low-overhead
-and run continuously alongside the AEGIS platform.
+and run continuously alongside the Ram Antivirus platform.
 """
 
 import asyncio

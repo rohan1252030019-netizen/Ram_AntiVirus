@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AEGIS Local Setup Script
+# Ram Antivirus Local Setup Script
 # One-command setup for macOS development
 set -euo pipefail
 
@@ -11,7 +11,7 @@ NC='\033[0m'
 
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-info()  { echo -e "${CYAN}[AEGIS]${NC} $1"; }
+info()  { echo -e "${CYAN}[RAM ANTIVIRUS]${NC} $1"; }
 ok()    { echo -e "${GREEN}[OK]${NC} $1"; }
 warn()  { echo -e "${YELLOW}[WARN]${NC} $1"; }
 fail()  { echo -e "${RED}[FAIL]${NC} $1"; exit 1; }
@@ -116,7 +116,7 @@ deactivate
 # --- Done ---
 echo ""
 echo -e "${GREEN}========================================${NC}"
-echo -e "${GREEN}  AEGIS setup complete!${NC}"
+echo -e "${GREEN}  Ram Antivirus setup complete!${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo ""
 echo "  Start development:"

@@ -1,5 +1,5 @@
 """
-Shared memory-bounding helpers for AEGIS hot-path in-memory trackers.
+Shared memory-bounding helpers for Ram Antivirus hot-path in-memory trackers.
 
 The detection engines (correlation_engine, dos_shield, log_watcher,
 attack_detector) keep per-IP / per-(rule,IP) sliding-window state in plain

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """
-Unit tests for AEGIS Persistence Monitor (FR-03).
+Unit tests for Ram Antivirus Persistence Monitor (FR-03).
 Covers Windows Registry autorun keys and Scheduled Tasks persistence detection.
 Runs seamlessly on both Windows and non-Windows CI using injectable adapters.
 """

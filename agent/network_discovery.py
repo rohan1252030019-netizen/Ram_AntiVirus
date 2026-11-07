@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 """
-AEGIS Network Discovery & System Info Module
+Ram Antivirus Network Discovery & System Info Module
 ================================================
 Pure-Python local network discovery and system information collection.
 Cross-platform: Linux, macOS, Windows. No nmap dependency.
@@ -625,9 +625,9 @@ def _extract_banner_type(banner: str) -> str:
 # Data Sharing Prompt
 # -------------------------------------------------------------------------
 DATA_SHARING_PROMPT = """
-[AEGIS AGENT] Data Sharing
+[RAM ANTIVIRUS AGENT] Data Sharing
 
-AEGIS can share anonymized threat data with the community to improve
+Ram Antivirus can share anonymized threat data with the community to improve
 detection for all users. No personal data, hostnames, or internal IPs
 are ever shared.
 

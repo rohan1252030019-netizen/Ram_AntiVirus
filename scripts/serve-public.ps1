@@ -1,11 +1,11 @@
-# serve-public.ps1 - start the AEGIS stack and expose it on a public URL.
+# serve-public.ps1 - start the Ram Antivirus stack and expose it on a public URL.
 #
 # Why this exists: `cloudflared tunnel --url ...` creates a *quick tunnel*.
 # A quick tunnel is tied to the process that created it: stop the process,
 # close the terminal, sleep the laptop, or reboot, and the
 # *.trycloudflare.com hostname is released and cannot be recovered. The next
 # run gets a brand new random hostname. That is expected behaviour, not a bug
-# in AEGIS - so always start the tunnel from here and copy the URL it prints.
+# in Ram Antivirus - so always start the tunnel from here and copy the URL it prints.
 #
 # Usage (from the repo root):
 #   powershell -ExecutionPolicy Bypass -File .\scripts\serve-public.ps1
@@ -45,7 +45,7 @@ function Wait-Port([int]$Port, [int]$Seconds) {
     return $false
 }
 
-Write-Host "== AEGIS public preview ==" -ForegroundColor Cyan
+Write-Host "== Ram Antivirus public preview ==" -ForegroundColor Cyan
 
 # --- 1. Backend (FastAPI / uvicorn on :8000) ---------------------------------
 if (Test-Port $ApiPort) {

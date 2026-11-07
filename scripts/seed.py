@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AEGIS Database Seeder
+Ram Antivirus Database Seeder
 Populates the SQLite database with realistic cybersecurity demo data.
 
 Usage:
@@ -55,7 +55,7 @@ async def seed():
             print("[SEED] Database already has data. Drop aegis.db and re-run to reseed.")
             return
 
-        print("[SEED] Seeding AEGIS database with demo data...")
+        print("[SEED] Seeding Ram Antivirus database with demo data...")
 
         # =============================================
         # 1. CLIENT

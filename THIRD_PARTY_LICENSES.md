@@ -1,6 +1,6 @@
 # Third-Party Licenses & AGPL-3.0 Compatibility Audit
 
-This document details the third-party dependencies used across the Ram Antivirus (AEGIS) repository, their licenses, and an analysis verifying legal compatibility with the GNU Affero General Public License Version 3 (AGPL-3.0-or-later).
+This document details the third-party dependencies used across the Ram Antivirus (Ram Antivirus) repository, their licenses, and an analysis verifying legal compatibility with the GNU Affero General Public License Version 3 (AGPL-3.0-or-later).
 
 ## Core Project Licensing
 - **Repository License**: GNU Affero General Public License v3.0 (`AGPL-3.0-or-later`)

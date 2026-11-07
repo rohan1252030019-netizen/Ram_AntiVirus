@@ -1,10 +1,10 @@
-# AEGIS Architecture & Technical Diagrams
+# Ram Antivirus Architecture & Technical Diagrams
 
-This document contains high-fidelity Mermaid diagrams detailing the architecture, telemetry flows, detection engines, response mechanisms, and AI workflows implemented in the AEGIS platform.
+This document contains high-fidelity Mermaid diagrams detailing the architecture, telemetry flows, detection engines, response mechanisms, and AI workflows implemented in the Ram Antivirus platform.
 
 ---
 
-## Figure 1: Overall AEGIS Architecture
+## Figure 1: Overall Ram Antivirus Architecture
 
 ```mermaid
 graph TB
@@ -195,7 +195,7 @@ flowchart LR
         A3 --> A4["4. Destruction<br/>Mass File Encryption + Note Drop"]
     end
 
-    subgraph "AEGIS Detection Matrix"
+    subgraph "Ram Antivirus Detection Matrix"
         D1["Rule: ransomware_shadow_delete<br/>(T1490)"]
         D2["Rule: ransomware_lolbin_certutil<br/>(T1105)"]
         D3["Rule: ransomware_smb_lateral<br/>(T1021.002)"]

@@ -1,5 +1,5 @@
 """
-API routes for managing AI providers in AEGIS.
+API routes for managing AI providers in Ram Antivirus.
 
 Endpoints:
   GET    /api/v1/ai/providers              - list all registered providers

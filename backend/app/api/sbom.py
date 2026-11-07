@@ -1,5 +1,5 @@
 """
-SBOM (Software Bill of Materials) API endpoints for AEGIS.
+SBOM (Software Bill of Materials) API endpoints for Ram Antivirus.
 
 Provides endpoints to trigger SBOM scans, retrieve results, list CVEs,
 and export in CycloneDX format.

@@ -1,4 +1,4 @@
-"""Unit tests for the AEGIS solution manager."""
+"""Unit tests for the Ram Antivirus solution manager."""
 
 from __future__ import annotations
 

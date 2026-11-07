@@ -4,7 +4,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 
 /**
- * Panel — the canonical AEGIS content surface.
+ * Panel — the canonical Ram Antivirus content surface.
  *
  * Replaces all ad-hoc `bg-card border border-border rounded-2xl` shells
  * across the dashboard. ALL surfaces in refactored pages funnel through

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AEGIS Windows Server Connectivity Test
+Ram Antivirus Windows Server Connectivity Test
 ==========================================
 Run from Mac (or any machine with Tailscale):
     python scripts/test-windows.py
@@ -10,7 +10,7 @@ Tests:
   2. Ollama API on Windows
   3. Common ports (SSH, RDP)
   4. Agent status (if running)
-  5. AEGIS API reachability from Windows perspective
+  5. Ram Antivirus API reachability from Windows perspective
 """
 
 import json
@@ -29,8 +29,8 @@ PORTS_TO_CHECK = {
     22: "SSH",
     3389: "RDP",
     11434: "Ollama",
-    8000: "AEGIS API (if running on Windows)",
-    3000: "AEGIS Frontend (if running on Windows)",
+    8000: "Ram Antivirus API (if running on Windows)",
+    3000: "Ram Antivirus Frontend (if running on Windows)",
     45876: "Beszel Agent",
 }
 
@@ -213,7 +213,7 @@ def test_ollama_inference():
                 f"http://{WINDOWS_IP}:11434/api/generate",
                 json={
                     "model": model_name,
-                    "prompt": "Say 'AEGIS online' in exactly 3 words.",
+                    "prompt": "Say 'Ram Antivirus online' in exactly 3 words.",
                     "stream": False,
                     "options": {"num_predict": 20},
                 },
@@ -240,10 +240,10 @@ def test_ollama_inference():
 
 
 def test_agent_status():
-    """Check if AEGIS agent is reporting from Windows."""
-    section("5. AEGIS Agent Status")
+    """Check if Ram Antivirus agent is reporting from Windows."""
+    section("5. Ram Antivirus Agent Status")
 
-    # Check if we can reach the main AEGIS API to look for agent
+    # Check if we can reach the main Ram Antivirus API to look for agent
     api_url = os.environ.get("AEGIS_API_URL", "http://YOUR_SERVER_IP:8000/api/v1")
 
     try:
@@ -256,9 +256,9 @@ def test_agent_status():
         with httpx.Client(timeout=10) as client:
             resp = client.get(f"{api_url}/health")
             if resp.status_code == 200:
-                ok(f"AEGIS API is reachable at {api_url}")
+                ok(f"Ram Antivirus API is reachable at {api_url}")
             else:
-                warn(f"AEGIS API returned status {resp.status_code}")
+                warn(f"Ram Antivirus API returned status {resp.status_code}")
                 return False
 
             # Try to get agents list
@@ -342,13 +342,13 @@ def print_summary(results):
     print(f"\n  Total: {total} | Passed: {passed} | Failed: {failed} | Skipped: {skipped}")
 
     if failed == 0:
-        print(f"\n{GREEN}{BOLD}Windows server is ready for AEGIS deployment.{RESET}")
+        print(f"\n{GREEN}{BOLD}Windows server is ready for Ram Antivirus deployment.{RESET}")
     else:
         print(f"\n{YELLOW}{BOLD}Some checks failed. Review and fix before deploying.{RESET}")
 
 
 def main():
-    print(f"\n{BOLD}AEGIS Windows Server Connectivity Test{RESET}")
+    print(f"\n{BOLD}Ram Antivirus Windows Server Connectivity Test{RESET}")
     print(f"Target: {WINDOWS_IP} (user: {WINDOWS_USER})")
     print(f"Time:   {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 

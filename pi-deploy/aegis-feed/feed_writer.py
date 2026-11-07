@@ -1,4 +1,4 @@
-"""AEGIS unified log feed writer (Python).
+"""Ram Antivirus unified log feed writer (Python).
 
 Append-only JSON-lines emitter. POSIX append is atomic up to PIPE_BUF
 (~4 KB on macOS/Linux), so concurrent writers from multiple processes
@@ -19,7 +19,7 @@ DEFAULT_PATH = os.environ.get(
 
 
 def emit(*, app, src_ip, method, path, status, **optional):
-    """Append one JSON line to the AEGIS feed.
+    """Append one JSON line to the Ram Antivirus feed.
 
     Mandatory fields: app, src_ip, method, path, status.
     Empty/None optional fields are dropped to keep records compact.

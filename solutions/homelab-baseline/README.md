@@ -1,6 +1,6 @@
 # Homelab Baseline
 
-Minimal AEGIS coverage for self-hosters. High signal, low noise.
+Minimal Ram Antivirus coverage for self-hosters. High signal, low noise.
 
 ## Coverage
 

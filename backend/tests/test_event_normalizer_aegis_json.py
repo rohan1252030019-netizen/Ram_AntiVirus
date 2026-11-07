@@ -1,16 +1,16 @@
-"""Regression tests for the `[AEGIS] {json}` structured access-log envelope.
+"""Regression tests for the `[RAM ANTIVIRUS] {json}` structured access-log envelope.
 
 Front-line apps that sit behind Cloudflare (e.g. `sable`) do NOT log in the
 PM2/uvicorn common-log format the historic `_ACCESS_LOG_RE` understands. They
-emit one JSON object per request, prefixed with an ``[AEGIS]`` marker, carrying
+emit one JSON object per request, prefixed with an ``[RAM ANTIVIRUS]`` marker, carrying
 the real client IP resolved from ``CF-Connecting-IP``:
 
-    2026-07-24 11:05:12: [AEGIS] {"app":"sable","src_ip":"45.148.10.111",
+    2026-07-24 11:05:12: [RAM ANTIVIRUS] {"app":"sable","src_ip":"45.148.10.111",
     "method":"GET","path":"/x?stream.url=file%3A%2F%2F%2Fetc%2Fpasswd",
     "status":200,"ua":"curl","cf_ray":"z-AMS"}
 
 Before the parser learned this shape, `normalize()` returned ``None`` for every
-such line (access_match was None → drop guard), so AEGIS was 100% blind to
+such line (access_match was None → drop guard), so Ram Antivirus was 100% blind to
 these apps regardless of attack volume. These tests lock in the fix.
 """
 
@@ -24,7 +24,7 @@ _SABLE = "sable"
 def _aegis_line(path: str, ip: str = "45.148.10.111", method: str = "GET",
                 status: int = 200, ua: str = "curl") -> str:
     return (
-        f'2026-07-24 11:05:12: [AEGIS] {{"ts":"2026-07-24T15:05:12.176Z",'
+        f'2026-07-24 11:05:12: [RAM ANTIVIRUS] {{"ts":"2026-07-24T15:05:12.176Z",'
         f'"app":"sable","src_ip":"{ip}","method":"{method}",'
         f'"path":"{path}","status":{status},"ua":"{ua}","country":"NL",'
         f'"host":"sable.somoswilab.com","fwd_chain":"{ip}","cf_ray":"z-AMS"}}'
@@ -34,7 +34,7 @@ def _aegis_line(path: str, ip: str = "45.148.10.111", method: str = "GET",
 def test_aegis_json_is_not_dropped():
     """A structured envelope must produce an event, never a silent drop."""
     ev = en.normalize(_aegis_line("/"), source=_SABLE)
-    assert ev is not None, "sable [AEGIS] JSON line was dropped"
+    assert ev is not None, "sable [RAM ANTIVIRUS] JSON line was dropped"
     assert ev["source_ip"] == "45.148.10.111"
     assert ev["request_path"] == "/"
     assert ev["request_method"] == "GET"

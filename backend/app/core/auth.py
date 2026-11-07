@@ -278,7 +278,7 @@ async def seed_demo_client(db: AsyncSession) -> Client:
         return existing
 
     demo_client = Client(
-        name="AEGIS Demo",
+        name="Ram Antivirus Demo",
         slug="demo",
         api_key=published_key or generate_api_key(),
         settings={

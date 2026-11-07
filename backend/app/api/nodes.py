@@ -1,7 +1,7 @@
 """
 Node enrollment API.
 
-Provides a user-friendly enrollment flow where the AEGIS Node app
+Provides a user-friendly enrollment flow where the Ram Antivirus Node app
 generates a short code (C6-XXXX-XXXX), the user pastes it in the
 dashboard, and the backend validates and creates an agent record.
 """
@@ -34,7 +34,7 @@ router = APIRouter(prefix="/nodes", tags=["nodes"])
 # Node-facing shared secret (B5 / P0-12)
 #
 # /heartbeat, /announce, /status/{code}, /events and /report-assets are
-# called directly by the AEGIS Node agent and identify themselves only by
+# called directly by the Ram Antivirus Node agent and identify themselves only by
 # node_id / enroll_code (both are effectively-guessable/enumerable UUID-like
 # strings, not real credentials) — there is no per-agent secret field on
 # EndpointAgent today. Until that model gains a per-node secret, we
@@ -180,7 +180,7 @@ async def generate_enrollment_code(
     auth: AuthContext = Depends(require_analyst),
 ):
     """
-    Called by the AEGIS Node app on the target machine.
+    Called by the Ram Antivirus Node app on the target machine.
     Generates a short enrollment code that the user pastes in the dashboard.
     Body: { agent_id, hostname, os_info, ip_address, agent_version }
     """
@@ -227,7 +227,7 @@ async def node_heartbeat(
     except ReplayProtectionError as e:
         raise HTTPException(status_code=401, detail=str(e))
     """
-    Called periodically by the AEGIS Node agent to report health metrics.
+    Called periodically by the Ram Antivirus Node agent to report health metrics.
     Updates the agent record with latest metrics and marks it as online.
     No API-key auth required — the node authenticates via its own agent_id.
     """

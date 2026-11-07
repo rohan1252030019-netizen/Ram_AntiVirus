@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 #!/usr/bin/env python3
 """
-AEGIS EDR-lite Endpoint Agent
+Ram Antivirus EDR-lite Endpoint Agent
 ================================
 Lightweight endpoint detection & response agent that monitors a host and
-reports events to the AEGIS API.
+reports events to the Ram Antivirus API.
 
 Capabilities:
   - Process monitoring (new processes, suspicious names, port listeners)
@@ -1347,7 +1347,7 @@ async def main(ipc: bool = False):
         logging.root.addHandler(stderr_handler)
 
     log.info("=" * 60)
-    log.info("AEGIS EDR-lite Agent v%s", cfg.AGENT_VERSION)
+    log.info("Ram Antivirus EDR-lite Agent v%s", cfg.AGENT_VERSION)
     log.info("Agent ID : %s", cfg.AGENT_ID)
     log.info("Hostname : %s", cfg.HOSTNAME)
     log.info("OS       : %s", cfg.OS_INFO)
@@ -1399,7 +1399,7 @@ async def main(ipc: bool = False):
     if cfg.AEGIS_API_KEY:
         registered = await register(client)
         if not registered and not _ipc_mode:
-            log.error("Failed to register with AEGIS API after retries. Exiting.")
+            log.error("Failed to register with Ram Antivirus API after retries. Exiting.")
             sys.exit(1)
         elif not registered:
             log.warning("Could not register with API, running in local-only IPC mode")
@@ -1489,11 +1489,11 @@ async def main(ipc: bool = False):
         breadcrumb_observer.join(timeout=5)
 
     await client.aclose()
-    log.info("AEGIS agent stopped.")
+    log.info("Ram Antivirus agent stopped.")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="AEGIS EDR-lite Agent")
+    parser = argparse.ArgumentParser(description="Ram Antivirus EDR-lite Agent")
     parser.add_argument(
         "--ipc",
         action="store_true",

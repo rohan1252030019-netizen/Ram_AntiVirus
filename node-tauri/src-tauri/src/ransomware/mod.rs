@@ -4,7 +4,7 @@
 //
 // Detects encryption activity via multiple correlated signals and executes
 // automated response: kill the process tree, roll back affected files, and
-// post a forensic chain to the AEGIS backend with severity=critical.
+// post a forensic chain to the Ram Antivirus backend with severity=critical.
 //
 // Detection signals (need 2+ within 2s to trigger):
 //   1. Canary file modified          (canary.rs)

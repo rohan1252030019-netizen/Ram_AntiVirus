@@ -1,7 +1,7 @@
 # Integration Test Runbook — Ransomware Defense (Phase R-F)
 
 End-to-end livefire harness that emulates a ransomware attack and validates
-the full AEGIS detection-response-recovery stack.
+the full Ram Antivirus detection-response-recovery stack.
 
 ---
 
@@ -30,7 +30,7 @@ AEGIS_LIVEFIRE=1 pytest backend/tests/integration/ -v
 
 | Requirement | Notes |
 |---|---|
-| AEGIS backend running | `uvicorn app.main:app --port 8000` |
+| Ram Antivirus backend running | `uvicorn app.main:app --port 8000` |
 | `AEGIS_API_KEY` set | Any valid API key seeded in the database |
 | `AEGIS_LIVEFIRE=1` set | Hard gate — no tests run without it |
 | `httpx` installed | `pip install httpx` (already in dev requirements) |
@@ -137,7 +137,7 @@ Expected output: all tests collected with `SKIPPED` markers, zero errors.
 | `AEGIS_API_URL` | `http://127.0.0.1:8000` | Backend base URL |
 | `AEGIS_API_KEY` | `""` | API key for authenticated endpoints |
 | `AEGIS_RUST_TEST_BIN` | auto-detected | Override path to Rust agent binary |
-| `BLOCKED_IPS_FILE` | `~/.aegis/blocked_ips.txt` | Path to AEGIS blocked IPs file |
+| `BLOCKED_IPS_FILE` | `~/.aegis/blocked_ips.txt` | Path to Ram Antivirus blocked IPs file |
 
 ---
 

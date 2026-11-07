@@ -1,5 +1,5 @@
 """
-IP Intelligence API — AEGIS
+IP Intelligence API — Ram Antivirus
 
 GET /api/v1/intel/ip/{ip}
   Returns enriched geolocation, ASN, risk flags, and threat info for a public IP.
@@ -25,7 +25,7 @@ router = APIRouter(tags=["ip-intel"])
 @router.get("/ip/{ip}")
 async def get_ip_intel(
     ip: str,
-    deep: bool = Query(False, description="Enable deep lookup: Shodan, Spamhaus, Tor list, ASN reputation, behavioral fingerprint from local feed, correlated sessions, plus AEGIS internal history (incidents, honeypot interactions, attacker profile, actions, related IPs, external feeds, optional AI threat brief)."),
+    deep: bool = Query(False, description="Enable deep lookup: Shodan, Spamhaus, Tor list, ASN reputation, behavioral fingerprint from local feed, correlated sessions, plus Ram Antivirus internal history (incidents, honeypot interactions, attacker profile, actions, related IPs, external feeds, optional AI threat brief)."),
     history: bool = Query(False, description="Alias / shortcut for deep=true. When either flag is set, deep mode runs."),
     auth: AuthContext = Depends(require_viewer),
 ):

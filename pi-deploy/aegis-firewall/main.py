@@ -1,7 +1,7 @@
 """
-AEGIS Firewall Agent v1.0.1
+Ram Antivirus Firewall Agent v1.0.1
 Single-file FastAPI service that manages iptables on the Raspberry Pi.
-Designed to be the firewall backend for AEGIS (Mac Pro).
+Designed to be the firewall backend for Ram Antivirus (Mac Pro).
 
 Port: 8765
 Persistence: /etc/aegis/blocked_ips.json
@@ -94,7 +94,7 @@ if _ATTACKER_IPS:
 def _is_safe_ip(ip: str) -> bool:
     """Return True if the IP should never be blocked.
 
-    An IP in AEGIS_ATTACKER_IPS always returns False (blockable).
+    An IP in Ram Antivirus_ATTACKER_IPS always returns False (blockable).
     """
     if ip in _ATTACKER_IPS:
         return False  # Explicit attacker = always blockable
@@ -378,9 +378,9 @@ async def _geo_lookup(ip: str) -> dict:
 async def lifespan(app: FastAPI):
     global _start_time
     _start_time = time.time()
-    logger.info("AEGIS Firewall Agent starting up")
+    logger.info("Ram Antivirus Firewall Agent starting up")
 
-    # Restore persisted iptables rules into AEGIS_BLOCK chain
+    # Restore persisted iptables rules into Ram Antivirus_BLOCK chain
     _restore_iptables_rules()
 
     # Populate attacker list from currently blocked IPs
@@ -388,12 +388,12 @@ async def lifespan(app: FastAPI):
         if ip not in _attackers:
             _track_attacker(ip, event_type="block", threat_level="HIGH")
 
-    _add_event("startup", details="AEGIS Firewall Agent started", severity="info")
-    logger.info("AEGIS Firewall Agent ready on port 8765")
+    _add_event("startup", details="Ram Antivirus Firewall Agent started", severity="info")
+    logger.info("Ram Antivirus Firewall Agent ready on port 8765")
 
     yield
 
-    logger.info("AEGIS Firewall Agent shutting down")
+    logger.info("Ram Antivirus Firewall Agent shutting down")
 
 
 # ---------------------------------------------------------------------------
@@ -401,7 +401,7 @@ async def lifespan(app: FastAPI):
 # ---------------------------------------------------------------------------
 
 app = FastAPI(
-    title="AEGIS Firewall Agent",
+    title="Ram Antivirus Firewall Agent",
     version="1.0.1",
     lifespan=lifespan,
 )
@@ -793,7 +793,7 @@ async def auto_response_blocked():
 @app.post("/ai/chat")
 async def ai_chat(req: ChatRequest):
     return {
-        "response": "AEGIS Firewall Agent does not support interactive chat. "
+        "response": "Ram Antivirus Firewall Agent does not support interactive chat. "
         "Use /analyze or /ai/investigate endpoints for IP analysis.",
         "status": "unsupported",
     }
@@ -807,7 +807,7 @@ async def ai_chat(req: ChatRequest):
 @app.get("/")
 async def root():
     return {
-        "service": "AEGIS Firewall Agent",
+        "service": "Ram Antivirus Firewall Agent",
         "version": "1.0.1",
         "endpoints": [
             "/health", "/status", "/attackers", "/attacker/{ip}",

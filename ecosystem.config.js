@@ -1,5 +1,5 @@
 /**
- * AEGIS PM2 ecosystem — Mac Pro production.
+ * Ram Antivirus PM2 ecosystem — Mac Pro production.
  *
  * ============================================================================
  * WHY THIS FILE EXISTS: the bash-wrapper memory-monitoring bug

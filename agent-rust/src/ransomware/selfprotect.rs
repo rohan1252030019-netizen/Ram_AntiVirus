@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 //! Agent self-protection hardening — Phase R-E
 //!
-//! Best-effort hardening to prevent an attacker from killing the AEGIS agent:
+//! Best-effort hardening to prevent an attacker from killing the Ram Antivirus agent:
 //!
 //! - Linux: `prctl(PR_SET_DUMPABLE, 0)` via `nix`; optional cgroup isolation.
 //! - macOS: Logs that `EndpointSecurity` entitlement is required for full

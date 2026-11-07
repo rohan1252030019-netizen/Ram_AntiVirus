@@ -37,7 +37,7 @@ from app.services.counter_attack import counter_attack_engine
 
 @pytest.fixture
 async def sqlite_session():
-    """Fresh in-memory SQLite AsyncSession with all AEGIS tables created."""
+    """Fresh in-memory SQLite AsyncSession with all Ram Antivirus tables created."""
     engine = create_async_engine("sqlite+aiosqlite:///:memory:")
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)

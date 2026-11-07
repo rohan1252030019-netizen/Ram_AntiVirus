@@ -1,5 +1,5 @@
 """
-Behavioral baseline ML anomaly detection for AEGIS.
+Behavioral baseline ML anomaly detection for Ram Antivirus.
 
 Uses Isolation Forest to learn what "normal" looks like for each asset,
 then alerts when behaviour deviates.  Catches slow / stealthy attacks that

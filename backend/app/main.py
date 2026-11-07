@@ -614,7 +614,7 @@ async def lifespan(app: FastAPI):
     await signature_updater.start()
     logger.info("Antivirus signature updater started")
 
-    # Start MongoDB threat intel hub (conditional on AEGIS_MONGODB_URI)
+    # Start MongoDB threat intel hub (conditional on Ram Antivirus_MONGODB_URI)
     mongo_ok = await connect_mongo()
     if mongo_ok:
         await threat_intel_hub.start()
@@ -632,14 +632,14 @@ async def lifespan(app: FastAPI):
     hub_url = os.environ.get("AEGIS_HUB_URL", settings.AEGIS_HUB_URL)
     if hub_url:
         node_id = getattr(threat_intel_hub, 'instance_id', '') or str(uuid.uuid4())[:16]
-        node_name = "AEGIS Node"
+        node_name = "Ram Antivirus Node"
         try:
             from sqlalchemy import select as _hub_sel
             async with async_session() as db:
                 result = await db.execute(_hub_sel(Client).limit(1))
                 client = result.scalar_one_or_none()
                 if client:
-                    node_name = client.name or "AEGIS Node"
+                    node_name = client.name or "Ram Antivirus Node"
         except Exception:
             pass
         await hub_sync_client.start(hub_url, node_id, node_name)
@@ -678,7 +678,7 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.error(f"Local firewall setup failed (non-fatal): {e}")
 
-    # Start external firewall sync (conditional on AEGIS_FIREWALL_URL)
+    # Start external firewall sync (conditional on Ram Antivirus_FIREWALL_URL)
     if settings.AEGIS_FIREWALL_URL:
         from app.services.firewall_sync import firewall_sync
         await firewall_sync.start()
@@ -768,7 +768,7 @@ async def lifespan(app: FastAPI):
         logger.warning(f'PM2 cache warmup task failed to launch: {exc}')
 
     # v1.6.2: retention service — bounds incidents/attackers/honeypot table growth
-    # to AEGIS_RETENTION_DAYS rolling (default 90). Auto-closes stuck-investigating
+    # to Ram Antivirus_RETENTION_DAYS rolling (default 90). Auto-closes stuck-investigating
     # incidents whose source_ip is already in threat_intel. Honors
     # AEGIS_RETENTION_DRY_RUN=1 for safe first-deploy preview.
     try:
@@ -892,7 +892,7 @@ async def custom_404_handler(request: Request, exc):
             "error": "Not Found",
             "requested_path": request.url.path,
             "message": f"Route '{request.url.path}' was not found.",
-            "hint": "All AEGIS API endpoints are under '/api/v1'. You can explore and test all available endpoints at '/docs'.",
+            "hint": "All Ram Antivirus API endpoints are under '/api/v1'. You can explore and test all available endpoints at '/docs'.",
             "docs_url": "/docs",
             "health_url": "/health",
         },
@@ -1024,7 +1024,7 @@ async def websocket_endpoint(websocket: WebSocket):
     """Live dashboard socket.
 
     The first frame must be ``{"type": "auth", "token": "<jwt or api key>"}``
-    within AEGIS_WS_AUTH_TIMEOUT. This replaces the old unauthenticated
+    within Ram Antivirus_WS_AUTH_TIMEOUT. This replaces the old unauthenticated
     ``?client_id=`` scheme, which let anybody receive every broadcast.
     """
     await websocket.accept()
@@ -1102,7 +1102,7 @@ async def websocket_endpoint(websocket: WebSocket):
 @app.get("/")
 async def root():
     return {
-        "service": "AEGIS / Cayde-6 Defense Platform API",
+        "service": "Ram Antivirus / Cayde-6 Defense Platform API",
         "status": "online",
         "version": "1.6.4.9",
         "docs": "/docs",
@@ -1149,4 +1149,4 @@ async def pipeline_stats(auth: AuthContext = Depends(require_viewer)):
     }
 
 
-# AEGIS API initialized
+# Ram Antivirus API initialized

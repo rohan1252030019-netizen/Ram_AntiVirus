@@ -21,7 +21,7 @@ steps:
     name: Isolate Host
     description: >
       Immediately cut the infected host from all network segments except the
-      AEGIS management VLAN. Prevents further lateral movement and C2 beaconing.
+      Ram Antivirus management VLAN. Prevents further lateral movement and C2 beaconing.
     action_type: block
     guardrail: auto_approve
     params:
@@ -70,7 +70,7 @@ steps:
     name: Block C2 IPs
     description: >
       Push all IPs extracted from the alert (beacon destinations, exfil targets)
-      into the local iptables/pfctl block list and the AEGIS blocked_ips.txt
+      into the local iptables/pfctl block list and the Ram Antivirus blocked_ips.txt
       persistence file. Also enriches against the RaaS intel feed.
     action_type: block
     guardrail: auto_approve
@@ -84,7 +84,7 @@ steps:
     description: >
       Send a CRITICAL severity notification to all configured admin channels
       (email, webhook, Slack). Include host name, alert ID, triggered rule,
-      and a link to the AEGIS ransomware dashboard.
+      and a link to the Ram Antivirus ransomware dashboard.
     action_type: notify
     guardrail: auto_approve
     params:

@@ -1,4 +1,4 @@
-"""AEGIS data-retention service (v1.6.2).
+"""Ram Antivirus data-retention service (v1.6.2).
 
 Two APScheduler jobs registered on the global `scheduled_scanner.scheduler`:
 
@@ -230,7 +230,7 @@ async def hourly_stuck_scan_closer() -> dict:
 
 
 async def expire_provisional_blocks() -> dict:
-    """Lift auto-blocks that AEGIS made on an UNCONFIRMED threat, once expired.
+    """Lift auto-blocks that Ram Antivirus made on an UNCONFIRMED threat, once expired.
 
     This is the counterweight to running unattended. When the confirmation gate
     cannot confirm an attack, ai_engine still blocks — parking the decision for

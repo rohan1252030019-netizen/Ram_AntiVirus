@@ -380,7 +380,7 @@ function LoginCard() {
               <ArrowRight size={11} aria-hidden />
             </Link>
             <a
-              href="https://github.com/rohan1252030019-netizen/AEGIS#api-keys"
+              href="https://github.com/rohan1252030019-netizen/Ram Antivirus#api-keys"
               target="_blank"
               rel="noreferrer noopener"
               className="hover:text-foreground transition-colors"

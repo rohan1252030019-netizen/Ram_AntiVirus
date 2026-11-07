@@ -72,7 +72,7 @@ RESPONSE_ACTIONS = {
 }
 
 # How long an unconfirmed ("provisional") auto-block stays in force before it
-# lifts itself. AEGIS decides without a human, so a guess must be reversible on
+# lifts itself. Ram Antivirus decides without a human, so a guess must be reversible on
 # its own: long enough to stop an actual attack run, short enough that a
 # misfire against a real customer clears the same day. A source that is truly
 # hostile simply re-offends and gets blocked again, usually with the evidence
@@ -81,7 +81,7 @@ PROVISIONAL_BLOCK_TTL_HOURS = int(os.environ.get("AEGIS_PROVISIONAL_BLOCK_TTL_HO
 
 # threat_type values meaning "triage could not classify this" — the alert
 # matched no named attack pattern, so its severity/confidence are the model's
-# guess about an event it does not understand. These still act (AEGIS is
+# guess about an event it does not understand. These still act (Ram Antivirus is
 # unattended; parking them in a queue would mean not acting at all), but they
 # act PROVISIONALLY — see _alert_block_confirmed step 4 and
 # _create_pending_block.
@@ -684,12 +684,12 @@ class AIDecisionEngine:
         #    An unclassified alert ("Security alert received", threat_type
         #    "unknown") has matched no named attack pattern; its severity and
         #    confidence are the heuristic's guess about an event it does not
-        #    understand. Auto-blocking on that is how AEGIS locked out real
+        #    understand. Auto-blocking on that is how Ram Antivirus locked out real
         #    users — including the operator's own admin IP — from a generic
         #    incident. Unlike playbook_engine's equivalent step, which is
         #    anchored to a concrete Sigma rule id, nothing grounds this path,
         #    so an unclassified threat goes to the approval queue instead.
-        #    Returning False here does NOT mean "do nothing" — AEGIS is
+        #    Returning False here does NOT mean "do nothing" — Ram Antivirus is
         #    unattended, so it still blocks, just provisionally and with an
         #    expiry (see _create_pending_block). Steps 1-3 above (known-bad IOC,
         #    named exploit class, counted brute force) block permanently.
@@ -714,7 +714,7 @@ class AIDecisionEngine:
     ):
         """Create a PROVISIONAL block_ip Action — auto-approved, but expiring.
 
-        Used when the confirmation gate could not confirm the attack. AEGIS runs
+        Used when the confirmation gate could not confirm the attack. Ram Antivirus runs
         unattended, so this must not park the decision in a human queue: an
         unreviewed queue is not caution, it is an attacker walking free while
         two rows sit in a dashboard nobody is reading.

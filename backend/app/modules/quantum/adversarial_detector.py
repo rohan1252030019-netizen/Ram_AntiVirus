@@ -1,8 +1,8 @@
 """
-Adversarial ML Detection for AEGIS Quantum Security Module.
+Adversarial ML Detection for Ram Antivirus Quantum Security Module.
 
 Detects model poisoning, evasion attacks, and baseline corruption using
-KL-divergence and statistical testing. Protects AEGIS's own AI engine
+KL-divergence and statistical testing. Protects Ram Antivirus's own AI engine
 from adversarial manipulation.
 
 KL-divergence: D_KL(P || Q) = sum( P(x) * log(P(x) / Q(x)) )

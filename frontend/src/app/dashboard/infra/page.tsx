@@ -441,9 +441,9 @@ function EnrollmentModal({ open, onClose, onEnrolled }: { open: boolean; onClose
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {([
-                    ['Windows', 'https://github.com/rohan1252030019-netizen/AEGIS/releases/latest/download/AEGIS_x64-setup.exe'],
-                    ['macOS', 'https://github.com/rohan1252030019-netizen/AEGIS/releases/latest/download/AEGIS_aarch64.dmg'],
-                    ['Linux', 'https://github.com/rohan1252030019-netizen/AEGIS/releases/latest/download/AEGIS_amd64.AppImage'],
+                    ['Windows', 'https://github.com/rohan1252030019-netizen/Ram Antivirus/releases/latest/download/AEGIS_x64-setup.exe'],
+                    ['macOS', 'https://github.com/rohan1252030019-netizen/Ram Antivirus/releases/latest/download/AEGIS_aarch64.dmg'],
+                    ['Linux', 'https://github.com/rohan1252030019-netizen/Ram Antivirus/releases/latest/download/AEGIS_amd64.AppImage'],
                   ] as const).map(([os, url]) => (
                     <a
                       key={os}

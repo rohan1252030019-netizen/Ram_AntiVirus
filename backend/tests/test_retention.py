@@ -118,7 +118,7 @@ async def test_stuck_incidents_closed_when_ip_already_blocked(db_session, demo_c
 
 @pytest.mark.asyncio
 async def test_jsonl_audit_log_written(tmp_path, db_session, demo_client, monkeypatch):
-    """Each retention run appends a JSONL record to AEGIS_RETENTION_AUDIT_LOG."""
+    """Each retention run appends a JSONL record to Ram Antivirus_RETENTION_AUDIT_LOG."""
     log_path = tmp_path / "retention-audit.jsonl"
     monkeypatch.setenv("AEGIS_RETENTION_AUDIT_LOG", str(log_path))
     monkeypatch.setenv("AEGIS_RETENTION_DAYS", "30")

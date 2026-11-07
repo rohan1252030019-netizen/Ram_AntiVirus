@@ -24,7 +24,7 @@ entityMappings:
   field: source_ip
 description: >-
   Deteccion por ritmo, no por firma: la carga SQLi de CVE-2026-72898 viaja en el
-  cuerpo de la peticion, invisible para AEGIS, asi que la regla no puede reconocer
+  cuerpo de la peticion, invisible para Ram Antivirus, asi que la regla no puede reconocer
   el payload y en su lugar mide el patron de comportamiento. 10 o mas peticiones al
   flujo de reset de password / API de usuario desde la misma IP en 300 segundos es
   consistente con un atacante iterando payloads SQLi de forma automatizada, no con

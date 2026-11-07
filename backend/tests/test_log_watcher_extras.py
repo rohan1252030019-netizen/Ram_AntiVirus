@@ -1,4 +1,4 @@
-"""Tests for AEGIS_EXTRA_LOG_PATHS glob-expansion helper."""
+"""Tests for Ram Antivirus_EXTRA_LOG_PATHS glob-expansion helper."""
 
 import os
 

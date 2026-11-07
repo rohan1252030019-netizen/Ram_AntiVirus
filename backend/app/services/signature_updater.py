@@ -192,7 +192,7 @@ rule EICAR_Test_File
 {
     meta:
         description = "EICAR antivirus test file"
-        author = "AEGIS"
+        author = "Ram Antivirus"
     strings:
         $eicar = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*"
     condition:
@@ -203,7 +203,7 @@ rule Suspicious_PowerShell_Encoded
 {
     meta:
         description = "PowerShell with base64-encoded command"
-        author = "AEGIS"
+        author = "Ram Antivirus"
     strings:
         $a = "powershell" nocase
         $b = "-enc" nocase
