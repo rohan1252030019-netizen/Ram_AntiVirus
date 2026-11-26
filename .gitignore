@@ -134,3 +134,14 @@ backend/app/data/geoip/
 frontend/release/
 release/
 
+# Local reports, Word docs & figure diagrams (kept on disk, excluded from repo)
+*.docx
+AEGIS_ARCHITECTURE_DIAGRAMS.md
+AEGIS_Data_Flow_Architecture.jpg
+AEGIS_Data_Flow_Architecture.png
+AEGIS_IND_PROJECT_REPORT.md
+AEGIS_PROJECT_FACTSHEET.md
+PHASE_A_REPORT.md
+RAM_ANTIVIRUS_GROUP3_WEEK1_TASK_COMPLETION.md
+diagrams/
+
