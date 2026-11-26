@@ -1,5 +1,5 @@
 """
-IP Intelligence Enrichment Service — AEGIS v1.8
+IP Intelligence Enrichment Service — Ram Antivirus v1.8
 
 NO AI by default. This module is pure REST aggregation + observational
 correlation. The ONE exception is the optional `ai_summary` field, which is:

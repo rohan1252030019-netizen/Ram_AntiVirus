@@ -1,5 +1,5 @@
 """
-Hub Sync Client — connects an AEGIS node to the threat sharing hub.
+Hub Sync Client — connects an Ram Antivirus node to the threat sharing hub.
 
 Lifecycle:
   1. On startup, registers with hub (POST /threats/nodes/register)

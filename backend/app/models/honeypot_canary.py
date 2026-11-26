@@ -4,7 +4,7 @@ HTTP honeypot decoy pages.
 
 Defensive only. Records voluntarily-disclosed browser features (WebRTC
 candidates, canvas/WebGL/audio fingerprint, screen/UA/timezone, headless
-markers). NEVER attached to the real AEGIS dashboard — only to honeypot
+markers). NEVER attached to the real Ram Antivirus dashboard — only to honeypot
 templates (`http_honeypot.py`, `pi-deploy/aegis_honeypot.py`).
 """
 from datetime import datetime
@@ -19,13 +19,13 @@ from app.models.base import Base, UUIDMixin
 class HoneypotCanary(Base, UUIDMixin):
     __tablename__ = "honeypot_canaries"
 
-    # Multi-tenant: the AEGIS client whose honeypot served the canary.
+    # Multi-tenant: the Ram Antivirus client whose honeypot served the canary.
     # Nullable because the Pi honeypot may POST before we have client resolution.
     client_id: Mapped[Optional[str]] = mapped_column(
         String(36), ForeignKey("clients.id"), nullable=True
     )
 
-    # Network-level source IP (what AEGIS / Pi observed on the connection).
+    # Network-level source IP (what Ram Antivirus / Pi observed on the connection).
     source_ip: Mapped[str] = mapped_column(String(45), nullable=False)
 
     # WebRTC-leaked candidate. If a public IP different from source_ip is

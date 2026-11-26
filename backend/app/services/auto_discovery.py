@@ -1,4 +1,4 @@
-"""Auto-discovery engine for AEGIS setup wizard.
+"""Auto-discovery engine for Ram Antivirus setup wizard.
 
 Wraps nmap to discover hosts and services on a target IP or CIDR range,
 identifies service types from port/banner data, estimates risk, and
@@ -399,7 +399,7 @@ class AutoDiscovery:
             )
 
         # Full scan: standard + all common web/app/db/cache/monitoring/proxy ports
-        # Excludes 2222 and 8888 (AEGIS honeypot ports) to avoid false positives
+        # Excludes 2222 and 8888 (Ram Antivirus honeypot ports) to avoid false positives
         extra_ports = ",".join([
             "1080",                          # SOCKS proxy
             "1433-1434",                     # MSSQL

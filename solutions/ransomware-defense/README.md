@@ -1,6 +1,6 @@
 # Ransomware Defense Solution Pack
 
-**AEGIS v1.6 — Phase R-D**
+**Ram Antivirus v1.6 — Phase R-D**
 
 ## Overview
 
@@ -35,11 +35,11 @@ The `FINANCE_ARCHIVE` SMB canary share contains 5 honey files. Any write, rename
 
 ## Frontend Dashboard
 
-Visit `/dashboard/ransomware` in the AEGIS UI for:
+Visit `/dashboard/ransomware` in the Ram Antivirus UI for:
 - Live event feed filtered to ransomware signatures
 - RaaS group activity timeline (area chart)
 - Decryptor lookup by file extension
 
 ## Installation
 
-The manifest is automatically loaded by AEGIS on startup via `rules_loader.py`. No manual steps required.
+The manifest is automatically loaded by Ram Antivirus on startup via `rules_loader.py`. No manual steps required.

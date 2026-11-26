@@ -1,10 +1,10 @@
-# AEGIS IND Project Report
+# Ram Antivirus IND Project Report
 ## Development of Threat Detection and Response System, EDR & MDR using Open Source
 
 ---
 
 > **Document Status:** Complete Academic IND Project Report  
-> **Based On:** Full repository audit of the AEGIS codebase (version 1.6.4.9)  
+> **Based On:** Full repository audit of the Ram Antivirus codebase (version 1.6.4.9)  
 > **Audit Methodology:** Source-code-first — all claims verified against actual implementation
 
 ---
@@ -14,7 +14,7 @@
 **Project Title:**  
 Development of Threat Detection and Response System, EDR & MDR using Open Source
 
-**Project Name:** AEGIS (Autonomous Endpoint Guard and Intelligence System)
+**Project Name:** Ram Antivirus (Autonomous Endpoint Guard and Intelligence System)
 
 | Field | Value |
 |---|---|
@@ -79,7 +79,7 @@ I express my sincere gratitude to my project guide, **[Guide Name]**, for their 
 
 I am grateful to the **Head of Department, [HOD Name]**, and the faculty of the **Department of [Department]** at **[Institute Name]** for providing the resources, infrastructure, and academic environment necessary for completing this project.
 
-I also acknowledge the open-source community behind projects such as FastAPI, Next.js, SQLAlchemy, scikit-learn, Rust, MITRE ATT&CK, and Sigma, whose collective contributions form the technical foundation upon which AEGIS is built.
+I also acknowledge the open-source community behind projects such as FastAPI, Next.js, SQLAlchemy, scikit-learn, Rust, MITRE ATT&CK, and Sigma, whose collective contributions form the technical foundation upon which Ram Antivirus is built.
 
 Finally, I thank my family and colleagues for their constant support and motivation.
 
@@ -93,7 +93,7 @@ Finally, I thank my family and colleagues for their constant support and motivat
 
 The proliferation of sophisticated cyber threats — including ransomware, lateral movement, credential-based attacks, and advanced persistent threats — has created an urgent requirement for effective, self-hosted endpoint detection and response (EDR) systems. Many organizations, particularly those without dedicated security operations teams or access to commercial managed detection and response (MDR) services, remain inadequately protected due to the high cost, cloud dependency, and operational complexity of existing enterprise security solutions.
 
-This project presents **AEGIS**, an open-source, self-hosted autonomous defense platform designed to implement EDR and MDR-style detection and response workflows without requiring external cloud services or commercial licensing. AEGIS is built on a multi-layer detection architecture that combines deterministic rule-based detection (Sigma-style rules), pattern-based attack detection, behavioral anomaly detection using machine learning, and local AI-assisted incident triage using the Ollama inference framework.
+This project presents **Ram Antivirus**, an open-source, self-hosted autonomous defense platform designed to implement EDR and MDR-style detection and response workflows without requiring external cloud services or commercial licensing. Ram Antivirus is built on a multi-layer detection architecture that combines deterministic rule-based detection (Sigma-style rules), pattern-based attack detection, behavioral anomaly detection using machine learning, and local AI-assisted incident triage using the Ollama inference framework.
 
 The backend is implemented in Python (FastAPI) with a PostgreSQL relational database and an in-memory event bus. The frontend is a Next.js 14 dashboard providing real-time security monitoring over WebSocket connections. A dual-agent architecture provides endpoint telemetry: a Python agent using `psutil` and `watchdog` for user-space monitoring, and a Rust prototype agent providing filesystem integrity monitoring, canary-file-based ransomware detection, entropy analysis, and automated process termination.
 
@@ -151,7 +151,7 @@ Cybersecurity threats have grown substantially in scale, sophistication, and fre
 
 Traditional perimeter-based defenses — firewalls, antivirus, intrusion detection systems — are insufficient against these modern attack patterns, which often exploit legitimate software, trusted protocols, and authorized credentials. The security industry has responded with endpoint detection and response (EDR) platforms that monitor host behavior continuously, correlate events across the environment, and enable rapid investigation and remediation.
 
-AEGIS is developed in this context: an open-source, self-hosted platform that brings EDR and MDR-style workflows within reach of organizations that lack the resources for commercial solutions.
+Ram Antivirus is developed in this context: an open-source, self-hosted platform that brings EDR and MDR-style workflows within reach of organizations that lack the resources for commercial solutions.
 
 ## 1.2 Cybersecurity Threat Landscape
 
@@ -195,7 +195,7 @@ Centralized detection and response (which commercial products call MDR — Manag
 - Automated response playbooks
 - Threat intelligence sharing
 
-For academic and research purposes, AEGIS implements MDR-style centralized detection and response architecture — meaning it provides the technical workflows of centralized correlation, automated response, and AI-assisted triage — while operating as a self-hosted system rather than a commercially operated 24/7 human SOC service.
+For academic and research purposes, Ram Antivirus implements MDR-style centralized detection and response architecture — meaning it provides the technical workflows of centralized correlation, automated response, and AI-assisted triage — while operating as a self-hosted system rather than a commercially operated 24/7 human SOC service.
 
 ## 1.6 Problem Statement
 
@@ -217,7 +217,7 @@ The motivation for this project arises from several observations:
 
 ## 1.8 Proposed Solution
 
-AEGIS is proposed as an open-source, self-hosted autonomous defense platform with the following key components:
+Ram Antivirus is proposed as an open-source, self-hosted autonomous defense platform with the following key components:
 
 1. **Multi-layer detection engine:** HTTP-layer attack detection middleware + Sigma-style correlation engine + behavioral ML anomaly detection
 2. **Dual-tier endpoint agent:** Python user-space agent for broad compatibility + Rust prototype agent for high-performance ransomware response
@@ -288,7 +288,7 @@ The primary contributions of this project are:
 
 The following limitations are acknowledged:
 
-1. **Reactive ransomware response:** AEGIS cannot guarantee pre-encryption interception. Fast ransomware may encrypt some files before detection and process termination complete. AEGIS is designed to limit impact, not prevent all encryption.
+1. **Reactive ransomware response:** Ram Antivirus cannot guarantee pre-encryption interception. Fast ransomware may encrypt some files before detection and process termination complete. Ram Antivirus is designed to limit impact, not prevent all encryption.
 2. **User-space telemetry boundary:** The Python agent operates in user space using `psutil` and `watchdog`. Very short-lived processes or kernel-level rootkits may evade detection.
 3. **Windows snapshot boundary:** Windows VSS recovery supports safe directory and file extraction from Volume Shadow Copies via `robocopy` and path traversal sanitization, but intentionally disallows full in-place operating system drive overwrites during live execution to prevent bricking the host.
 4. **No formal ML benchmark:** The Isolation Forest behavioral model has not been evaluated against public labeled cybersecurity datasets. Formal precision/recall/F1 metrics are not available.
@@ -319,29 +319,29 @@ The following limitations are acknowledged:
 
 The term Endpoint Detection and Response was coined by Gartner analyst Anton Chuvakin in 2013 to describe systems that record and store endpoint behaviors, use various data analytics techniques to detect suspicious behavior, provide contextual information, block malicious activity, and suggest remediation actions [1].
 
-Subsequent research has formalized the EDR lifecycle into four phases: collection (telemetry gathering), detection (signature and behavioral analysis), investigation (contextual enrichment), and response (containment and remediation) [2]. AEGIS implements all four phases within a self-hosted architecture.
+Subsequent research has formalized the EDR lifecycle into four phases: collection (telemetry gathering), detection (signature and behavioral analysis), investigation (contextual enrichment), and response (containment and remediation) [2]. Ram Antivirus implements all four phases within a self-hosted architecture.
 
 ## 2.2 Security Information and Event Management (SIEM)
 
-SIEM systems aggregate logs and events from across the IT environment, normalize them, and apply detection rules to identify security incidents [3]. Traditional SIEMs suffer from high false-positive rates, limited behavioral analysis, and significant operational complexity. AEGIS addresses these limitations by combining signature-based Sigma rules with Isolation Forest anomaly detection and AI-assisted triage.
+SIEM systems aggregate logs and events from across the IT environment, normalize them, and apply detection rules to identify security incidents [3]. Traditional SIEMs suffer from high false-positive rates, limited behavioral analysis, and significant operational complexity. Ram Antivirus addresses these limitations by combining signature-based Sigma rules with Isolation Forest anomaly detection and AI-assisted triage.
 
 ## 2.3 Security Orchestration, Automation, and Response (SOAR)
 
-SOAR platforms extend SIEM capabilities by automating response workflows through playbooks [4]. Pappas et al. [5] demonstrate that automated response reduces mean-time-to-contain by orders of magnitude compared to manual processes. AEGIS implements SOAR-style playbooks for IP blocking, process termination, and snapshot recovery.
+SOAR platforms extend SIEM capabilities by automating response workflows through playbooks [4]. Pappas et al. [5] demonstrate that automated response reduces mean-time-to-contain by orders of magnitude compared to manual processes. Ram Antivirus implements SOAR-style playbooks for IP blocking, process termination, and snapshot recovery.
 
 ## 2.4 Sigma Detection Rules
 
-Sigma is an open-source, vendor-neutral detection rule format for log files, originally proposed by Roth and Patzke [6]. Sigma rules define conditions over log fields that indicate suspicious activity. AEGIS implements a custom Sigma-compatible engine with in-memory sliding window evaluation and O(1) type-indexed rule lookup, extending the Sigma model with per-rule cooldowns, confidence factor scoring, and multi-step chain rules.
+Sigma is an open-source, vendor-neutral detection rule format for log files, originally proposed by Roth and Patzke [6]. Sigma rules define conditions over log fields that indicate suspicious activity. Ram Antivirus implements a custom Sigma-compatible engine with in-memory sliding window evaluation and O(1) type-indexed rule lookup, extending the Sigma model with per-rule cooldowns, confidence factor scoring, and multi-step chain rules.
 
 ## 2.5 YARA Malware Scanning
 
-YARA is a pattern-matching tool for malware identification, widely used in threat hunting and incident response [7]. While AEGIS references YARA in its surface scanning module architecture, direct YARA integration (importing and executing the `yara` Python library) was not identified in the reviewed codebase at this version. Vulnerability scanning is currently performed via Nuclei.
+YARA is a pattern-matching tool for malware identification, widely used in threat hunting and incident response [7]. While Ram Antivirus references YARA in its surface scanning module architecture, direct YARA integration (importing and executing the `yara` Python library) was not identified in the reviewed codebase at this version. Vulnerability scanning is currently performed via Nuclei.
 
 ## 2.6 Behavioral Anomaly Detection
 
 Anomaly detection for cybersecurity has been studied extensively. Chandola et al. [8] provide a comprehensive survey of anomaly detection techniques applicable to security. Isolation Forest, proposed by Liu et al. [9], has demonstrated effectiveness for network traffic and host behavior anomaly detection due to its linear time complexity and robustness to high-dimensional feature spaces.
 
-AEGIS applies Isolation Forest with eight behavioral features (connection count, unique IPs, request rate, error rate, new ports, data volume, auth failures, unique user agents) per monitored asset, with a 7-day rolling training window and a 24-hour minimum data requirement before the model begins inference.
+Ram Antivirus applies Isolation Forest with eight behavioral features (connection count, unique IPs, request rate, error rate, new ports, data volume, auth failures, unique user agents) per monitored asset, with a 7-day rolling training window and a 24-hour minimum data requirement before the model begins inference.
 
 ## 2.7 Ransomware Detection Approaches
 
@@ -351,29 +351,29 @@ Monika et al. [10] categorize ransomware detection approaches into static, dynam
 - **Extension changes** (T1486): Renaming files to ransomware-specific extensions
 - **Ransom note creation** (T1486): Dropping README/HOW_TO_DECRYPT files
 
-AEGIS implements multi-layer ransomware detection combining all four indicator categories plus RaaS threat intelligence and canary file monitoring.
+Ram Antivirus implements multi-layer ransomware detection combining all four indicator categories plus RaaS threat intelligence and canary file monitoring.
 
 ## 2.8 Deception Technologies and Honeypots
 
-Spitzner [11] introduced the concept of honeypots as intentionally vulnerable systems that attract and monitor attackers. Modern deception technologies extend this concept to include decoy credentials (breadcrumbs), canary files, and fake network shares. AEGIS implements an SSH honeypot (port 2222), HTTP decoy (port 8888), and credential breadcrumb traps that trigger immediate critical incidents when used.
+Spitzner [11] introduced the concept of honeypots as intentionally vulnerable systems that attract and monitor attackers. Modern deception technologies extend this concept to include decoy credentials (breadcrumbs), canary files, and fake network shares. Ram Antivirus implements an SSH honeypot (port 2222), HTTP decoy (port 8888), and credential breadcrumb traps that trigger immediate critical incidents when used.
 
 ## 2.9 AI-Assisted Security Operations
 
-The integration of large language models (LLMs) into security operations is an active research area. Moskal et al. [12] demonstrate LLMs can assist with threat classification, vulnerability description, and remediation recommendation generation. AEGIS integrates local Ollama inference for AI-assisted triage, maintaining data privacy by avoiding external cloud API calls for sensitive security event data.
+The integration of large language models (LLMs) into security operations is an active research area. Moskal et al. [12] demonstrate LLMs can assist with threat classification, vulnerability description, and remediation recommendation generation. Ram Antivirus integrates local Ollama inference for AI-assisted triage, maintaining data privacy by avoiding external cloud API calls for sensitive security event data.
 
 ## 2.10 Local/Private AI for Security
 
-Running LLMs locally addresses the privacy concerns of sending security event data to cloud providers [13]. Ollama provides a local inference server for open-weight models (Llama, Mistral, Gemma), enabling organizations to benefit from AI-assisted security analysis without exposing internal telemetry to third parties. AEGIS's `AEGIS_AI_MODE=disabled` configuration provides complete offline capability with deterministic Jinja2 template-based fallback.
+Running LLMs locally addresses the privacy concerns of sending security event data to cloud providers [13]. Ollama provides a local inference server for open-weight models (Llama, Mistral, Gemma), enabling organizations to benefit from AI-assisted security analysis without exposing internal telemetry to third parties. Ram Antivirus's `AEGIS_AI_MODE=disabled` configuration provides complete offline capability with deterministic Jinja2 template-based fallback.
 
 ## 2.11 Post-Quantum Cryptography (PQC)
 
-NIST's post-quantum cryptography standardization project (completed 2024) has formalized algorithms resistant to quantum attacks: ML-KEM (Kyber), ML-DSA (Dilithium), and SLH-DSA (SPHINCS+) [14]. AEGIS's quantum analytics module assesses existing cryptographic deployments against classical Grover and Shor algorithm models to estimate migration urgency, providing risk-prioritized PQC migration recommendations. This module operates entirely on classical hardware and does not perform actual quantum computation.
+NIST's post-quantum cryptography standardization project (completed 2024) has formalized algorithms resistant to quantum attacks: ML-KEM (Kyber), ML-DSA (Dilithium), and SLH-DSA (SPHINCS+) [14]. Ram Antivirus's quantum analytics module assesses existing cryptographic deployments against classical Grover and Shor algorithm models to estimate migration urgency, providing risk-prioritized PQC migration recommendations. This module operates entirely on classical hardware and does not perform actual quantum computation.
 
 ## 2.12 Comparison with Existing Open-Source Platforms
 
 **Table 2.1: Comparative Analysis of Open-Source Security Platforms**
 
-| Capability | AEGIS v1.6 | Wazuh 4.x | Velociraptor | osquery | Suricata | Security Onion |
+| Capability | Ram Antivirus v1.6 | Wazuh 4.x | Velociraptor | osquery | Suricata | Security Onion |
 |---|---|---|---|---|---|---|
 | Endpoint telemetry | Python + Rust agent | C agent | Go agent | SQL interface | Network only | OSSEC/Wazuh |
 | Sigma-style rules | 168+ built-in | Community | VQL queries | SQL | Suricata rules | Community |
@@ -389,11 +389,11 @@ NIST's post-quantum cryptography standardization project (completed 2024) has fo
 | Deployment | docker compose up | Complex | Binary | Agent install | Install | Complex |
 | License | AGPL-3.0 | GPL-2.0 | AGPL-3.0 | Apache-2.0 | GPL-2.0 | Various |
 
-> **Note:** This comparison is based on publicly available documentation as of 2025. AEGIS's strengths lie in integrated detection-response-triage workflows and ransomware-specific capabilities. Wazuh and Security Onion offer broader enterprise-grade scalability and richer commercial support ecosystems.
+> **Note:** This comparison is based on publicly available documentation as of 2025. Ram Antivirus's strengths lie in integrated detection-response-triage workflows and ransomware-specific capabilities. Wazuh and Security Onion offer broader enterprise-grade scalability and richer commercial support ecosystems.
 
 ## 2.13 Summary
 
-The literature survey identifies that existing open-source solutions each address specific aspects of the endpoint security problem but lack the integrated EDR-SOAR-AI pipeline that commercial products provide. AEGIS is positioned to address this gap by combining Sigma-style correlation, behavioral ML, automated SOAR, local AI triage, and ransomware-specific defenses in a single self-hosted platform.
+The literature survey identifies that existing open-source solutions each address specific aspects of the endpoint security problem but lack the integrated EDR-SOAR-AI pipeline that commercial products provide. Ram Antivirus is positioned to address this gap by combining Sigma-style correlation, behavioral ML, automated SOAR, local AI triage, and ransomware-specific defenses in a single self-hosted platform.
 
 ---
 
@@ -426,7 +426,7 @@ The primary existing approaches to endpoint security include:
 
 ## 3.3 Proposed System
 
-AEGIS addresses these limitations through:
+Ram Antivirus addresses these limitations through:
 - **Zero licensing cost** via AGPL-3.0 open-source license
 - **No cloud dependency** via offline-capable architecture with `AEGIS_AI_MODE=disabled`
 - **Multi-layer behavioral detection** via correlation engine + Isolation Forest
@@ -533,7 +533,7 @@ All components are open-source with no licensing fees. Infrastructure costs are 
 
 ## 3.9 Threat Model
 
-AEGIS is designed to protect against the following threat actors and vectors:
+Ram Antivirus is designed to protect against the following threat actors and vectors:
 
 ### 3.9.1 External Attacker Threats
 - Web application attacks (SQL injection, XSS, path traversal, command injection)
@@ -548,9 +548,9 @@ AEGIS is designed to protect against the following threat actors and vectors:
 - Data exfiltration (T1048)
 - Credential dumping (T1003)
 
-### 3.9.3 AEGIS Attack Surface
+### 3.9.3 Ram Antivirus Attack Surface
 
-The following components represent potential attack surfaces within AEGIS itself:
+The following components represent potential attack surfaces within Ram Antivirus itself:
 
 | Component | Threat | Mitigation |
 |---|---|---|
@@ -568,7 +568,7 @@ The following components represent potential attack surfaces within AEGIS itself
 
 ## 4.1 High-Level Architecture
 
-AEGIS implements a layered defense architecture with the following primary components:
+Ram Antivirus implements a layered defense architecture with the following primary components:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -618,11 +618,11 @@ AEGIS implements a layered defense architecture with the following primary compo
 └──────────────────────────────────────────────────────────────┘
 ```
 
-**Figure 4.1: Overall AEGIS Architecture**
+**Figure 4.1: Overall Ram Antivirus Architecture**
 
 ## 4.2 Endpoint Layer
 
-AEGIS supports two endpoint agent implementations:
+Ram Antivirus supports two endpoint agent implementations:
 
 ### 4.2.1 Python Agent (`agent/aegis_agent.py`)
 - **Language:** Python 3.10+
@@ -746,7 +746,7 @@ The surface scanning module includes architecture for YARA integration within th
 
 ## 4.8 Threat Intelligence
 
-AEGIS integrates multiple threat intelligence sources:
+Ram Antivirus integrates multiple threat intelligence sources:
 
 1. **RaaS Intel Feed** (`raas_intel.py`): Fetches ransomware group data from RansomLook API and CISA advisories every 6 hours. Covers 20+ groups with C2 IPs, file extensions, ransom note patterns, and onion addresses. Cached to `backend/app/data/raas/*.json`.
 
@@ -754,7 +754,7 @@ AEGIS integrates multiple threat intelligence sources:
 
 3. **IOC Management** (`threats.py` API): CRUD operations for Indicators of Compromise (IOCs) with community sharing capabilities.
 
-4. **Community Threat Intel Hub** (`threat_intel_hub.py`): Optional federation with other AEGIS instances for shared threat intelligence.
+4. **Community Threat Intel Hub** (`threat_intel_hub.py`): Optional federation with other Ram Antivirus instances for shared threat intelligence.
 
 ## 4.9 AI Triage
 
@@ -804,7 +804,7 @@ The counter_attack module (`counter_attack.py`) supports recon actions and gener
 
 ## 4.12 Database Layer
 
-AEGIS uses SQLAlchemy (async) ORM with 23 database tables:
+Ram Antivirus uses SQLAlchemy (async) ORM with 23 database tables:
 
 **Core tables:** `clients`, `users`, `incidents`, `actions`, `audit_log`  
 **Asset management:** `assets`, `vulnerabilities`, `scans`  
@@ -817,7 +817,7 @@ AEGIS uses SQLAlchemy (async) ORM with 23 database tables:
 
 ## 4.13 Redis/Event Bus
 
-By default, AEGIS uses an in-memory event bus (`USE_MEMORY_BUS=True`). Redis streams are supported optionally (`USE_REDIS_STREAMS=True`) for distributed deployments. The `EventStream` class provides 4 streams (processes, network, files, alerts). WebSocket forwarding (`ws_push.py`) pushes events to connected dashboard clients in real time.
+By default, Ram Antivirus uses an in-memory event bus (`USE_MEMORY_BUS=True`). Redis streams are supported optionally (`USE_REDIS_STREAMS=True`) for distributed deployments. The `EventStream` class provides 4 streams (processes, network, files, alerts). WebSocket forwarding (`ws_push.py`) pushes events to connected dashboard clients in real time.
 
 ## 4.14 Authentication and Authorization
 
@@ -865,7 +865,7 @@ The `audit_log` table records security-relevant operations. The `audit.py` modul
 
 **Figure 4.6: Ransomware Detection Workflow**
 
-**Limitation:** Ransomware process termination (via `killer.rs`) occurs after detection. Fast ransomware may encrypt a subset of files before termination completes. AEGIS does not implement a synchronous kernel filesystem filter that can block encryption operations before they complete.
+**Limitation:** Ransomware process termination (via `killer.rs`) occurs after detection. Fast ransomware may encrypt a subset of files before termination completes. Ram Antivirus does not implement a synchronous kernel filesystem filter that can block encryption operations before they complete.
 
 ## 4.19 Optional ETW/eBPF Layer
 
@@ -1084,7 +1084,7 @@ Canary files (10 hidden sentinel files in Documents/Desktop/Downloads) are monit
 
 ## 5.11 Sigma Rule Engine
 
-AEGIS implements a custom Sigma-compatible rule engine in `correlation_engine.py`:
+Ram Antivirus implements a custom Sigma-compatible rule engine in `correlation_engine.py`:
 
 **Rule structure:**
 ```python
@@ -1416,12 +1416,12 @@ Implemented in `agent/windows_isolation.py`, integrated into `agent/aegis_agent.
   - Employs deterministic, tagged firewall rules (`AEGIS-ISOLATE-*`):
     - `AEGIS-ISOLATE-BLOCK-INBOUND`: Default-deny all incoming network traffic.
     - `AEGIS-ISOLATE-BLOCK-OUTBOUND`: Default-deny all outgoing network traffic.
-    - `AEGIS-ISOLATE-ALLOW-MGMT-OUT`: Permits outbound control-plane traffic to configured AEGIS backend IP/port.
-    - `AEGIS-ISOLATE-ALLOW-MGMT-IN`: Permits inbound response packets from configured AEGIS backend IP/port.
+    - `AEGIS-ISOLATE-ALLOW-MGMT-OUT`: Permits outbound control-plane traffic to configured Ram Antivirus backend IP/port.
+    - `AEGIS-ISOLATE-ALLOW-MGMT-IN`: Permits inbound response packets from configured Ram Antivirus backend IP/port.
     - `AEGIS-ISOLATE-ALLOW-DNS`: Preserves outbound UDP/TCP port 53 to allow dynamic hostname resolution.
     - `AEGIS-ISOLATE-ALLOW-DHCP`: Preserves UDP ports 67/68 for ongoing IP lease renewal.
     - `AEGIS-ISOLATE-ALLOW-LOOPBACK`: Preserves loopback interface (127.0.0.1) for local agent health and IPC.
-  - Idempotent cleanup: During un-isolation or rollback, only AEGIS-owned firewall rules are deleted; user-defined and enterprise policies remain completely untouched.
+  - Idempotent cleanup: During un-isolation or rollback, only Ram Antivirus-owned firewall rules are deleted; user-defined and enterprise policies remain completely untouched.
 
 - **Watchdog Auto-Recovery Lease:**
   - Configurable lease timeout (default 15 minutes / 900 seconds) prevents permanent operator lockout if management connectivity or the central server fails.
@@ -1438,7 +1438,7 @@ Implemented in `agent/windows_isolation.py`, integrated into `agent/aegis_agent.
 
 ## 6.1 Signature-Based Detection
 
-AEGIS applies signature-based detection through two complementary mechanisms:
+Ram Antivirus applies signature-based detection through two complementary mechanisms:
 
 **HTTP-layer middleware detection** (`attack_detector.py`): Applied synchronously before every request reaches the application. Uses pre-compiled "mega-regex" patterns covering SQL injection variants (UNION SELECT, OR 1=1, error-based, blind), XSS payloads, path traversal sequences, command injection operators, and scanner tool signatures. Double URL-decoding is applied to catch encoding-based evasion.
 
@@ -1446,7 +1446,7 @@ AEGIS applies signature-based detection through two complementary mechanisms:
 
 ## 6.2 Sigma Rules
 
-The Sigma rule format defines conditions over event fields using YAML. AEGIS extends the standard Sigma model with:
+The Sigma rule format defines conditions over event fields using YAML. Ram Antivirus extends the standard Sigma model with:
 
 - **Confidence factors:** Per-rule weight multipliers based on contextual signals (scanner UA, Tor exit, known attacker history, geo risk, burst rate). A factor weight of 0.0 suppresses the alert (safelisted IP, internal IP).
 - **Cooldown periods:** Per-rule time window preventing duplicate alerts for the same (rule, group_key) combination.
@@ -1493,7 +1493,7 @@ Key properties: linear time complexity O(n), no distance computation, handles hi
 
 The Rényi entropy framework provides several detection capabilities:
 
-**C2 beacon detection:** Encrypted C2 traffic exhibits characteristic entropy profiles. Cobalt Strike beaconing produces collision entropy (α=2) in the range [5.2, 6.8] bits/byte with high timing regularity. AEGIS's C2 detection fires when traffic entropy falls within a known profile's range with sufficient timing regularity correlation.
+**C2 beacon detection:** Encrypted C2 traffic exhibits characteristic entropy profiles. Cobalt Strike beaconing produces collision entropy (α=2) in the range [5.2, 6.8] bits/byte with high timing regularity. Ram Antivirus's C2 detection fires when traffic entropy falls within a known profile's range with sufficient timing regularity correlation.
 
 **Ransomware entropy detection:** Files encrypted by ransomware exhibit near-maximum entropy (≥7.5 bits/byte). The `ransomware_entropy_spike` rule fires when ≥50 file write events per second have mean entropy ≥7.5 bits/byte. The README notes this as "experimental" in the current version.
 
@@ -1505,7 +1505,7 @@ YARA-based malware scanning is referenced in the scanning architecture. The `sca
 
 ## 6.9 Ransomware Indicators
 
-AEGIS implements a multi-indicator ransomware detection strategy following MITRE ATT&CK:
+Ram Antivirus implements a multi-indicator ransomware detection strategy following MITRE ATT&CK:
 
 | Phase | Indicator | Detection |
 |---|---|---|
@@ -1587,7 +1587,7 @@ Asset risk is managed by `asset_risk.py`, which aggregates:
 
 ## 7.1 Response Architecture
 
-AEGIS implements automated security response through a coordinated pipeline:
+Ram Antivirus implements automated security response through a coordinated pipeline:
 
 ```
 Detection Event
@@ -1645,10 +1645,10 @@ pub fn kill_process_chain(target_pid: u32) -> KillResult {
 
 ## 7.4 Network Isolation
 
-Host network isolation (restricting all inbound and outbound host network communications during an incident while preserving AEGIS control-plane access) is fully implemented via `WindowsHostIsolator` in `agent/windows_isolation.py` and managed centrally via `/api/v1/edr/hosts/{agent_id}/isolate`.
+Host network isolation (restricting all inbound and outbound host network communications during an incident while preserving Ram Antivirus control-plane access) is fully implemented via `WindowsHostIsolator` in `agent/windows_isolation.py` and managed centrally via `/api/v1/edr/hosts/{agent_id}/isolate`.
 
 - **Enforcement:** Generates deterministic `AEGIS-ISOLATE-*` Windows Defender Firewall rules that block all inbound and outbound TCP/UDP traffic.
-- **Control Plane Preservation:** Explicitly permits bidirectional communication with the configured AEGIS backend server IP/port, preserves DNS (port 53), DHCP (ports 67/68), and loopback (127.0.0.1).
+- **Control Plane Preservation:** Explicitly permits bidirectional communication with the configured Ram Antivirus backend server IP/port, preserves DNS (port 53), DHCP (ports 67/68), and loopback (127.0.0.1).
 - **Auto-Recovery Watchdog:** Employs an auditable 15-minute lease timer that automatically restores baseline network rules if communication with the server is lost, preventing permanent operator lockout.
 - **Cross-Platform:** For Linux, `counter_attack.py` and `firewall_client.py` generate iptables rules under `AEGIS_REAL_FW=1`.
 
@@ -1697,7 +1697,7 @@ Alert escalation follows severity thresholds: critical incidents trigger immedia
 
 ## 7.9 False Positive Handling
 
-AEGIS provides several false-positive mitigation mechanisms:
+Ram Antivirus provides several false-positive mitigation mechanisms:
 1. **Safe IP list:** `AEGIS_SAFE_IPS` and `AEGIS_INTERNAL_IPS` — IPs never blocked, never turned into incidents
 2. **Provisional blocks:** Auto-expire without human review
 3. **False-positive tagging:** Incidents prefixed `[FP-` are excluded from analytics
@@ -1710,7 +1710,7 @@ AEGIS provides several false-positive mitigation mechanisms:
 
 ## 8.1 Overview
 
-Testing of AEGIS spans several levels: unit testing of individual components, integration testing of API endpoints, behavioral testing of detection logic, and performance measurement of the correlation engine.
+Testing of Ram Antivirus spans several levels: unit testing of individual components, integration testing of API endpoints, behavioral testing of detection logic, and performance measurement of the correlation engine.
 
 > **Note:** The test suite was audited from the repository. Formal test results (pass/fail counts) reflect the actual test files found. No results are invented.
 
@@ -1849,7 +1849,7 @@ Tested via `agent/test_persistence_monitor.py` (9 tests) and `backend/tests/unit
 Tested via `agent/test_windows_isolation.py` (7 tests), `backend/tests/unit/test_windows_isolation.py` (3 tests), and `backend/tests/unit/test_edr_isolation_api.py` (4 tests):
 - **State Machine Transitions:** Confirms initial state `NORMAL`, transition to `ISOLATING` and `ISOLATED`, restoration to `RESTORING` and `NORMAL`, and error trapping to `FAILED`.
 - **Defender Firewall Rules:** Asserts creation of default-deny inbound/outbound rules alongside strict allow rules for central management IP/port, DNS (UDP/TCP 53), DHCP (UDP 67/68), and loopback (127.0.0.1).
-- **Rule Idempotency & Clean Restoration:** Confirms that restoration specifically deletes only AEGIS-owned `AEGIS-ISOLATE-*` rules without modifying existing system policies or flushing rulesets.
+- **Rule Idempotency & Clean Restoration:** Confirms that restoration specifically deletes only Ram Antivirus-owned `AEGIS-ISOLATE-*` rules without modifying existing system policies or flushing rulesets.
 - **Auto-Recovery Watchdog Lease:** Simulates lease expiration and verifies that the agent automatically initiates fail-safe un-isolation to prevent operator lockout if central communication drops.
 - **State Reconstruction Across Restarts:** Verifies persistent state file (`.isolation_state.json`) parsing, ensuring active isolation survives agent restarts.
 - **API & RBAC Authorization:** Confirms `/api/v1/edr/hosts/{agent_id}/isolate` and `unisolate` endpoints require `admin` role and reject unauthenticated requests or invalid payloads.
@@ -1999,7 +1999,7 @@ Confidence factor scoring provides dynamic severity adjustment: a brute-force at
 
 The multi-indicator ransomware detection approach covers the major phases of the ransomware kill-chain (preparation, staging, propagation, execution, post-encryption) using 12 specialized Sigma rules and the `ransomware_chain` rule.
 
-**Known limitation:** Ransomware detection in AEGIS is fundamentally reactive. The system detects ransomware behaviors after they begin and terminates the offending process to limit damage. A sufficiently fast ransomware that completes encryption of critical files before the canary file is tripped or before process termination completes may cause partial data loss. This is an inherent limitation of user-space detection without kernel filesystem filter integration.
+**Known limitation:** Ransomware detection in Ram Antivirus is fundamentally reactive. The system detects ransomware behaviors after they begin and terminates the offending process to limit damage. A sufficiently fast ransomware that completes encryption of critical files before the canary file is tripped or before process termination completes may cause partial data loss. This is an inherent limitation of user-space detection without kernel filesystem filter integration.
 
 **Mitigation:** The RaaS threat intelligence feed provides pre-emptive blocking of known ransomware C2 IPs, potentially preventing command-and-control connectivity before encryption begins. Canary files provide early-warning regardless of encryption speed. Snapshot recovery (macOS/Linux) enables recovery from successfully encrypted files.
 
@@ -2046,7 +2046,7 @@ The full stack (FastAPI backend, Next.js frontend, MySQL/PostgreSQL database, Py
 
 ## 11.1 Reactive Ransomware Detection
 
-AEGIS detects ransomware behaviors after they commence. Process termination via the Rust agent limits encryption damage but cannot guarantee zero file loss. A ransomware strain that encrypts its target files within the detection latency window (typically 1–5 seconds for canary monitoring) may cause partial data loss before the kill signal reaches the process. AEGIS is accurately described as a **reactive ransomware defense** that limits impact, not a preventive kernel-level interception system.
+Ram Antivirus detects ransomware behaviors after they commence. Process termination via the Rust agent limits encryption damage but cannot guarantee zero file loss. A ransomware strain that encrypts its target files within the detection latency window (typically 1–5 seconds for canary monitoring) may cause partial data loss before the kill signal reaches the process. Ram Antivirus is accurately described as a **reactive ransomware defense** that limits impact, not a preventive kernel-level interception system.
 
 ## 11.2 No Kernel-Level Telemetry
 
@@ -2094,7 +2094,7 @@ Kernel telemetry would eliminate the blind spots created by short-lived processe
 
 ## 12.2 Synchronous Ransomware Prevention
 
-Implementing a Windows kernel filesystem minifilter driver (using the Windows Filter Manager) would enable synchronous interception of file write operations before they complete. This would allow AEGIS to block encryption of canary or protected files before data is modified, rather than terminating the process after some files have already been encrypted.
+Implementing a Windows kernel filesystem minifilter driver (using the Windows Filter Manager) would enable synchronous interception of file write operations before they complete. This would allow Ram Antivirus to block encryption of canary or protected files before data is modified, rather than terminating the process after some files have already been encrypted.
 
 ## 12.3 Formal ML Evaluation
 
@@ -2147,7 +2147,7 @@ The quantum analytics module could be extended to provide an automated PQC migra
 
 # CHAPTER 13 — CONCLUSION
 
-This project has developed AEGIS, a comprehensive open-source, self-hosted Endpoint Detection and Response and MDR-style platform addressing the cybersecurity challenges of modern threat actors. The platform integrates multiple complementary detection layers — deterministic Sigma-style rule evaluation, behavioral anomaly detection via Isolation Forest, and AI-assisted incident triage — into a unified operational security platform.
+This project has developed Ram Antivirus, a comprehensive open-source, self-hosted Endpoint Detection and Response and MDR-style platform addressing the cybersecurity challenges of modern threat actors. The platform integrates multiple complementary detection layers — deterministic Sigma-style rule evaluation, behavioral anomaly detection via Isolation Forest, and AI-assisted incident triage — into a unified operational security platform.
 
 The core contribution is demonstrating that EDR/MDR-style capabilities — real-time endpoint telemetry, behavioral anomaly detection, automated SOAR response, ransomware kill-chain detection, and AI-assisted triage — can be implemented entirely with open-source technologies, self-hosted infrastructure, and without commercial licensing or cloud service dependencies.
 
@@ -2164,7 +2164,7 @@ Key technical achievements include:
 
 Significant limitations are acknowledged: ransomware detection is reactive rather than preventive, ETW/eBPF kernel telemetry is not yet implemented, full in-place OS volume rollbacks are restricted during live execution to protect host stability, and formal ML evaluation against labeled public datasets was outside the current scope. These limitations define clear directions for future development.
 
-AEGIS demonstrates the practical feasibility of building a functionally capable EDR/MDR-style security platform using open-source components including FastAPI, Next.js, SQLAlchemy, scikit-learn, Rust, Ollama, PostgreSQL, and the MITRE ATT&CK knowledge base. The project contributes a reference implementation that can serve as a foundation for further academic research, security education, and practical deployment in resource-constrained environments.
+Ram Antivirus demonstrates the practical feasibility of building a functionally capable EDR/MDR-style security platform using open-source components including FastAPI, Next.js, SQLAlchemy, scikit-learn, Rust, Ollama, PostgreSQL, and the MITRE ATT&CK knowledge base. The project contributes a reference implementation that can serve as a foundation for further academic research, security education, and practical deployment in resource-constrained environments.
 
 ---
 
@@ -2443,7 +2443,7 @@ AEGIS demonstrates the practical feasibility of building a functionally capable 
 | `AEGIS_LIVEFIRE` | unset | Enable ransomware emulation test: `1` |
 | `AEGIS_FIREWALL_URL` | unset | Remote firewall agent URL |
 | `AEGIS_SAFE_IPS` | `` | Comma-separated IPs never blocked |
-| `AEGIS_INTERNAL_IPS` | `` | Additive to AEGIS_SAFE_IPS |
+| `AEGIS_INTERNAL_IPS` | `` | Additive to Ram Antivirus_SAFE_IPS |
 | `AEGIS_PROVISIONAL_BLOCK_TTL_HOURS` | `6` | Unconfirmed block expiry |
 | `AEGIS_FULL_SCAN_HOURS` | `8` | Full scan interval |
 | `AEGIS_DOS_MODE` | `monitor` | DoS mode: monitor/active |
@@ -2461,8 +2461,8 @@ AEGIS demonstrates the practical feasibility of building a functionally capable 
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/alejadxr/AEGIS.git
-cd AEGIS
+git clone https://github.com/alejadxr/Ram Antivirus.git
+cd Ram Antivirus
 
 # 2. Configure environment
 cp .env.example .env
@@ -2517,7 +2517,7 @@ cargo build --release
 
 | Figure | Description |
 |---|---|
-| H-1 | Login page — AEGIS authentication screen |
+| H-1 | Login page — Ram Antivirus authentication screen |
 | H-2 | Main dashboard — threat map, incident count, live metrics |
 | H-3 | Incident list — sortable, filterable security incident table |
 | H-4 | Incident detail — MITRE technique, timeline, AI analysis |
@@ -2562,8 +2562,8 @@ cargo build --release
 
 ---
 
-*End of AEGIS IND Project Report*
+*End of Ram Antivirus IND Project Report*
 
-*Document generated from repository audit — AEGIS v1.6.4.9*  
+*Document generated from repository audit — Ram Antivirus v1.6.4.9*  
 *All claims verified against source code.*  
 *Classification: Academic Project Report*

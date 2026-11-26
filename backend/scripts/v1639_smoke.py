@@ -2,7 +2,7 @@
 """
 v1.6.3.9 integration smoke test.
 
-Verifies the AEGIS deployment end-to-end against a live API:
+Verifies the Ram Antivirus deployment end-to-end against a live API:
 
     1. GET  /health                                version == "1.6.3.9"
     2. POST /api/v1/correlation/test               synthetic ssh_failed_auth event
@@ -378,7 +378,7 @@ def check_rules_loaded(base_url: str, api_key: str) -> bool:
 def main() -> int:
     base_url = DEFAULT_BASE_URL
     print()
-    print(_c(f"AEGIS v{EXPECTED_VERSION} smoke test", _BOLD))
+    print(_c(f"Ram Antivirus v{EXPECTED_VERSION} smoke test", _BOLD))
     print(f"  target : {base_url}")
     print(f"  api key: {'set (' + str(len(API_KEY)) + ' chars)' if API_KEY else _c('UNSET', _YELLOW)}")
     print()

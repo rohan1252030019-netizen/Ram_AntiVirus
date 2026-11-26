@@ -1,7 +1,7 @@
 """
-AEGIS Firewall Agent v1.0.0
+Ram Antivirus Firewall Agent v1.0.0
 Single-file FastAPI service that manages iptables on the Raspberry Pi.
-Designed to be the firewall backend for AEGIS (Mac Pro).
+Designed to be the firewall backend for Ram Antivirus (Mac Pro).
 
 Port: 8765
 Persistence: /etc/aegis/blocked_ips.json
@@ -11,7 +11,7 @@ Deployment note (BUG-3 fix, 2026-05-31):
     Set AEGIS_SAFE_IPS env var on the Pi systemd unit
     (/etc/systemd/system/aegis-firewall.service) so the Pi rejects block
     requests for safe CIDRs (Googlebot 66.249.0.0/16, Starlink 74.244.193.0/24,
-    etc.) even if AEGIS forwards them incorrectly. Example:
+    etc.) even if Ram Antivirus forwards them incorrectly. Example:
 
         Environment="AEGIS_SAFE_IPS=66.249.0.0/16,74.244.193.0/24,127.0.0.1"
 
@@ -73,7 +73,7 @@ AEGIS_FIREWALL_SECRET = os.getenv("AEGIS_FIREWALL_SECRET", "").strip()
 # literal IPs (auto-wrapped as /32 or /128) and CIDR ranges (e.g.
 # "66.249.0.0/16,74.244.193.0/24,127.0.0.1"). Mirrors the parser used by
 # backend/app/core/attack_detector.py so the Pi agent refuses to block any
-# CIDR AEGIS itself considers safe even if AEGIS forwards the request.
+# CIDR Ram Antivirus itself considers safe even if Ram Antivirus forwards the request.
 _EXTRA_SAFE_IPS: set[str] = set()
 _safe_ips_env = os.getenv("AEGIS_SAFE_IPS", "")
 for _entry in (e.strip() for e in _safe_ips_env.split(",") if e.strip()):
@@ -101,7 +101,7 @@ logger = logging.getLogger("aegis-firewall")
 # ---------------------------------------------------------------------------
 #
 # INCIDENT 2026-08-03 — why this exists, do NOT revert on intuition:
-#   AEGIS had 40.77.167.63 and 52.167.144.233 in the AEGIS_BLOCK chain. Reverse
+#   Ram Antivirus had 40.77.167.63 and 52.167.144.233 in the AEGIS_BLOCK chain. Reverse
 #   DNS identified both as msnbot-*.search.msn.com — Bing's crawler. Because
 #   Sable's middleware.ts turns this blocklist into an app-layer 403 on the real
 #   client IP (CF-Connecting-IP), Bing could not crawl sable at all. Bing feeds
@@ -110,10 +110,10 @@ logger = logging.getLogger("aegis-firewall")
 #   Allows GPTBot, ClaudeBot, Google-Extended, PerplexityBot and Bytespider.
 #   The two systems contradicted each other and the middleware won, silently.
 #
-#   Root cause is structural, not a one-off: AEGIS blocks on BEHAVIOUR (many
+#   Root cause is structural, not a one-off: Ram Antivirus blocks on BEHAVIOUR (many
 #   paths, high request rate) and a legitimate crawler is behaviourally
 #   indistinguishable from reconnaissance. Unblocking by hand does not fix it —
-#   the AEGIS brain just re-pushes the same IP. So the refusal has to live here,
+#   the Ram Antivirus brain just re-pushes the same IP. So the refusal has to live here,
 #   at the only choke point every block passes through: POST /block on the Pi.
 #
 # DESIGN
@@ -142,7 +142,7 @@ logger = logging.getLogger("aegis-firewall")
 # SECURITY CONCESSION WE ARE KNOWINGLY ACCEPTING (documented, not hidden):
 #   An attacker who controls a host inside a published crawler range, or who
 #   controls PTR for an IP under one of the suffixes below AND has that PTR
-#   forward-resolve back to the same IP, can avoid the AEGIS app-layer 403 for
+#   forward-resolve back to the same IP, can avoid the Ram Antivirus app-layer 403 for
 #   *behavioural* detections only. They still face: Cloudflare upstream, the
 #   Pi's DoS netshield, app authentication, and any exploit-signature block
 #   (point 2). Scope of the hole is "high-volume crawling from Microsoft/
@@ -151,7 +151,7 @@ logger = logging.getLogger("aegis-firewall")
 #
 # NOT COVERED, on purpose:
 #   - Bytespider (ByteDance): publishes no reliable prefix feed and no
-#     verifiable PTR. robots.txt allows it; AEGIS may still block it.
+#     verifiable PTR. robots.txt allows it; Ram Antivirus may still block it.
 #   - ClaudeBot (Anthropic): probed 2026-08-03, no machine-readable prefix
 #     feed found at anthropic.com / docs.claude.com. Covered only if it ever
 #     presents a forward-confirmed PTR under a suffix below.
@@ -188,7 +188,7 @@ CRAWLER_DNS_TIMEOUT_S = float(os.getenv("AEGIS_CRAWLER_DNS_TIMEOUT", "2.5"))
 
 # Threat classes that must NEVER be exempted, however well the IP verifies.
 # Matched as substrings against reason/pattern_name/threat_type, because the
-# AEGIS brain sends free-form strings like "aegis_auto_block: sql_injection (3x)".
+# Ram Antivirus brain sends free-form strings like "aegis_auto_block: sql_injection (3x)".
 _EXPLOIT_TOKENS = frozenset({
     "sql_injection", "sqli", "xss", "command_injection", "rce",
     "path_traversal", "lfi", "rfi", "ssrf", "xxe", "deserialization",
@@ -205,7 +205,7 @@ _BEHAVIOURAL_TOKENS = frozenset({
 
 # Enable auto-reconcile of ALREADY-persisted blocks at startup/refresh.
 # OFF by default: unblocking en masse without an operator asking is surprising.
-# Turn on with AEGIS_CRAWLER_AUTO_UNBLOCK=1 once the whitelist has been observed.
+# Turn on with Ram Antivirus_CRAWLER_AUTO_UNBLOCK=1 once the whitelist has been observed.
 CRAWLER_AUTO_UNBLOCK = os.getenv("AEGIS_CRAWLER_AUTO_UNBLOCK", "").strip().lower() in ("1", "true", "yes", "on")
 
 # Live state: list of (network, vendor). Seeded from AEGIS_CRAWLER_NETS so an
@@ -796,7 +796,7 @@ async def _geo_lookup(ip: str) -> dict:
 async def lifespan(app: FastAPI):
     global _start_time
     _start_time = time.time()
-    logger.info("AEGIS Firewall Agent starting up")
+    logger.info("Ram Antivirus Firewall Agent starting up")
 
     # Restore persisted iptables rules
     _restore_iptables_rules()
@@ -813,8 +813,8 @@ async def lifespan(app: FastAPI):
     # i.e. exactly today's behaviour. FCrDNS works from the first request.
     crawler_task = asyncio.create_task(_crawler_refresh_loop())
 
-    _add_event("startup", details="AEGIS Firewall Agent started", severity="info")
-    logger.info("AEGIS Firewall Agent ready on port 8765")
+    _add_event("startup", details="Ram Antivirus Firewall Agent started", severity="info")
+    logger.info("Ram Antivirus Firewall Agent ready on port 8765")
 
     yield
 
@@ -823,7 +823,7 @@ async def lifespan(app: FastAPI):
         await crawler_task
     except (asyncio.CancelledError, Exception):
         pass
-    logger.info("AEGIS Firewall Agent shutting down")
+    logger.info("Ram Antivirus Firewall Agent shutting down")
 
 
 # ---------------------------------------------------------------------------
@@ -831,7 +831,7 @@ async def lifespan(app: FastAPI):
 # ---------------------------------------------------------------------------
 
 app = FastAPI(
-    title="AEGIS Firewall Agent",
+    title="Ram Antivirus Firewall Agent",
     version="1.0.0",
     lifespan=lifespan,
 )
@@ -867,7 +867,7 @@ async def _enforce_shared_secret(request: Request, call_next):
     before this change. This is intentional: the Mac Pro client and this
     agent are deployed independently, so during a staged rollout one side
     may be updated before the other. Requiring the secret unconditionally
-    here would risk locking AEGIS out of its own firewall executor mid
+    here would risk locking Ram Antivirus out of its own firewall executor mid
     rollout. Once an operator sets AEGIS_FIREWALL_SECRET on the Pi's
     systemd unit (matching the Mac Pro's value), enforcement turns on
     automatically for every route except /health.
@@ -1058,10 +1058,10 @@ async def post_block(req: IPRequest):
         )
 
     # --- Verified-crawler whitelist (2026-08-03 incident) -------------------
-    # AEGIS blocked Bing's msnbot on behaviour, which made Sable invisible to
+    # Ram Antivirus blocked Bing's msnbot on behaviour, which made Sable invisible to
     # Bing/ChatGPT/Perplexity while robots.txt said they were welcome. Every
     # block funnels through here, so this is the one place where refusing is
-    # durable against the AEGIS brain simply re-pushing the same IP.
+    # durable against the Ram Antivirus brain simply re-pushing the same IP.
     # An exploit signature always wins over the whitelist — see _is_exploit_signal.
     threat_text = _threat_text(req.reason, req.pattern_name, req.threat_type)
     crawler_vendor = await _verify_crawler(ip, threat_text)
@@ -1396,7 +1396,7 @@ async def get_events(since: Optional[str] = None, limit: Optional[int] = None):
 async def auto_response_blocked():
     """Return blocked IPs categorized by type."""
     blocked = list_blocked_ips()
-    # Currently all blocks are permanent (manual or AEGIS-triggered)
+    # Currently all blocks are permanent (manual or Ram Antivirus-triggered)
     return {
         "blocked": blocked,
         "permanent": blocked,
@@ -1408,7 +1408,7 @@ async def auto_response_blocked():
 @app.post("/ai/chat")
 async def ai_chat(req: ChatRequest):
     return {
-        "response": "AEGIS Firewall Agent does not support interactive chat. "
+        "response": "Ram Antivirus Firewall Agent does not support interactive chat. "
         "Use /analyze or /ai/investigate endpoints for IP analysis.",
         "status": "unsupported",
     }
@@ -1520,7 +1520,7 @@ async def dos_revert(request: Request):
 @app.get("/")
 async def root():
     return {
-        "service": "AEGIS Firewall Agent",
+        "service": "Ram Antivirus Firewall Agent",
         "version": "1.0.0",
         "endpoints": [
             "/health", "/status", "/attackers", "/attacker/{ip}",

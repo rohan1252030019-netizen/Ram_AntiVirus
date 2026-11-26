@@ -1,7 +1,7 @@
 id: ransomware_canary_modified
 name: Canary file modification (ransomware tripwire)
 description: |
-  An AEGIS-planted canary file was written or modified. By design no legitimate
+  A Ram Antivirus-planted canary file was written or modified. By design no legitimate
   process ever touches canary files. A single event is sufficient to trip this
   rule — the threshold is intentionally 1 so the alarm is instant.
 kind: sigma

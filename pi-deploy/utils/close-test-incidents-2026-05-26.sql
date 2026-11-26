@@ -4,7 +4,7 @@
 -- IPs belong to the 185.220.101.0/24 Tor exit range used for nikto/sqlmap probes
 -- against own services. They are NOT real attackers.
 -- Pi blocklist: .55/.99/.142 already removed. .42 blocked but also a test (sqlmap).
--- Author: AEGIS data-hygiene agent, 2026-05-26
+-- Author: Ram Antivirus data-hygiene agent, 2026-05-26
 -- DO NOT delete rows — keep for audit history.
 
 BEGIN;

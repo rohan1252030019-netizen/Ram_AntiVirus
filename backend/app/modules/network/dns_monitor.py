@@ -1,5 +1,5 @@
 """
-DNS Monitoring module for AEGIS.
+DNS Monitoring module for Ram Antivirus.
 
 Provides passive DNS analysis via multiple approaches:
   1. System DNS log parsing (systemd-resolved, syslog, dnsmasq)

@@ -1,4 +1,4 @@
-"""Setup wizard API endpoints for AEGIS.
+"""Setup wizard API endpoints for Ram Antivirus.
 
 Provides auto-discovery, batch asset registration, AI-assisted
 configuration, setup status, and dependency checking.

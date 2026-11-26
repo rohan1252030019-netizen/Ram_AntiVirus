@@ -1,5 +1,6 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """
-AEGIS Agent - Windows-Specific Configuration
+Ram Antivirus Agent - Windows-Specific Configuration
 ================================================
 Provides platform-appropriate paths and monitoring targets for Windows hosts.
 

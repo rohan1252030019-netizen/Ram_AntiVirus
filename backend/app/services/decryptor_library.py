@@ -1,5 +1,5 @@
 """
-Decryptor library for AEGIS ransomware recovery (Phase R-C).
+Decryptor library for Ram Antivirus ransomware recovery (Phase R-C).
 
 Maintains a local cache of ransomware decryptors derived from the
 NoMoreRansom registry and other public sources.

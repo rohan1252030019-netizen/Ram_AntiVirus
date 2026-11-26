@@ -1,7 +1,7 @@
 # Install: replace {{AEGIS_USER}} with the Linux user that will run the agent,
 # then copy to /etc/systemd/system/ and `systemctl daemon-reload && systemctl enable --now aegis-firewall`.
 [Unit]
-Description=AEGIS Firewall Agent
+Description=Ram Antivirus Firewall Agent
 After=network.target
 
 [Service]

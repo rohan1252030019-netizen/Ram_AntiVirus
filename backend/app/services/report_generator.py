@@ -1,5 +1,5 @@
 """
-AEGIS PDF Report Generator
+Ram Antivirus PDF Report Generator
 Generates professional security reports with branded styling, tables, charts,
 and AI-generated recommendations via OpenRouter.
 """
@@ -240,7 +240,7 @@ def _header_footer(canvas, doc):
     canvas.line(40, h - 40, w - 40, h - 40)
     canvas.setFont("Helvetica", 7)
     canvas.setFillColor(colors.HexColor("#6B7280"))
-    canvas.drawString(40, h - 36, "AEGIS DEFENSE PLATFORM")
+    canvas.drawString(40, h - 36, "Ram Antivirus DEFENSE PLATFORM")
     canvas.drawRightString(w - 40, h - 36, "CONFIDENTIAL")
 
     # Footer
@@ -514,7 +514,7 @@ async def _get_ai_recommendations(context: dict) -> str:
 # ---------------------------------------------------------------------------
 
 class PDFReportGenerator:
-    """Generates branded PDF security reports for AEGIS."""
+    """Generates branded PDF security reports for Ram Antivirus."""
 
     def __init__(self):
         self.styles = _build_styles()
@@ -531,7 +531,7 @@ class PDFReportGenerator:
         elements.append(Spacer(1, 2 * inch))
 
         # Logo / brand text
-        elements.append(Paragraph("AEGIS", self.styles["CoverTitle"]))
+        elements.append(Paragraph("Ram Antivirus", self.styles["CoverTitle"]))
         elements.append(Paragraph("DEFENSE PLATFORM", self.styles["CoverSubtitle"]))
         elements.append(Spacer(1, 0.5 * inch))
 
@@ -1049,7 +1049,7 @@ class PDFReportGenerator:
 
         def _template_narrative(_ctx: dict) -> str:
             return (
-                f"During the reporting period, AEGIS monitored {_ctx.get('total_assets', 0)} assets "
+                f"During the reporting period, Ram Antivirus monitored {_ctx.get('total_assets', 0)} assets "
                 f"and detected {_ctx.get('total_incidents', 0)} security incidents. "
                 f"Risk level is assessed as {_ctx.get('risk_level', 'moderate')}. "
                 f"Critical vulnerabilities requiring immediate attention: {_ctx.get('critical_vulns', 0)}."
@@ -1070,7 +1070,7 @@ class PDFReportGenerator:
             topMargin=55,
             bottomMargin=55,
             title=report_title,
-            author="AEGIS Defense Platform",
+            author="Ram Antivirus Defense Platform",
         )
 
         elements = []
@@ -1206,7 +1206,7 @@ class PDFReportGenerator:
             buf, pagesize=letter,
             leftMargin=40, rightMargin=40, topMargin=55, bottomMargin=55,
             title=f"Incident Report - {incident.title}",
-            author="AEGIS Defense Platform",
+            author="Ram Antivirus Defense Platform",
         )
 
         elements = []

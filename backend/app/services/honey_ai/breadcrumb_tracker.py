@@ -2,7 +2,7 @@
 
 Every piece of fake data handed out by a deception campaign includes a
 trackable breadcrumb UUID.  If that UUID later shows up in the logs of a
-*real* service protected by AEGIS, it proves the attacker consumed the
+*real* service protected by Ram Antivirus, it proves the attacker consumed the
 bait and is now trying to monetize it.  We fire a CRITICAL incident and
 emit an event to the WebSocket bus so the dashboard lights up immediately.
 """

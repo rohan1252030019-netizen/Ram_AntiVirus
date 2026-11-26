@@ -1,5 +1,5 @@
 """
-AEGIS correlation engine event throughput benchmark.
+Ram Antivirus correlation engine event throughput benchmark.
 
 Methodology
 -----------
@@ -46,7 +46,7 @@ _RULES_PATH = Path(__file__).parent.parent.parent / "app" / "rules"
 # ---------------------------------------------------------------------------
 
 def _build_engine():
-    """Build a CorrelationEngine with AEGIS_AI_MODE=disabled, config mocked."""
+    """Build a CorrelationEngine with Ram Antivirus_AI_MODE=disabled, config mocked."""
     with mock.patch.dict(os.environ, {"AEGIS_AI_MODE": "disabled"}):
         with mock.patch(
             "app.config.settings",

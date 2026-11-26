@@ -2,7 +2,7 @@ id: ransomware-defense
 name: Ransomware Defense
 version: 1.0.0
 description: >
-  End-to-end ransomware detection and response pack for AEGIS v1.6.
+  End-to-end ransomware detection and response pack for Ram Antivirus v1.6.
   Covers canary file monitoring, mass-extension changes, shadow-copy deletion,
   LOLBin abuse, lateral movement via SMB/WinRM, and RaaS group tracking.
   Includes an automated 7-step containment playbook and a SMB canary honeypot.

@@ -1,5 +1,5 @@
 """
-Sigma-like correlation engine for AEGIS.
+Sigma-like correlation engine for Ram Antivirus.
 
 Maintains a sliding window of incoming events (deque, max 10 000) and evaluates
 each new event against a set of built-in and custom rules.  When a rule fires it
@@ -3002,7 +3002,7 @@ BUILT_IN_RULES: list[dict] = [
     {
         "id": "dos_http_flood",
         "title": "HTTP Flood (single source)",
-        "description": "A single source IP crossed the per-IP request-rate threshold (AEGIS_DOS_PER_IP_RPS) reported by dos_shield. Correlates 3+ dos.http_flood events (each already event-cooldown deduped by dos_shield) from the same IP within 5 min into one incident. High severity — a lone flooder against AEGIS's single-worker event loop.",
+        "description": "A single source IP crossed the per-IP request-rate threshold (AEGIS_DOS_PER_IP_RPS) reported by dos_shield. Correlates 3+ dos.http_flood events (each already event-cooldown deduped by dos_shield) from the same IP within 5 min into one incident. High severity — a lone flooder against Ram Antivirus's single-worker event loop.",
         "severity": "high",
         "enabled": True,
         "source": "builtin",
@@ -3111,7 +3111,7 @@ BUILT_IN_RULES: list[dict] = [
     # platform shares one cooldown window and we don't storm incidents.
     {
         "id": "dos_under_attack",
-        "title": "AEGIS Under Active DoS (global)",
+        "title": "Ram Antivirus Under Active DoS (global)",
         "description": "dos_shield entered adaptive under-attack mode — the GLOBAL request rate crossed AEGIS_DOS_GLOBAL_RPS (~70x headroom over real API baseline). A platform-wide condition; fires once per event (dos_shield emits enter/clear transitions). Critical — the whole service is degrading, not a single offender.",
         "severity": "critical",
         "enabled": True,

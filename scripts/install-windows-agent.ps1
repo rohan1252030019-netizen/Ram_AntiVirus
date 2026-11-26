@@ -1,7 +1,7 @@
 # ============================================================================
-# AEGIS Endpoint Agent - Windows Installer
+# Ram Antivirus Endpoint Agent - Windows Installer
 # ============================================================================
-# Installs the AEGIS EDR-lite agent as a Windows service (via NSSM)
+# Installs the Ram Antivirus EDR-lite agent as a Windows service (via NSSM)
 # or as a Scheduled Task (fallback).
 #
 # Usage:
@@ -63,7 +63,7 @@ function Test-Administrator {
 # Uninstall
 # ---------------------------------------------------------------------------
 function Uninstall-Agent {
-    Write-Step "Uninstalling AEGIS Agent..."
+    Write-Step "Uninstalling Ram Antivirus Agent..."
 
     # Stop and remove scheduled task
     $task = Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue
@@ -87,7 +87,7 @@ function Uninstall-Agent {
         Write-Ok "Installation directory removed: $InstallDir"
     }
 
-    Write-Ok "AEGIS Agent uninstalled."
+    Write-Ok "Ram Antivirus Agent uninstalled."
     return
 }
 
@@ -173,7 +173,7 @@ AEGIS_PLATFORM=windows
     # Create a launcher script
     $launcherContent = @"
 @echo off
-REM AEGIS Agent Launcher
+REM Ram Antivirus Agent Launcher
 cd /d "$InstallDir"
 set AEGIS_API_URL=$ApiUrl
 set AEGIS_API_KEY=$ApiKey
@@ -268,7 +268,7 @@ function Register-AsScheduledTask {
             -Settings $settings `
             -User "SYSTEM" `
             -RunLevel Highest `
-            -Description "AEGIS EDR-lite Endpoint Agent" `
+            -Description "Ram Antivirus EDR-lite Endpoint Agent" `
             -Force
     }
     else {
@@ -278,7 +278,7 @@ function Register-AsScheduledTask {
             -Action $action `
             -Trigger $trigger `
             -Settings $settings `
-            -Description "AEGIS EDR-lite Endpoint Agent" `
+            -Description "Ram Antivirus EDR-lite Endpoint Agent" `
             -Force
     }
 
@@ -315,7 +315,7 @@ function Test-Registration {
 # ---------------------------------------------------------------------------
 Write-Host ""
 Write-Host "  ========================================" -ForegroundColor Cyan
-Write-Host "   AEGIS Endpoint Agent Installer" -ForegroundColor Cyan
+Write-Host "   Ram Antivirus Endpoint Agent Installer" -ForegroundColor Cyan
 Write-Host "   Windows Edition" -ForegroundColor Cyan
 Write-Host "  ========================================" -ForegroundColor Cyan
 Write-Host ""
@@ -363,7 +363,7 @@ Test-Registration
 Register-AsScheduledTask -VenvPython $VenvPython
 
 Write-Host ""
-Write-Ok "AEGIS Agent installed successfully."
+Write-Ok "Ram Antivirus Agent installed successfully."
 Write-Host ""
 Write-Step "Agent directory: $InstallDir"
 Write-Step "API endpoint:    $ApiUrl"

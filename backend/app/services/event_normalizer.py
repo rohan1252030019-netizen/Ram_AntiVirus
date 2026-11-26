@@ -1,5 +1,5 @@
 """
-Unified log-line -> typed-event normalizer for AEGIS.
+Unified log-line -> typed-event normalizer for Ram Antivirus.
 
 This module is the SINGLE source of truth for translating raw log lines
 (PM2 stdout, journalctl entries, honeypot transcripts, EDR JSON, etc.) into
@@ -24,7 +24,7 @@ Design contract (per the v1.6.x integration plan):
    * no global mutable state;
    * deterministic for a given (log_line, source) pair.
 3. Structural noise (PM2 dividers, ExceptionGroup headers, internal logger
-   markers) returns `None` so that no counter is advanced by AEGIS's own
+   markers) returns `None` so that no counter is advanced by Ram Antivirus's own
    diagnostic output -- this was the root cause of the v1.5 self-feedback
    loops.
 4. The same HTTP 401 line is tagged differently depending on which surface
@@ -509,7 +509,7 @@ _STATUS_FALLBACK_RE = re.compile(r"\bHTTP/\d\.\d\"?\s+(\d{3})\b")
 # Surface / protocol identification
 # ---------------------------------------------------------------------------
 
-# Substrings emitted by AEGIS itself. Any line carrying one of these is
+# Substrings emitted by Ram Antivirus itself. Any line carrying one of these is
 # structural noise produced by our own loggers / Python tracebacks / PM2
 # header banners -- it must NOT advance any detection counter, otherwise we
 # get the self-feedback loop that v1.5 spent two weeks debugging.
@@ -691,7 +691,7 @@ def _is_structural(line: str) -> bool:
     stripped = line.strip()
     if _STRUCTURAL_LINE_RE.match(stripped):
         return True
-    # AEGIS internal logger output / Python traceback artifacts.
+    # Ram Antivirus internal logger output / Python traceback artifacts.
     for marker in _INTERNAL_SOURCE_MARKERS:
         if marker in line:
             return True
@@ -825,7 +825,7 @@ def _refine_auth_failure(
     src = (source or "").lower()
 
     # SSH honeypot wins first -- this is the highest-confidence credential
-    # attack signal AEGIS sees.
+    # attack signal Ram Antivirus sees.
     if (
         "honeypot_ssh" in src
         or "phantom-ssh" in src
@@ -878,10 +878,10 @@ def _refine_auth_failure(
 
 
 def _parse_aegis_envelope(line: str) -> Optional[dict[str, Any]]:
-    """Parse a front-line ``[AEGIS] {json}`` access-log envelope.
+    """Parse a front-line ``[RAM ANTIVIRUS] {json}`` access-log envelope.
 
     Apps that sit behind Cloudflare (e.g. ``sable``) log one JSON object per
-    request, prefixed with an ``[AEGIS]`` marker, carrying the real client IP
+    request, prefixed with an ``[RAM ANTIVIRUS]`` marker, carrying the real client IP
     resolved from ``CF-Connecting-IP`` plus ``method`` / ``path`` / ``status``
     as JSON fields. The historic ``_ACCESS_LOG_RE`` only understands the
     PM2/uvicorn common-log shape (``"GET /x HTTP/1.1" 200``), so without this
@@ -889,11 +889,11 @@ def _parse_aegis_envelope(line: str) -> Optional[dict[str, Any]]:
     the ``access_match is None`` guard -- leaving the app completely invisible
     to detection regardless of attack volume.
 
-    Returns the decoded dict, or ``None`` when the line is not an AEGIS
+    Returns the decoded dict, or ``None`` when the line is not an Ram Antivirus
     envelope / not valid JSON. Pure and side-effect free, per this module's
     contract.
     """
-    marker = line.find("[AEGIS]")
+    marker = line.find("[RAM ANTIVIRUS]")
     if marker == -1:
         return None
     brace = line.find("{", marker)
@@ -925,7 +925,7 @@ def normalize(log_line: str, source: str = "") -> Optional[dict[str, Any]]:
     Returns
     -------
     dict | None
-        ``None`` when the line is structural noise (PM2 dividers, AEGIS's
+        ``None`` when the line is structural noise (PM2 dividers, Ram Antivirus's
         own logger output, exception headers, blank lines). Otherwise a
         ``NormalizedEvent`` dict with the following keys::
 
@@ -979,7 +979,7 @@ def normalize(log_line: str, source: str = "") -> Optional[dict[str, Any]]:
     if _is_structural(line):
         return None
 
-    # Structured `[AEGIS] {json}` envelope (Cloudflare-fronted front-line apps
+    # Structured `[RAM ANTIVIRUS] {json}` envelope (Cloudflare-fronted front-line apps
     # like sable). Parsed up front so its fields override the common-log scrape
     # below and its presence lets the line survive the `access_match is None`
     # drop guard -- otherwise these JSON lines are silently discarded.
@@ -1058,7 +1058,7 @@ def normalize(log_line: str, source: str = "") -> Optional[dict[str, Any]]:
     elif protocol == "http_honeypot":
         target_port = 8888
     elif protocol in ("http_api", "http_dashboard"):
-        # Default to the public AEGIS port; callers may override.
+        # Default to the public Ram Antivirus port; callers may override.
         target_port = 8000 if protocol == "http_api" else 3007
 
     if target_port is None:
@@ -1110,7 +1110,7 @@ def normalize(log_line: str, source: str = "") -> Optional[dict[str, Any]]:
     if matched is None:
         # No security pattern matched, but the line is still a parseable
         # HTTP request -- emit a generic http_request event so that rate /
-        # enumeration rules can count it. A structured `[AEGIS]` envelope is
+        # enumeration rules can count it. A structured `[RAM ANTIVIRUS]` envelope is
         # just as parseable as a common-log access line, so it survives here
         # too. If neither is present, drop the line.
         if access_match is None and aegis_env is None:

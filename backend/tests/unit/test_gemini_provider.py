@@ -40,11 +40,11 @@ def test_message_translation_user_assistant_roles():
 
 def test_message_translation_collapses_system_messages():
     contents, sysi = GeminiProvider._to_gemini_contents([
-        {"role": "system", "content": "You are AEGIS."},
+        {"role": "system", "content": "You are Ram Antivirus."},
         {"role": "system", "content": "Be terse."},
         {"role": "user", "content": "Hi"},
     ])
-    assert sysi == "You are AEGIS.\n\nBe terse."
+    assert sysi == "You are Ram Antivirus.\n\nBe terse."
     assert len(contents) == 1
 
 

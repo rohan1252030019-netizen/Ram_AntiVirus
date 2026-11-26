@@ -423,7 +423,7 @@ CMD_PATTERN_RULES: list[CmdPatternRule] = [
         mitre_technique="T1562.001",
         mitre_tactic="defense_evasion",
         severity="critical",
-        description="Attempt to kill or stop security monitoring software (AEGIS, auditd, syslog, etc.).",
+        description="Attempt to kill or stop security monitoring software (Ram Antivirus, auditd, syslog, etc.).",
     ),
 ]
 

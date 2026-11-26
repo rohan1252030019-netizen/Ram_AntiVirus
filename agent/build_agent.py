@@ -1,6 +1,7 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 #!/usr/bin/env python3
 """
-Build the AEGIS agent as a standalone binary using PyInstaller.
+Build the Ram Antivirus agent as a standalone binary using PyInstaller.
 
 Usage:
     python build_agent.py
@@ -40,7 +41,7 @@ if sys.platform == "win32":
     args.extend(["--hidden-import", "win32evtlogutil"])
     args.extend(["--add-data", "config_windows.py:."])
 
-print(f"Building aegis-agent with PyInstaller...")
+print(f"Building Ram Antivirus agent with PyInstaller...")
 print(f"Platform: {sys.platform}")
 PyInstaller.__main__.run(args)
 print("Build complete. Binary at: dist/aegis-agent")

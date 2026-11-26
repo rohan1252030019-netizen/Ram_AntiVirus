@@ -3,6 +3,7 @@
   "version": "1.6.5",
   "type": "module",
   "private": true,
+  "license": "AGPL-3.0-or-later",
   "scripts": {
     "dev": "next dev --turbopack",
     "electron:dev": "concurrently -k \"npm run dev\" \"wait-on http://127.0.0.1:3000 && electron electron/main.mjs\"",

@@ -333,7 +333,7 @@ async def test_notification(
             async with httpx.AsyncClient(timeout=10) as http:
                 resp = await http.post(
                     f"https://api.telegram.org/bot{bot_token}/sendMessage",
-                    json={"chat_id": chat_id, "text": "AEGIS test notification - connection verified!", "parse_mode": "HTML"},
+                    json={"chat_id": chat_id, "text": "Ram Antivirus test notification - connection verified!", "parse_mode": "HTML"},
                 )
                 if resp.status_code == 200:
                     return {"success": True, "message": "Test message sent to Telegram"}
@@ -354,7 +354,7 @@ async def test_notification(
             async with httpx.AsyncClient(timeout=10) as http:
                 resp = await http.post(
                     webhook_url,
-                    json={"text": "AEGIS test notification", "content": "AEGIS test notification - connection verified!"},
+                    json={"text": "Ram Antivirus test notification", "content": "Ram Antivirus test notification - connection verified!"},
                 )
                 if 200 <= resp.status_code < 300:
                     return {"success": True, "message": "Webhook test delivered"}
@@ -403,7 +403,7 @@ async def update_intel_sharing(
     hub_url = os.environ.get("AEGIS_HUB_URL", app_settings.AEGIS_HUB_URL)
     if body.enabled and hub_url and not hub_sync_client._running:
         node_id = str(uuid.uuid4())[:16]
-        await hub_sync_client.start(hub_url, node_id, client.name or "AEGIS Node")
+        await hub_sync_client.start(hub_url, node_id, client.name or "Ram Antivirus Node")
     elif not body.enabled and hub_sync_client._running:
         await hub_sync_client.stop()
 

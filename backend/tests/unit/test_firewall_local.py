@@ -244,7 +244,7 @@ class TestLinuxFirewall:
     @patch("app.services.firewall_local._run")
     def test_list_blocked_parses_drop_lines(self, mock_run):
         output = (
-            b"Chain AEGIS_BLOCK (1 references)\n"
+            b"Chain Ram Antivirus_BLOCK (1 references)\n"
             b"target     prot opt source               destination\n"
             b"DROP       all  --  14.14.14.14          0.0.0.0/0\n"
             b"DROP       all  --  15.15.15.15          0.0.0.0/0\n"

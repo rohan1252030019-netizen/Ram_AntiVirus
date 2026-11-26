@@ -1,4 +1,4 @@
-"""RaaS group threat intel — refreshes from public feeds, exposes IOCs to AEGIS."""
+"""RaaS group threat intel — refreshes from public feeds, exposes IOCs to Ram Antivirus."""
 from __future__ import annotations
 
 import asyncio

@@ -1,4 +1,4 @@
-"""Alembic environment configuration for AEGIS.
+"""Alembic environment configuration for Ram Antivirus.
 
 Uses async PostgreSQL engine from app.database and imports all models
 so that autogenerate can detect schema changes.

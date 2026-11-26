@@ -49,7 +49,7 @@ PLAYBOOK_TEMPLATES = {
         "name": "Ransomware Containment and Recovery",
         "description": "Critical ransomware containment — isolate, kill chain, protect snapshots, block C2, notify, postmortem",
         "steps": [
-            {"action": "isolate_host", "description": "Immediately isolate infected hosts from all network segments except AEGIS management VLAN"},
+            {"action": "isolate_host", "description": "Immediately isolate infected hosts from all network segments except Ram Antivirus management VLAN"},
             {"action": "kill_chain_processes", "description": "Terminate malicious processes matching ransomware LOLBin patterns"},
             {"action": "deny_shadow_delete", "description": "Block vssadmin.exe, wbadmin.exe, bcdedit.exe from further shadow-copy modifications"},
             {"action": "trigger_snapshot", "description": "Create emergency volume snapshot before further encryption completes"},

@@ -172,7 +172,7 @@ async def report_ransomware_incident(
         f" ({len(payload.signals)} signals: {signal_kinds})"
     )
     description = (
-        f"AEGIS node agent detected ransomware encryption activity. "
+        f"Ram Antivirus node agent detected ransomware encryption activity. "
         f"Process: {payload.process_name or 'unknown'} "
         f"(pid={payload.process_pid}, path={payload.process_path or 'n/a'}). "
         f"Killed {len(payload.killed_pids)} PIDs. "

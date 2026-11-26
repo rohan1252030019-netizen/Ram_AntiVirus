@@ -4,7 +4,7 @@ Orchestrates the full livefire emulation:
   1. Build/locate the Rust emulator binary
   2. Spawn the emulator as a subprocess
   3. Assert agent terminates the emulator process within 500 ms
-  4. Assert AEGIS API received a RansomwareEvent (via REST)
+  4. Assert Ram Antivirus API received a RansomwareEvent (via REST)
   5. Assert ransomware_chain rule fired
   6. Assert recovery options endpoint returns a valid response
   7. Assert synthetic C2 IP 198.51.100.42 appears in the auto-block list
@@ -69,7 +69,7 @@ def _spawn_emulator(work_dir: Path) -> subprocess.Popen:
     Spawn the Rust emulator test binary in a subprocess.
 
     The emulator is invoked via `cargo test` in the agent-rust directory
-    (with AEGIS_LIVEFIRE=1 so the gated test runs) or, if a prebuilt test
+    (with Ram Antivirus_LIVEFIRE=1 so the gated test runs) or, if a prebuilt test
     binary exists, directly.
 
     Falls back to a Python stub emulator if cargo is unavailable, so
@@ -126,14 +126,14 @@ started = int(time.time() * 1000)
 count = 0
 for i in range(100):
     src = work_dir / f"document_{{i:03d}}.docx"
-    src.write_bytes(b"AEGIS STUB FILE #" + str(i).encode())
+    src.write_bytes(b"Ram Antivirus STUB FILE #" + str(i).encode())
     locked = work_dir / f"document_{{i:03d}}.docx.aegis_test_locked"
     locked.write_bytes(b"\\x9f" * 64 + bytes([b ^ 0xDE for b in src.read_bytes()]))
     src.unlink()
     count += 1
 
 note = work_dir / "README_AEGIS_TEST.txt"
-note.write_text(f"AEGIS TEST RANSOM NOTE\\nC2 server: {C2_IP_EMULATED}\\n")
+note.write_text(f"Ram Antivirus TEST RANSOM NOTE\\nC2 server: {C2_IP_EMULATED}\\n")
 
 finished = int(time.time() * 1000)
 
@@ -256,7 +256,7 @@ def test_emulator_timing_recorded(emulation_result):
 @livefire_required
 def test_agent_terminates_emulator_within_sla(emulation_work_dir, api_url, api_headers):
     """
-    Assert the AEGIS agent kills the emulator process within 500 ms of detection.
+    Assert the Ram Antivirus agent kills the emulator process within 500 ms of detection.
 
     This step requires:
       - The agent binary exists at agent-rust/target/release/aegis-agent-rust
@@ -320,7 +320,7 @@ def test_agent_terminates_emulator_within_sla(emulation_work_dir, api_url, api_h
 @livefire_required
 def test_aegis_api_received_ransomware_event(api_url, api_headers, emulation_result):
     """
-    Assert AEGIS API has at least one incident whose source_ip or description
+    Assert Ram Antivirus API has at least one incident whose source_ip or description
     references ransomware activity triggered by the emulation run.
 
     Lazy-imports RansomwareEvent if available; otherwise posts a synthetic event.
@@ -380,7 +380,7 @@ def test_aegis_api_received_ransomware_event(api_url, api_headers, emulation_res
 @livefire_required
 def test_ransomware_chain_rule_loaded(api_url, api_headers):
     """
-    Assert that the ransomware_chain rule is loaded in the running AEGIS backend.
+    Assert that the ransomware_chain rule is loaded in the running Ram Antivirus backend.
     Checks the rules endpoint (or a health/status endpoint that exposes rule counts).
     """
     try:
@@ -483,7 +483,7 @@ def test_recovery_options_endpoint(api_url, api_headers):
 @livefire_required
 def test_c2_ip_in_auto_block_list(api_url, api_headers, emulation_result):
     """
-    Assert the synthetic C2 IP 198.51.100.42 is in the AEGIS auto-block list
+    Assert the synthetic C2 IP 198.51.100.42 is in the Ram Antivirus auto-block list
     after the emulation event was posted.
 
     Checks the blocked IPs endpoint; falls back to checking the local
@@ -547,5 +547,5 @@ def test_c2_ip_in_auto_block_list(api_url, api_headers, emulation_result):
         # IP may be pending approval — this is an xfail, not a hard failure
         pytest.xfail(
             f"C2 IP {c2_ip} not yet in blocked list — may be pending guardrail approval. "
-            "Check AEGIS guardrails config (block_ip: auto_approve)."
+            "Check Ram Antivirus guardrails config (block_ip: auto_approve)."
         )

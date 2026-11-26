@@ -1,4 +1,4 @@
-"""AEGIS CLI — solution package management subcommands.
+"""Ram Antivirus CLI — solution package management subcommands.
 
 Usage:
     python -m app.cli.solutions list
@@ -71,7 +71,7 @@ def cmd_update(args: argparse.Namespace) -> int:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="aegis solution",
-        description="AEGIS solution package manager",
+        description="Ram Antivirus solution package manager",
     )
     parser.add_argument(
         "--solutions-dir",

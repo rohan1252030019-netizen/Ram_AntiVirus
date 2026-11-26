@@ -1,16 +1,17 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """
-AEGIS EDR/MDR - Safe Windows Host Network Isolation (FR-09)
+Ram Antivirus EDR/MDR - Safe Windows Host Network Isolation (FR-09)
 ============================================================
 Provides reliable, fail-safe network isolation of managed Windows endpoints.
 
 Features:
   - Explicit State Machine: NORMAL -> ISOLATING -> ISOLATED -> RESTORING -> FAILED
-  - Windows Defender Firewall dedicated rule group (prefixed with AEGIS-ISOLATE-)
-  - Preserves AEGIS control-plane communication (server IP / port)
+  - Windows Defender Firewall dedicated rule group (prefixed with Ram Antivirus-ISOLATE-)
+  - Preserves Ram Antivirus control-plane communication (server IP / port)
   - Preserves essential control protocols (DNS, DHCP, loopback) to prevent permanent loss of host
   - Default-deny policy applied to all other incoming and outgoing traffic
   - Watchdog recovery lease (auto-recovery upon expiration to prevent operator lockout)
-  - Strictly idempotent: only AEGIS-owned firewall rules are ever added or removed
+  - Strictly idempotent: only Ram Antivirus-owned firewall rules are ever added or removed
   - Never touches, flushes, or modifies pre-existing user or system firewall policies
   - Persistent state and lease file for survival / recovery across agent restarts
   - Pluggable command runner for unit testing and CI on non-Windows platforms
@@ -172,7 +173,7 @@ class WindowsHostIsolator:
     @staticmethod
     def resolve_server_ip(server_target: Optional[str] = None) -> list[str]:
         """
-        Extract and resolve IP address(es) for AEGIS server.
+        Extract and resolve IP address(es) for Ram Antivirus server.
         Handles full URLs (http://192.168.1.100:8000), hostnames, and IP literals.
         """
         if not server_target:
@@ -202,7 +203,7 @@ class WindowsHostIsolator:
                 ip = item[4][0]
                 ips.add(ip)
         except Exception as exc:
-            logger.warning("Could not resolve AEGIS server host '%s': %s", host, exc)
+            logger.warning("Could not resolve Ram Antivirus server host '%s': %s", host, exc)
 
         if not ips:
             # Fallback to localhost if unresolvable
@@ -248,10 +249,10 @@ class WindowsHostIsolator:
 
             logger.info("Initiating isolation: allowing server IPs=%s, lease=%ds", server_ip_str, lease_seconds)
 
-            # Step 1: Clean any existing AEGIS isolation rules first for idempotency
+            # Step 1: Clean any existing Ram Antivirus isolation rules first for idempotency
             self._remove_all_aegis_rules()
 
-            # Step 2: Apply ALLOW rules for AEGIS control-plane, DNS, DHCP, loopback
+            # Step 2: Apply ALLOW rules for Ram Antivirus control-plane, DNS, DHCP, loopback
             applied_rules = []
 
             # 2a: Allow loopback
@@ -265,7 +266,7 @@ class WindowsHostIsolator:
             )
             applied_rules.extend([self.RULE_ALLOW_LOOPBACK_IN, self.RULE_ALLOW_LOOPBACK_OUT])
 
-            # 2b: Allow AEGIS server control plane
+            # 2b: Allow Ram Antivirus server control plane
             r_aegis_in = self._add_rule(
                 name=self.RULE_ALLOW_AEGIS_IN,
                 dir="in", action="allow", remoteip=server_ip_str,
@@ -331,7 +332,7 @@ class WindowsHostIsolator:
         reason: str = "Remediation complete",
     ) -> IsolationStatus:
         """
-        Restore normal network connectivity by removing only AEGIS-owned isolation rules.
+        Restore normal network connectivity by removing only Ram Antivirus-owned isolation rules.
         Idempotent: safe to invoke when already normal.
         """
         with self._lock:
@@ -347,12 +348,12 @@ class WindowsHostIsolator:
             self._save_state()
             logger.info("Restoring normal host network connectivity (initiator=%s, reason=%s)...", initiator, reason)
 
-            # Remove all AEGIS isolation rules
+            # Remove all Ram Antivirus isolation rules
             self._remove_all_aegis_rules()
 
             # Verify removal
             if self._verify_rules_applied():
-                logger.error("Some AEGIS isolation rules still linger after deletion attempt.")
+                logger.error("Some Ram Antivirus isolation rules still linger after deletion attempt.")
                 self.status.state = IsolationState.FAILED
                 self.status.error_message = "Isolation rules failed to clear during restore."
                 self._save_state()
@@ -451,7 +452,7 @@ class WindowsHostIsolator:
         return code == 0
 
     def _remove_all_aegis_rules(self):
-        """Remove ONLY AEGIS-owned isolation rules. Never touches other rules."""
+        """Remove ONLY Ram Antivirus-owned isolation rules. Never touches other rules."""
         known_rules = [
             self.RULE_BLOCK_IN,
             self.RULE_BLOCK_OUT,

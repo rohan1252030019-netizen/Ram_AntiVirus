@@ -1,5 +1,5 @@
 /**
- * AEGIS premium primitive library.
+ * Ram Antivirus premium primitive library.
  *
  * One canonical surface (<Panel>) + header (<SectionHeader>) + KPI tile
  * (<KPI>) + row (<DataRow>) + status pill (<StatusBadge>) + empty state

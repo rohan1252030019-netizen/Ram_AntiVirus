@@ -1,17 +1,17 @@
 # Changelog
 
-All notable changes to AEGIS will be documented in this file.
+All notable changes to Ram Antivirus will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-## [1.6.5.1] - 2026-07-27 (firewall_sync — stop minting incidents from AEGIS's own config calls)
+## [1.6.5.1] - 2026-07-27 (firewall_sync — stop minting incidents from Ram Antivirus's own config calls)
 
-### Fixed - AEGIS raised 2,156 high-severity incidents against itself
-- Two compounding bugs turned **5 real Pi events into 2,156 incidents** titled `Firewall: Dos Ratelimit from unknown`, all with `source_ip: NULL`. Every one was a false positive, and none described an attacker — they described AEGIS.
-- **Cause 1 — self-detection.** The `dos_*` event types (`/dos/harden`, `/dos/ratelimit`, `/dos/revert`) are AEGIS's own netshield configuration calls. They were missing from `_SKIP_EVENT_TYPES`, so every config action came back through the detection path as a security incident. This is the same class `log_watcher` already guards against with its internal source markers: the defender's own actions arriving as input.
+### Fixed - Ram Antivirus raised 2,156 high-severity incidents against itself
+- Two compounding bugs turned **5 real Pi events into 2,156 incidents** titled `Firewall: Dos Ratelimit from unknown`, all with `source_ip: NULL`. Every one was a false positive, and none described an attacker — they described Ram Antivirus.
+- **Cause 1 — self-detection.** The `dos_*` event types (`/dos/harden`, `/dos/ratelimit`, `/dos/revert`) are Ram Antivirus's own netshield configuration calls. They were missing from `_SKIP_EVENT_TYPES`, so every config action came back through the detection path as a security incident. This is the same class `log_watcher` already guards against with its internal source markers: the defender's own actions arriving as input.
 - **Cause 2 — the amplifier.** Incident dedup was gated on `if ip:`. An event with no source IP skipped dedup entirely and minted a fresh incident on *every* sync cycle, indefinitely. That is why 5 events produced 2,156 rows instead of 5.
 - Fixing only the first would have left the trap armed for the next IP-less event type, so dedup now runs for every event: keyed on `source_ip` when present, on event type when not. An IP-less incident is not actionable anyway — there is nothing to block — so folding repeats loses nothing an operator could have acted on.
 - The 2,156 existing rows were purged. Verified: three consecutive `_sync_auto_response_events` cycles create 0 new incidents.
@@ -20,13 +20,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.6.5.0] - 2026-07-27 (autonomous response — AI on, self-expiring blocks, DoS enforcement)
 
-AEGIS now decides and acts without an operator in the loop. Getting there meant
+Ram Antivirus now decides and acts without an operator in the loop. Getting there meant
 turning the AI on for the first time in production, which immediately exposed
 three separate subsystems that had been silently inert behind it.
 
 ### Security note (operator safelist was never applied — self-lockout vector)
 - `AEGIS_SAFE_IPS` and `AEGIS_INTERNAL_IPS` never reached the gate that enforces them. `attack_detector._parse_ip_safelist_env` read `os.getenv`, but `.env` is loaded by pydantic `BaseSettings` into `settings` and never lands in `os.environ`, so the read always fell through to the `127.0.0.1,::1,localhost` default. Compounding it, neither key was declared as a Settings field, and `model_config` sets `extra="ignore"` — so pydantic dropped them too, and fixing only the first cause would not have worked.
-- Effect: every configured safe IP/CIDR was treated as hostile. AEGIS blocked its own operator's admin IP, and because Sable's middleware returns 403 against that same blocklist, the operator was locked out of the product from every device on that NAT. Only the hardcoded RFC1918/CGNAT ranges and crawler CIDRs were live, which is why Tailscale hosts still looked safe and masked the bug.
+- Effect: every configured safe IP/CIDR was treated as hostile. Ram Antivirus blocked its own operator's admin IP, and because Sable's middleware returns 403 against that same blocklist, the operator was locked out of the product from every device on that NAT. Only the hardcoded RFC1918/CGNAT ranges and crawler CIDRs were live, which is why Tailscale hosts still looked safe and masked the bug.
 - Fixed in `config.py` (declare both keys) and `attack_detector.py` (read `settings` first, `os.environ` as fallback). Verified on production: `_SAFE_NETWORKS` went from ~10 to 153 ranges.
 
 ### Added - fully autonomous blocking with self-expiring provisional blocks
@@ -36,7 +36,7 @@ three separate subsystems that had been silently inert behind it.
 - Safe IPs are untouched by any of this: they short-circuit in `guardrail_engine` and are never blocked, provisionally or otherwise.
 
 ### Changed - AI enabled in production (`AEGIS_AI_MODE` offline → optional)
-- AEGIS had been running with AI fully disabled: `ecosystem.config.js` injected `AEGIS_AI_MODE=offline` into the process, which wins over `.env`, and `ai_manager.chat()` short-circuited to `provider: "disabled"`. Every decision was carried by the deterministic fallbacks.
+- Ram Antivirus had been running with AI fully disabled: `ecosystem.config.js` injected `AEGIS_AI_MODE=offline` into the process, which wins over `.env`, and `ai_manager.chat()` short-circuited to `provider: "disabled"`. Every decision was carried by the deterministic fallbacks.
 - Note the `.env` value was `AEGIS_AI_MODE=full`, which is not a value the enum recognises — valid values are `required` / `optional` / `disabled`. It aliased to `optional` and had no effect either way.
 
 ### Fixed - AI threat_type never matched the response table
@@ -425,7 +425,7 @@ benign traffic on its own merits.
 5. **No post-detection dedup** — one attack burst that matched 5 rules created 5 separate incidents. The user saw "SSH Brute Force Detected" + "Auth Failure detected" + "High Request Rate" + "Path Traversal" + "Scanner Activity" as 5 rows for the same actor in the same minute.
 
 ### Added
-- **`backend/app/services/event_normalizer.py`** (NEW, 860 lines) — the single source of truth for log-line → typed-event translation. Pure function `normalize(log_line, source) -> NormalizedEvent | None`. Extracts source_ip, request_path, request_method, response_status, user_agent, target_port. Tags protocol (`http_api` / `http_dashboard` / `ssh_honeypot` / `ssh_real` / `unknown`) so the same HTTP 401 line is classified differently depending on which surface produced it. Returns `None` on structural log noise (PM2 dividers, ExceptionGroup headers, AEGIS-internal source markers) so AEGIS's own diagnostic output no longer advances any counter.
+- **`backend/app/services/event_normalizer.py`** (NEW, 860 lines) — the single source of truth for log-line → typed-event translation. Pure function `normalize(log_line, source) -> NormalizedEvent | None`. Extracts source_ip, request_path, request_method, response_status, user_agent, target_port. Tags protocol (`http_api` / `http_dashboard` / `ssh_honeypot` / `ssh_real` / `unknown`) so the same HTTP 401 line is classified differently depending on which surface produced it. Returns `None` on structural log noise (PM2 dividers, ExceptionGroup headers, AEGIS-internal source markers) so Ram Antivirus's own diagnostic output no longer advances any counter.
 - **`path_excludes` filter key** in `correlation_engine._matches_filter()` (was added in v1.6.3.6; documented here for context).
 - **Severity scoring layer** in `correlation_engine` — every rule may declare a `confidence_factors` list. Calling code multiplies the rule's base severity by the matched factors before deciding final severity. Default catalog: `scanner_ua` × 1.3, `tor_exit` × 1.5, `known_attacker_history` × 2.0, `geo_high_risk` × 1.2, `burst_rate` × 1.4, `safelisted` × 0 (drop), `internal_ip` × 0 (drop).
 - **Per-attack-class cooldown constants** (`COOLDOWN_AUTH=3600`, `COOLDOWN_RECON=600`, `COOLDOWN_EXPLOIT=300`, `COOLDOWN_EXFIL=600`, `COOLDOWN_CHAIN=0`, `COOLDOWN_HONEYPOT=0`, `COOLDOWN_SUPPLY=60`) — replaces the implicit 60s default that was inflating one attack into hundreds of incidents.
@@ -502,7 +502,7 @@ adds 4 code-level safelist gates that were leaking events to the database.
 
 ### Fixed
 - **Inline `brute_force_401` threshold** raised from **5 → 15** failed 401s in 60s (NIST SP 800-63B baseline tolerates 5+ legitimate retries from password managers / typos). Deque now clears after firing so sustained campaigns re-alert each window instead of silently looping.
-- **`firewall_sync._sync_auto_response_events`** now calls `_is_safe_ip()` before creating incidents from external Pi firewall events. Previously only hardcoded `127.0.0.1`/`::1`/`localhost` was checked — Bingbot, Googlebot, Cloudflare, Tailscale events from the Pi were creating AEGIS incidents.
+- **`firewall_sync._sync_auto_response_events`** now calls `_is_safe_ip()` before creating incidents from external Pi firewall events. Previously only hardcoded `127.0.0.1`/`::1`/`localhost` was checked — Bingbot, Googlebot, Cloudflare, Tailscale events from the Pi were creating Ram Antivirus incidents.
 - **`attack_chain_detector`** EDR chain rules now honor `AEGIS_SAFE_IPS` in addition to RFC1918+Tailscale. Previously CDN / partner crawler / monitoring infrastructure could trigger chain incidents.
 - **`correlation_engine._create_incident`** silent `except Exception: pass` replaced with `logger.warning` so a broken import doesn't silently degrade safelist coverage.
 - **`sigma_auth_default_credentials.yaml`** synced with the v1.6.2 in-code BUILT_IN_RULES fix: `event_type: auth_success` → `auth_failure`, removed `pi` and `ubuntu` from the username filter (cloud-init / Raspberry Pi hosts use them legitimately), added `count_threshold: 3` + `time_window_seconds: 300` + `cooldown_seconds: 600`. Was firing high-severity incident on EVERY successful admin/pi/ubuntu login.
@@ -720,7 +720,7 @@ Playwright crawl + grep + prod PM2-log audit found 19 actionable issues. All shi
 - **NEW `frontend/src/components/shared/DemoModeBanner.tsx`** — shared amber banner used by demo-mode pages with "Sign in →" CTA pointing at `/login?next=`.
 - **`frontend/src/app/dashboard/firewall/page.tsx`** — demo-mode now shows the banner globally, not just per-button tooltips.
 - **`frontend/src/app/dashboard/threats/page.tsx`** — same demo-mode banner integration.
-- **`frontend/src/app/dashboard/infra/page.tsx`** — three node download buttons (Windows/macOS/Linux) now point at real GitHub release asset URLs (`https://github.com/alejadxr/AEGIS/releases/latest/download/...`).
+- **`frontend/src/app/dashboard/infra/page.tsx`** — three node download buttons (Windows/macOS/Linux) now point at real GitHub release asset URLs (`https://github.com/alejadxr/Ram Antivirus/releases/latest/download/...`).
 - **`frontend/src/app/dashboard/compliance/page.tsx`** — CC8 Change Management control no longer hardcoded `not_met`. Status moved to `roadmap` with a visible "Planned for v1.7" line.
 - **`frontend/src/app/dashboard/deception/page.tsx`** — gate logic clarified (renamed `enterpriseGated` → `isGated`). "Contact sales" CTA wired to `mailto:` with subject.
 - **`frontend/src/app/dashboard/quantum/page.tsx`** — removed eslint-disable suppressions on `Atom` and `useRouter` (both now legitimately used). Upgrade-banner CTA wired to `/dashboard/settings#billing`.
@@ -750,7 +750,7 @@ Playwright crawl + grep + prod PM2-log audit found 19 actionable issues. All shi
 
 ### Fixed — FP firehose + stuck incidents (2026-06-23 audit response)
 
-A 8-agent audit found AEGIS detecting real attacks but drowning in noise: 96.9 % of 10,469 incidents over 44 days came from a single IP because the `_recent_alerts` dedup key used `line[:80]`, so URL query-string variation created a new dedup slot every request. 50 % of incidents were stuck in `status='investigating'` forever. Eight known-good IPs (Googlebot, Tailscale, RFC5737) persisted in blocklists across restarts. There was zero DB-level retention. The "data disappears after N days" perception was a presentation bug (24h cutoff on `/live-metrics`, `LIMIT 200` on `/threat-map`, 25-of-249 country coverage in `GlobalThreatMap.tsx`), not actual deletion.
+A 8-agent audit found Ram Antivirus detecting real attacks but drowning in noise: 96.9 % of 10,469 incidents over 44 days came from a single IP because the `_recent_alerts` dedup key used `line[:80]`, so URL query-string variation created a new dedup slot every request. 50 % of incidents were stuck in `status='investigating'` forever. Eight known-good IPs (Googlebot, Tailscale, RFC5737) persisted in blocklists across restarts. There was zero DB-level retention. The "data disappears after N days" perception was a presentation bug (24h cutoff on `/live-metrics`, `LIMIT 200` on `/threat-map`, 25-of-249 country coverage in `GlobalThreatMap.tsx`), not actual deletion.
 
 #### Detection
 - **`backend/app/services/log_watcher.py`** — `alert_key` for `_recent_alerts` is now `f"{pattern_name}:{ip}:{threat_type}"` instead of `f"{pattern_name}:{line[:80]}"`. Collapses 10× duplicate rows per attacker into one rolling-window incident. **Expected impact: incidents table for the same 44-day window drops from 10,469 → ~300-400.**
@@ -785,7 +785,7 @@ A 8-agent audit found AEGIS detecting real attacks but drowning in noise: 96.9 %
 - Versions: `backend/app/__init__.py`, `backend/app/main.py` (3 sites), `frontend/package.json` — all `1.6.1` → `1.6.2`.
 
 ### Operational (production)
-- One-shot SQL applied to Postgres `cayde6` on Mac Pro: purged `threat_intel` rows matching AEGIS_SAFE_IPS CIDRs + RFC5737 + known FP literals (Googlebot, Kali pentest host, Starlink, Tailscale CGNAT IPs). Rewrote `~/AEGIS/blocked_ips.txt` filtering safelist. Auto-closed `investigating` incidents older than 24h whose `source_ip` was already in threat_intel — ~5,000 rows promoted to `resolved`.
+- One-shot SQL applied to Postgres `cayde6` on Mac Pro: purged `threat_intel` rows matching AEGIS_SAFE_IPS CIDRs + RFC5737 + known FP literals (Googlebot, Kali pentest host, Starlink, Tailscale CGNAT IPs). Rewrote `~/Ram Antivirus/blocked_ips.txt` filtering safelist. Auto-closed `investigating` incidents older than 24h whose `source_ip` was already in threat_intel — ~5,000 rows promoted to `resolved`.
 
 ### Not yet integrated (deferred to v1.6.3)
 - Kernel CVE detection (Dirty Frag, Copy Fail, runc escape, systemd-machined) — requires eBPF/auditd endpoint agent.
@@ -819,7 +819,7 @@ A 8-agent audit found AEGIS detecting real attacks but drowning in noise: 96.9 %
 - **`FIM_CRITICAL_MARKERS`** — substring markers that elevate any file event to `critical` severity: `/tmp/bun_` (Shai-Hulud), `/authorized_keys`, `/etc/sudoers.d/`, launch dirs, `.aws/credentials`, `.kube/config`, `.docker/config.json`, `/dev/null`, `/dev/console` (runc escape class).
 
 #### Pi-side firewall executor (Rasputin-style restored)
-- **`AEGIS_FIREWALL_URL=http://<pi>:8765`** re-enabled. AEGIS delegates iptables block enforcement to `aegis-firewall.service` on the Pi 5 + Hailo gateway via `firewall_client`. End-to-end verified: Kali → Sable HTTP log → AEGIS detection → `POST /block` to Pi → iptables DROP confirmed.
+- **`AEGIS_FIREWALL_URL=http://<pi>:8765`** re-enabled. Ram Antivirus delegates iptables block enforcement to `aegis-firewall.service` on the Pi 5 + Hailo gateway via `firewall_client`. End-to-end verified: Kali → Sable HTTP log → Ram Antivirus detection → `POST /block` to Pi → iptables DROP confirmed.
 - **`aegis-iptables-init.service`** (Pi) — idempotent `AEGIS_BLOCK` chain creation linked into INPUT/FORWARD, persisted via systemd one-shot.
 
 #### log_watcher — file-tail multiplexer (replaces broken PM2 subprocess)
@@ -897,18 +897,18 @@ A 8-agent audit found AEGIS detecting real attacks but drowning in noise: 96.9 %
 - **shadcn/ui chart components** — `EventsPerSecChart`, Response `BarChart`, Surface `AreaChart`/`PieChart`/`LineChart` migrated to `ChartContainer` + `ChartTooltipContent`. Fixes black tooltip background in light mode; removes `isDark` MutationObserver hack.
 
 #### Portable Log Watcher
-- **`log_watcher` dual-mode** — auto-selects PM2 log tailing (macOS/Mac Pro) or `journalctl -f` (Linux/Pi) at runtime. AEGIS ships and runs on either host without config changes.
+- **`log_watcher` dual-mode** — auto-selects PM2 log tailing (macOS/Mac Pro) or `journalctl -f` (Linux/Pi) at runtime. Ram Antivirus ships and runs on either host without config changes.
 - **`AEGIS_MONITORED_APPS` env var** — comma-separated list of PM2 app names to tail. Prevents other services' crash logs from entering the detection pipeline.
 - **`AEGIS_ATTACKER_IPS` env var** — comma-separated allowlist that bypasses the internal-IP filter. Used to enable Kali (Tailscale CGNAT) attacks to generate real incidents for testing while keeping the self-protection filter active.
 
 #### Portable Firewall Agent
 - **`firewall-agent/`** — standalone FastAPI service (port 8765) managing iptables on a Raspberry Pi or any Linux node. Includes systemd unit for one-shot install. Safe-network guards: Tailscale CGNAT, RFC1918, loopback, link-local.
-- **`AEGIS_FIREWALL_URL` env var** — firewall client is now fully configurable. If unset, AEGIS manages iptables in-process (default in production). If set, it proxies block/unblock calls to the remote agent.
+- **`AEGIS_FIREWALL_URL` env var** — firewall client is now fully configurable. If unset, Ram Antivirus manages iptables in-process (default in production). If set, it proxies block/unblock calls to the remote agent.
 
 ### Changed
 
 - **Detection pipeline performance** — correlation engine rule evaluation is O(rules_for_type) via the new rule index; ~6× faster on the default 122-rule pack.
-- **False-positive elimination** — 11 internal source markers in `log_watcher` prevent AEGIS's own log output (SQLAlchemy tracebacks, ExceptionGroup headers, PM2 dividers) from entering the pattern matcher. SQLi regex tightened from bare `--$` to require SQL keyword context.
+- **False-positive elimination** — 11 internal source markers in `log_watcher` prevent Ram Antivirus's own log output (SQLAlchemy tracebacks, ExceptionGroup headers, PM2 dividers) from entering the pattern matcher. SQLi regex tightened from bare `--$` to require SQL keyword context.
 - **`correlation_engine._on_log_line`** — drops events with no attributable `source_ip` (None bypass flipped from `if ip and internal` to `if not ip or internal`).
 - **`ai_engine._create_incident`** — uses caller's title before AI triage fallback, fixing "MEDIUM: Alert received" ghost title overwrite on rate-limited responses.
 - **CI pipeline** — actions bumped (checkout@v5, setup-python@v6, setup-node@v5). Lint step uses `--exit-zero` (findings log without blocking the run). Root `Makefile` mirrors all CI commands for local pre-push parity.
@@ -917,7 +917,7 @@ A 8-agent audit found AEGIS detecting real attacks but drowning in noise: 96.9 %
 ### Fixed
 
 - **Kali probe silenced** — `AEGIS_ATTACKER_IPS=<RED_TEAM_IP>` (Kali red-team system) enables 342 previously-silenced sqlmap requests to generate real incidents. The internal-IP filter was correct for prod but blocked all red-team traffic.
-- **self-referential SQL injection loop** — AEGIS no longer detects its own `SELECT` log lines as SQL injection attacks. Three-layer fix: monitored-app filter, source-marker filter, tightened regex.
+- **self-referential SQL injection loop** — Ram Antivirus no longer detects its own `SELECT` log lines as SQL injection attacks. Three-layer fix: monitored-app filter, source-marker filter, tightened regex.
 - **MetricsSummaryBar crash** — runtime crash on `undefined` external metrics fixed with null guard.
 - **`gen_diagram.py` hardcoded path** — output path now resolved relative to repo root.
 
@@ -935,8 +935,8 @@ A 8-agent audit found AEGIS detecting real attacks but drowning in noise: 96.9 %
 ### Added
 
 #### Threat Sharing Mesh
-- **Public hub** at `api-aegis.somoswilab.com` — hub-and-spoke threat intelligence sharing network for all AEGIS nodes.
-- **`backend/app/services/hub_sync_client.py`** — Background service that connects a local AEGIS node to the hub. Registers on startup, pulls new IOCs every 60 seconds via `GET /threats/feed?since=`, auto-blocks high-confidence IPs (≥0.8) via `ip_blocker_service`, and exposes `push_ioc()` for local detections. Tracks stats: `iocs_pulled`, `iocs_pushed`, `auto_blocks`, `errors`, `connected`, `last_sync`.
+- **Public hub** at `api-aegis.somoswilab.com` — hub-and-spoke threat intelligence sharing network for all Ram Antivirus nodes.
+- **`backend/app/services/hub_sync_client.py`** — Background service that connects a local Ram Antivirus node to the hub. Registers on startup, pulls new IOCs every 60 seconds via `GET /threats/feed?since=`, auto-blocks high-confidence IPs (≥0.8) via `ip_blocker_service`, and exposes `push_ioc()` for local detections. Tracks stats: `iocs_pulled`, `iocs_pushed`, `auto_blocks`, `errors`, `connected`, `last_sync`.
 - **`backend/app/services/auto_sharer.py`** — Subscribes to `alert_processed`, `honeypot_interaction`, and `correlation_triggered` events. Validates IOCs via `ioc_validator`, pushes them to the hub through `hub_sync_client.push_ioc()`. 5-minute deduplication per IOC. Severity-to-confidence mapping (`critical=0.95`, `high=0.85`, `medium=0.6`, `low=0.3`).
 - **`backend/app/services/ioc_validator.py`** — Central validation layer that prevents poisoning of the sharing network:
   - Rejects private IPs (`10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`), loopback, link-local, multicast, reserved.
@@ -986,7 +986,7 @@ A 8-agent audit found AEGIS detecting real attacks but drowning in noise: 96.9 %
 - **IP blocker** (`backend/app/core/ip_blocker.py`):
   - Added `None`/non-string guard at the top of `block_ip()`. Returns `{"success": False, "error": "Invalid IP"}` instead of crashing.
 - **Attack detector** (`backend/app/core/attack_detector.py`):
-  - Imports `BLOCKED_IPS_FILE` from `ip_blocker.py` instead of defining its own path. Unifies the source of truth. Before, the admin stats API read from `~/Cayde-6/backend/blocked_ips.txt` (empty) while the middleware read from `~/AEGIS/blocked_ips.txt` (actual list).
+  - Imports `BLOCKED_IPS_FILE` from `ip_blocker.py` instead of defining its own path. Unifies the source of truth. Before, the admin stats API read from `~/Cayde-6/backend/blocked_ips.txt` (empty) while the middleware read from `~/Ram Antivirus/blocked_ips.txt` (actual list).
   - `_block_ip()` has a None guard.
 - **Responder** (`backend/app/modules/response/responder.py`):
   - `_block_ip()` validates target is not `None`/empty before calling `ip_blocker_service.block_ip()`.
@@ -1022,13 +1022,13 @@ A 8-agent audit found AEGIS detecting real attacks but drowning in noise: 96.9 %
 - **Incident DB empty despite live events** — incidents now persist when AI is rate-limited (AI failure is handled gracefully).
 - **AttackFeed showing "Incident detected" everywhere** — fixed by adding `incident_title` to WS payloads and making the feed load from API on mount.
 - **Settings silently failing** — save handlers now surface errors via `flashSaveError()` toast instead of swallowing them with `catch {}`.
-- **GitHub auto-updater 404** — typo `alejadxr/AEGIS` → `alejandxr/AEGIS` in `auto_updater.py`.
+- **GitHub auto-updater 404** — typo `alejadxr/Ram Antivirus` → `alejandxr/Ram Antivirus` in `auto_updater.py`.
 
 ### Security
 
 - **IOC validation is mandatory** on all inbound IOCs to the sharing hub. No poisoning vector via the public `/threats/intel/share` endpoint.
 - **Secret scan before every release** — no API keys, passwords, IPs, or credentials in the git tree. `.env` files stay local, `CLAUDE.md` is gitignored.
-- **Rasputin firewall optional** — AEGIS defends independently via `ip_blocker_service` + FastAPI middleware. `AEGIS_FIREWALL_URL` can be unset without breaking the defense pipeline.
+- **Rasputin firewall optional** — Ram Antivirus defends independently via `ip_blocker_service` + FastAPI middleware. `AEGIS_FIREWALL_URL` can be unset without breaking the defense pipeline.
 
 ---
 
@@ -1045,7 +1045,7 @@ A 8-agent audit found AEGIS detecting real attacks but drowning in noise: 96.9 %
 
 ---
 
-[1.6.1]: https://github.com/<github-org>/AEGIS/releases/tag/v1.6.1
-[1.5.0]: https://github.com/<github-org>/AEGIS/releases/tag/v1.5.0
-[1.4.0]: https://github.com/<github-org>/AEGIS/releases/tag/v1.4.0
-[1.2.0]: https://github.com/<github-org>/AEGIS/releases/tag/v1.2.0
+[1.6.1]: https://github.com/<github-org>/Ram Antivirus/releases/tag/v1.6.1
+[1.5.0]: https://github.com/<github-org>/Ram Antivirus/releases/tag/v1.5.0
+[1.4.0]: https://github.com/<github-org>/Ram Antivirus/releases/tag/v1.4.0
+[1.2.0]: https://github.com/<github-org>/Ram Antivirus/releases/tag/v1.2.0

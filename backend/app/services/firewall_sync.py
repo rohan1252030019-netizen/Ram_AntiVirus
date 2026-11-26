@@ -259,7 +259,7 @@ async def _sync_auto_response_events(db: AsyncSession, client_id: str) -> int:
 
     # Operational events that should NOT create incidents.
     #
-    # The dos_* entries are AEGIS's OWN netshield configuration calls
+    # The dos_* entries are Ram Antivirus's OWN netshield configuration calls
     # (/dos/harden, /dos/ratelimit, /dos/revert). Treating them as attacks is
     # the same self-detection class log_watcher guards against with its internal
     # source markers: the defender's own actions arriving back through a
@@ -285,7 +285,7 @@ async def _sync_auto_response_events(db: AsyncSession, client_id: str) -> int:
         if ip and ip in ("127.0.0.1", "::1", "localhost", ""):
             continue
         # v1.6.3.5: also honor AEGIS_SAFE_IPS so crawler/CDN events from the Pi
-        # firewall do not become AEGIS incidents.
+        # firewall do not become Ram Antivirus incidents.
         if ip:
             try:
                 from app.core.attack_detector import _is_safe_ip

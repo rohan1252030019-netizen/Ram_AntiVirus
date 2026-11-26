@@ -1,6 +1,6 @@
 # Web Application Defense
 
-Comprehensive AEGIS solution for detecting and responding to web application attacks.
+Comprehensive Ram Antivirus solution for detecting and responding to web application attacks.
 
 ## Coverage
 

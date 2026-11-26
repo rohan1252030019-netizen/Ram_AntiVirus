@@ -1,6 +1,6 @@
 'use strict';
 /**
- * AEGIS unified log feed writer (Node.js).
+ * Ram Antivirus unified log feed writer (Node.js).
  *
  * Synchronous appendFileSync — atomic up to PIPE_BUF for concurrent writers,
  * never throws (logging must not take down the calling app), drops empty

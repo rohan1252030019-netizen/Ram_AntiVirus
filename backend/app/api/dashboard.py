@@ -972,7 +972,7 @@ async def get_monitored_apps(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Return the list of apps monitored by AEGIS log_watcher.
+    Return the list of apps monitored by Ram Antivirus log_watcher.
 
     Source: AEGIS_MONITORED_APPS env var (comma-separated app names).
     If the env var is unset, returns an empty list rather than guessing.

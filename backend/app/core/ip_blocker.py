@@ -13,7 +13,7 @@ logger = logging.getLogger("aegis.ip_blocker")
 # v1.6.2: env override for BLOCKED_IPS_FILE (must agree with firewall_local)
 BLOCKED_IPS_FILE = Path(os.environ.get(
     "BLOCKED_IPS_FILE",
-    str(Path.home() / "AEGIS" / "blocked_ips.txt"),
+    str(Path.home() / "Ram Antivirus" / "blocked_ips.txt"),
 ))
 
 # v1.6.2: RFC5737 documentation prefixes — IPs that should NEVER appear in any
@@ -86,7 +86,7 @@ def _load_blocked_ips() -> set:
 def _save_blocked_ips(ips: set) -> None:
     try:
         BLOCKED_IPS_FILE.parent.mkdir(parents=True, exist_ok=True)
-        content = "# AEGIS Blocked IPs\n# Managed automatically\n"
+        content = "# Ram Antivirus Blocked IPs\n# Managed automatically\n"
         content += "\n".join(sorted(ips))
         if ips:
             content += "\n"

@@ -13,7 +13,7 @@ from app.core import demo
 from app.core.demo_sandbox import DemoSandboxMiddleware
 
 
-PUBLISHED = "c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ"
+PUBLISHED = "test-demo-key-for-unit-tests-only"
 
 
 @pytest.fixture(autouse=True)
@@ -78,7 +78,7 @@ def test_demo_tenant_requires_an_active_demo_identity(monkeypatch):
 
 
 def test_responder_guard_ignores_the_http_sandbox_switch(monkeypatch):
-    """Even with AEGIS_DEMO_SANDBOX=false, the responder must not act."""
+    """Even with Ram Antivirus_DEMO_SANDBOX=false, the responder must not act."""
     monkeypatch.setattr(settings, "AEGIS_DEMO_SANDBOX", False)
     monkeypatch.setattr(settings, "AEGIS_DEMO_MODE", True)
     demo.configure_demo_identity("tenant-1")

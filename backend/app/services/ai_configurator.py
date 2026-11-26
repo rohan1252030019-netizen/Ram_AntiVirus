@@ -1,4 +1,4 @@
-"""AI-assisted configuration engine for AEGIS setup wizard.
+"""AI-assisted configuration engine for Ram Antivirus setup wizard.
 
 Uses OpenRouter (dolphin uncensored or trinity-large) to interpret
 natural-language configuration requests and map them to a strict
@@ -146,7 +146,7 @@ _rate_limiter = _RateLimiter(max_per_minute=10)
 # AI Configurator
 # ---------------------------------------------------------------------------
 
-SYSTEM_PROMPT = """You are AEGIS Configuration Assistant.  Your ONLY purpose is to
+SYSTEM_PROMPT = """You are Ram Antivirus Configuration Assistant.  Your ONLY purpose is to
 interpret the user's natural-language request and map it to ONE OR MORE
 configuration actions from the allowed list below.
 

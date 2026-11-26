@@ -1,4 +1,4 @@
-"""Global test fixtures and helpers for AEGIS backend tests.
+"""Global test fixtures and helpers for Ram Antivirus backend tests.
 
 The suite runs against a real database (MySQL in development). Tests commit
 rows, so every tenant fixture gets a random id/slug/api-key: otherwise rows

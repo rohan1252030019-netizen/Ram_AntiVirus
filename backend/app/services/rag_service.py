@@ -1,5 +1,5 @@
 """
-Embedded RAG (Retrieval-Augmented Generation) service for AEGIS.
+Embedded RAG (Retrieval-Augmented Generation) service for Ram Antivirus.
 
 Uses Qdrant embedded (local disk, no server) + sentence-transformers for
 embeddings. Provides semantic search over incidents, scan results, threat

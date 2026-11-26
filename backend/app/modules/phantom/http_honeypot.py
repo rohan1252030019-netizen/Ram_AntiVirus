@@ -24,7 +24,7 @@ def _is_internal(ip: str) -> bool:
 
 logger = logging.getLogger("aegis.phantom.http_honeypot")
 
-CONFIG_PATH = Path.home() / "AEGIS" / "backend" / "honeypot_config.json"
+CONFIG_PATH = Path.home() / "Ram Antivirus" / "backend" / "honeypot_config.json"
 
 # ---------------------------------------------------------------------------
 # HTML Templates
@@ -238,7 +238,7 @@ def _get_active_template() -> tuple[str, dict]:
 
     The returned HTML includes the defensive canary `<script>` immediately
     before `</body>`. The canary runs ONLY on these honeypot decoy pages —
-    never on the real AEGIS dashboard.
+    never on the real Ram Antivirus dashboard.
     """
     try:
         cfg = json.loads(CONFIG_PATH.read_text())
@@ -253,7 +253,7 @@ def _get_active_template() -> tuple[str, dict]:
         from app.modules.phantom.canary_js import build_canary_script
         # Same-origin POST: the honeypot itself accepts /__c and forwards to DB.
         # Avoids CORS / cross-port issues; the attacker cannot infer the real
-        # AEGIS API port from this endpoint name.
+        # Ram Antivirus API port from this endpoint name.
         canary = build_canary_script(
             endpoint="/__c",
             honeypot_source="mac_http_8888",

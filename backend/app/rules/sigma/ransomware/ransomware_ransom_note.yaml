@@ -1,0 +1,33 @@
+id: ransomware_ransom_note
+name: Ransom note dropped on filesystem
+kind: sigma
+severity: critical
+enabled: true
+tactics:
+- Impact
+techniques:
+- T1486
+data_sources:
+- fim
+- edr
+condition:
+  event_type: file_creation
+  count_threshold: 1
+  time_window_seconds: 60
+  group_by: hostname
+  filter:
+    path_contains:
+    - HOW_TO_DECRYPT
+    - README_FOR_DECRYPT
+    - RESTORE_FILES
+    - DECRYPT_FILES
+    - RECOVERY_KEY
+    - HELP_DECRYPT
+entityMappings:
+- type: Host
+  field: hostname
+- type: File
+  field: file_path
+description: Detects creation of typical ransomware payment instructions or decryption ransom notes.
+references:
+- https://attack.mitre.org/techniques/T1486/

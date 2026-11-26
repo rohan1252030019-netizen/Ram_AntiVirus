@@ -8,7 +8,7 @@ client the agent belongs to.
 
 import logging
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Optional, Any
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from pydantic import BaseModel, Field
@@ -21,6 +21,9 @@ from app.core.rate_limit import client_ip_key
 from app.database import get_db
 from app.core.auth import AuthContext, require_analyst, require_viewer, get_auth_context
 from app.core.events import event_bus
+from app.core.ca import default_ca
+from app.core.replay_guard import default_replay_guard, validate_envelope_or_legacy, ReplayProtectionError
+from app.core.mtls import verify_agent_mtls
 
 limiter = Limiter(key_func=client_ip_key)
 from app.models.endpoint_agent import (
@@ -43,7 +46,29 @@ class AgentRegisterRequest(BaseModel):
     ip_address: str = ""
     agent_version: str = "1.0.0"
     tags: list[str] = []
+    seq: Optional[int] = None
+    nonce: Optional[str] = None
+    timestamp: Optional[Any] = None
+    signature: Optional[str] = None
+    payload: Optional[dict] = None
 
+
+
+class IssueCertResponse(BaseModel):
+    agent_id: str
+    cert_pem: str
+    key_pem: str
+    fingerprint: str
+    valid_days: int
+
+
+class RevokeCertRequest(BaseModel):
+    fingerprint: str
+
+
+class RevokeCertResponse(BaseModel):
+    status: str
+    fingerprint: str
 
 class AgentRegisterResponse(BaseModel):
     agent_id: str
@@ -57,6 +82,11 @@ class HeartbeatRequest(BaseModel):
     uptime_seconds: int = 0
     process_count: int = 0
     connection_count: int = 0
+    seq: Optional[int] = None
+    nonce: Optional[str] = None
+    timestamp: Optional[Any] = None
+    signature: Optional[str] = None
+    payload: Optional[dict] = None
 
 
 class HeartbeatResponse(BaseModel):
@@ -75,6 +105,11 @@ class EventItem(BaseModel):
 class EventBatchRequest(BaseModel):
     agent_id: str
     events: list[EventItem]
+    seq: Optional[int] = None
+    nonce: Optional[str] = None
+    timestamp: Optional[Any] = None
+    signature: Optional[str] = None
+    payload: Optional[dict] = None
 
 
 class EventBatchResponse(BaseModel):
@@ -156,6 +191,17 @@ async def register_agent(
     If the agent_id already exists for this client, update its info.
     """
     client = auth.client
+    await verify_agent_mtls(request, agent_id=body.agent_id, db=db)
+    try:
+        validate_envelope_or_legacy(
+            body=body.model_dump(),
+            secret_key=client.api_key,
+            agent_id=body.agent_id,
+            method=request.method,
+            path=request.url.path,
+        )
+    except ReplayProtectionError as e:
+        raise HTTPException(status_code=401, detail=str(e))
 
     result = await db.execute(
         select(EndpointAgent).where(
@@ -219,6 +265,7 @@ async def register_agent(
 
 @router.post("/heartbeat", response_model=HeartbeatResponse)
 async def agent_heartbeat(
+    request: Request,
     body: HeartbeatRequest,
     auth: AuthContext = Depends(get_auth_context),
     db: AsyncSession = Depends(get_db),
@@ -228,6 +275,17 @@ async def agent_heartbeat(
     commands (e.g., capture_forensic, update_config).
     """
     client = auth.client
+    await verify_agent_mtls(request, agent_id=body.agent_id, db=db)
+    try:
+        validate_envelope_or_legacy(
+            body=body.model_dump(),
+            secret_key=client.api_key,
+            agent_id=body.agent_id,
+            method="POST",
+            path="/agents/events",
+        )
+    except ReplayProtectionError as e:
+        raise HTTPException(status_code=401, detail=str(e))
 
     result = await db.execute(
         select(EndpointAgent).where(
@@ -243,12 +301,25 @@ async def agent_heartbeat(
     agent.last_heartbeat = datetime.utcnow()
     await db.commit()
 
+    await verify_agent_mtls(request, agent_id=body.agent_id, db=db)
+    try:
+        validate_envelope_or_legacy(
+            body=body.model_dump(),
+            secret_key=client.api_key,
+            agent_id=body.agent_id,
+            method="POST",
+            path="/agents/heartbeat",
+        )
+    except ReplayProtectionError as e:
+        raise HTTPException(status_code=401, detail=str(e))
+
     commands = _drain_commands(body.agent_id)
     return HeartbeatResponse(ack=True, commands=commands)
 
 
 @router.post("/events", response_model=EventBatchResponse)
 async def ingest_events(
+    request: Request,
     body: EventBatchRequest,
     auth: AuthContext = Depends(get_auth_context),
     db: AsyncSession = Depends(get_db),
@@ -561,3 +632,57 @@ async def deregister_agent(
     agent.status = AgentStatus.deregistered
     await db.commit()
     logger.info(f"Agent deregistered: {agent_id}")
+
+
+@router.post("/{agent_id}/issue-cert", response_model=IssueCertResponse)
+async def issue_agent_cert(
+    agent_id: str,
+    days_valid: int = Query(default=90, ge=1, le=365),
+    auth: AuthContext = Depends(require_analyst),
+    db: AsyncSession = Depends(get_db),
+):
+    """Issue a new X.509 client certificate for this agent signed by internal CA."""
+    result = await db.execute(
+        select(EndpointAgent).where(
+            EndpointAgent.id == agent_id,
+            EndpointAgent.client_id == auth.client.id,
+        )
+    )
+    if not result.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Agent not found")
+    try:
+        cert_pem, key_pem, fp = default_ca.issue_agent_cert(agent_id, days_valid=days_valid)
+    except Exception as e:
+        logger.error(f"Failed to issue cert for agent {agent_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Certificate issuance failed: {e}")
+
+    logger.info(f"Issued client certificate for agent {agent_id} (fingerprint: {fp})")
+    return IssueCertResponse(
+        agent_id=agent_id,
+        cert_pem=cert_pem.decode("utf-8"),
+        key_pem=key_pem.decode("utf-8"),
+        fingerprint=fp,
+        valid_days=days_valid,
+    )
+
+
+@router.post("/{agent_id}/revoke-cert", response_model=RevokeCertResponse)
+async def revoke_agent_cert(
+    agent_id: str,
+    body: RevokeCertRequest,
+    auth: AuthContext = Depends(require_analyst),
+    db: AsyncSession = Depends(get_db),
+):
+    """Revoke an agent's client certificate fingerprint."""
+    result = await db.execute(
+        select(EndpointAgent).where(
+            EndpointAgent.id == agent_id,
+            EndpointAgent.client_id == auth.client.id,
+        )
+    )
+    if not result.scalar_one_or_none():
+        raise HTTPException(status_code=404, detail="Agent not found")
+    fp = body.fingerprint.lower().strip()
+    default_ca.revoke_fingerprint(fp)
+    logger.info(f"Revoked certificate for agent {agent_id} (fingerprint: {fp})")
+    return RevokeCertResponse(status="revoked", fingerprint=fp)

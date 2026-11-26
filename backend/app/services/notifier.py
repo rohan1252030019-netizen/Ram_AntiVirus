@@ -65,7 +65,7 @@ class NotificationService:
         return True
 
     def _build_telegram_text(self, payload: dict) -> str:
-        title = payload.get("title") or payload.get("event_type", "AEGIS Alert")
+        title = payload.get("title") or payload.get("event_type", "Ram Antivirus Alert")
         severity = payload.get("severity")
         lines = [f"*{title}*"]
         if severity:
@@ -139,7 +139,7 @@ class NotificationService:
         if "telegram" in channels:
             await self.send_telegram(telegram_token, telegram_chat_id, self._build_telegram_text(payload))
         if "email" in channels and email_enabled:
-            await self.send_email(email_recipients, payload.get("title", "AEGIS Alert"), payload.get("message", ""))
+            await self.send_email(email_recipients, payload.get("title", "Ram Antivirus Alert"), payload.get("message", ""))
 
 
 notifier = NotificationService()

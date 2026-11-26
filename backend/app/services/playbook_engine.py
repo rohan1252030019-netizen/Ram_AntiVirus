@@ -1,5 +1,5 @@
 """
-Deterministic playbook engine for AEGIS.
+Deterministic playbook engine for Ram Antivirus.
 
 Playbooks provide instant, rule-based response to known attack patterns
 WITHOUT requiring AI inference. Target: <50ms per playbook evaluation.
@@ -614,7 +614,7 @@ class PlaybookEngine:
                 return {"action": "notify", "status": "skipped", "reason": "no webhook configured"}
 
             payload = {
-                "platform": "AEGIS",
+                "platform": "Ram Antivirus",
                 "event_type": "playbook_auto_response",
                 "playbook": playbook["name"],
                 "source_ip": event.get("source_ip"),

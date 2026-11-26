@@ -1,5 +1,5 @@
 /**
- * AEGIS Live WebSocket client.
+ * Ram Antivirus Live WebSocket client.
  *
  * Single persistent connection to /ws with:
  *   - Auto-reconnect (exponential backoff, max 30s)

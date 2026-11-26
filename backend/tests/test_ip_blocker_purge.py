@@ -7,7 +7,7 @@ def temp_blocklist(tmp_path, monkeypatch):
     """Write a controlled blocked_ips.txt and point the loader at it."""
     f = tmp_path / "blocked_ips.txt"
     f.write_text(
-        "# AEGIS Blocked IPs\n"
+        "# Ram Antivirus Blocked IPs\n"
         "66.249.69.66\n"     # Googlebot — should be purged (66.249.0.0/16 in SAFE_IPS)
         "203.0.113.5\n"      # RFC5737 — should be purged
         "198.51.100.42\n"    # RFC5737 — should be purged

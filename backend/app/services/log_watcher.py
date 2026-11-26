@@ -140,7 +140,7 @@ def _is_private_ip(ip: str) -> bool:
 
 IP_PATTERN = re.compile(r'\b(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\b')
 
-# IPs that belong to AEGIS itself - used for the cheap literal-match fast
+# IPs that belong to Ram Antivirus itself - used for the cheap literal-match fast
 # path in `_is_internal_line` below (self-referential log-noise filtering).
 # Extend via AEGIS_INTERNAL_IPS env var (comma-separated literal IPs only --
 # CIDR entries here are silently ignored by this frozenset since it is a
@@ -156,7 +156,7 @@ if _internal_extra:
     _internal_default.update(ip.strip() for ip in _internal_extra.split(",") if ip.strip())
 INTERNAL_IPS = frozenset(_internal_default)
 
-# Substrings that indicate a log line was emitted by AEGIS itself.
+# Substrings that indicate a log line was emitted by Ram Antivirus itself.
 # Stops the self-referential feedback loop where the watcher tails its own
 # stderr / correlation_engine output and matches its own emissions.
 INTERNAL_SOURCE_MARKERS = (
@@ -168,7 +168,7 @@ INTERNAL_SOURCE_MARKERS = (
     "[aegis.log_watcher]",
     "[aegis.correlation]",
     "[aegis.ai_engine]",
-    # Python traceback artifacts from AEGIS crashes
+    # Python traceback artifacts from Ram Antivirus crashes
     "sqlalchemy.exc.",
     "ExceptionGroup:",
     "greenlet_spawn",
@@ -181,7 +181,7 @@ def _extract_ip(line: str) -> Optional[str]:
 
 
 def _is_internal_line(line: str) -> bool:
-    """Return True if the log line is from AEGIS's own infrastructure."""
+    """Return True if the log line is from Ram Antivirus's own infrastructure."""
     for marker in INTERNAL_SOURCE_MARKERS:
         if marker in line:
             return True
@@ -314,7 +314,7 @@ def _prune_dt_deque_map(mapping, window_s, now=None, ts_getter=lambda item: item
 #
 # MUST be anchored to a host. The previous pattern was a bare r':(\d{2,5})\b',
 # which matches the colon-separated fields of any timestamp: a line beginning
-# "2026-07-29 20:00:39: [AEGIS] ..." yields "00" and "39" as "ports". Over a
+# "2026-07-29 20:00:39: [RAM ANTIVIRUS] ..." yields "00" and "39" as "ports". Over a
 # 60-second window of ordinary traffic the minute and second components alone
 # produce 20+ distinct values, so the port-scan tracker (threshold: 10 unique
 # ports) fired on any IP that simply kept talking. It blocked an operator's own
@@ -368,7 +368,7 @@ class LogWatcher:
 
     Responsibilities (single-purpose after the v1.6.4 refactor):
         1. Ingest raw lines from PM2 / journalctl / extra paths.
-        2. Filter AEGIS-internal noise.
+        2. Filter Ram Antivirus-internal noise.
         3. Delegate pattern classification to `event_normalizer.normalize`.
         4. Gate ONCE on safe IPs (RFC1918, CGNAT, AEGIS_SAFE_IPS).
         5. Publish typed NormalizedEvent on the `log_event` topic so
@@ -688,7 +688,7 @@ class LogWatcher:
         Pipeline order (single responsibility per stage):
 
             1. Publish the raw line to the `log_line` topic (UI stream).
-            2. Drop AEGIS-internal lines.
+            2. Drop Ram Antivirus-internal lines.
             3. Normalize via `event_normalizer.normalize(line, source=...)`
                which now owns ALL pattern → event-type classification.
             4. Gate ONCE on safe IPs (RFC1918, CGNAT, AEGIS_SAFE_IPS).

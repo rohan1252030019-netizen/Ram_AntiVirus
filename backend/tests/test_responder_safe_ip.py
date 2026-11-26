@@ -1,7 +1,7 @@
 """
 Tests for the SAFE-IP guardrail in the responder + guardrails pipeline.
 
-Regression test for the 2026-05-27 false positive where AEGIS auto-blocked
+Regression test for the 2026-05-27 false positive where Ram Antivirus auto-blocked
 Googlebot IP 66.249.69.68 despite AEGIS_SAFE_IPS=...,66.249.0.0/16,...
 
 The guard must short-circuit IP-targeted actions for any IP that matches
@@ -36,7 +36,7 @@ def _safe_ips_env():
 
 @pytest.mark.asyncio
 async def test_guardrail_short_circuits_safe_ip_block(db_session, test_client_a, sample_incident_a):
-    """Guardrail must create a skipped_safe_ip Action for IPs in AEGIS_SAFE_IPS."""
+    """Guardrail must create a skipped_safe_ip Action for IPs in Ram Antivirus_SAFE_IPS."""
     from app.core.guardrails import GuardrailEngine
 
     engine = GuardrailEngine()

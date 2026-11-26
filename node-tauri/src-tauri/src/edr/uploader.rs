@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // ---------------------------------------------------------------------------
 // EDR batch uploader (Task #5)
 //
@@ -72,6 +73,18 @@ pub async fn run(state: Arc<Mutex<EdrState>>) {
                 json // fallback to uncompressed
             }
         };
+
+        // Insecure HTTP check
+        if server_url.starts_with("http://") && !server_url.starts_with("https://") {
+            let allow_insecure = std::env::var("RAM_ALLOW_INSECURE_HTTP")
+                .or_else(|_| std::env::var("AEGIS_ALLOW_INSECURE_HTTP"))
+                .unwrap_or_default() == "1";
+            if !allow_insecure {
+                log::error!("[edr] uploader: insecure HTTP disallowed by default. Set AEGIS_ALLOW_INSECURE_HTTP=1 or use HTTPS.");
+                requeue(&state, batch).await;
+                continue;
+            }
+        }
 
         let result = client
             .post(format!("{}/edr/events", server_url))

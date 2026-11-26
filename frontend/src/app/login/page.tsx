@@ -48,7 +48,7 @@ function LoginCard() {
   const nextParam = searchParams.get('next') || '/dashboard';
 
   const [mode, setMode] = useState<AuthMode>('credentials');
-  const [key, setKey] = useState('c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ');
+  const [key, setKey] = useState('');
   // Demo credentials are filled in after mount, not during SSR. Cloudflare's
   // Email Obfuscation rewrites any `admin@aegis.local` in the served HTML into
   // a /cdn-cgi/l/email-protection link, so the server text and the client text
@@ -149,12 +149,12 @@ function LoginCard() {
     try {
       localStorage.removeItem('aegis_api_key');
       localStorage.removeItem('aegis_jwt_token');
-      const result = await api.auth.loginCredentials('admin@aegis.local', 'admin123456');
+      const result = await api.auth.loginCredentials(process.env.NEXT_PUBLIC_DEMO_EMAIL || '', process.env.NEXT_PUBLIC_DEMO_PASSWORD || '');
       if (result?.token) setJwtToken(result.token);
       router.replace(nextParam);
     } catch {
       try {
-        const rootKey = 'c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ';
+        const rootKey = process.env.NEXT_PUBLIC_DEMO_API_KEY || '';
         setApiKey(rootKey);
         const result = await api.auth.login(rootKey);
         if (result?.token) setJwtToken(result.token);
@@ -412,7 +412,7 @@ function LoginCard() {
               <ArrowRight size={11} aria-hidden />
             </Link>
             <a
-              href="https://github.com/rohan1252030019-netizen/AEGIS#api-keys"
+              href="https://github.com/rohan1252030019-netizen/Ram Antivirus#api-keys"
               target="_blank"
               rel="noreferrer noopener"
               className="hover:text-foreground transition-colors"

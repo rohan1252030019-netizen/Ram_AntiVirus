@@ -1,6 +1,6 @@
 /**
  * Shared helper to build a `mailto:` link to the network's abuse contact,
- * pre-filled with the IP, ASN, and AEGIS's detection evidence.
+ * pre-filled with the IP, ASN, and Ram Antivirus's detection evidence.
  *
  * Used by both `/dashboard/ip-intel` (manual lookup) and
  * `/dashboard/response` (expanded incident panel — "Report abuse" CTA).

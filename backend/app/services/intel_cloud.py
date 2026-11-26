@@ -1,14 +1,14 @@
 """
 Threat Intel Cloud — Shared community IOC intelligence service.
 
-The network-effect moat: when one AEGIS instance detects a threat, the IOC
-is anonymized and shared with ALL other AEGIS users. More users = better
+The network-effect moat: when one Ram Antivirus instance detects a threat, the IOC
+is anonymized and shared with ALL other Ram Antivirus users. More users = better
 protection for everyone.
 
 Operating modes:
   - CLIENT: Submits IOCs to a remote hub and pulls community IOCs from it.
   - HUB: This instance IS the hub — receives IOCs from clients and serves
-    the aggregated feed. Any AEGIS instance can act as the hub.
+    the aggregated feed. Any Ram Antivirus instance can act as the hub.
 
 Opt-in control:
   - intel_sharing_enabled (default: False) — must be explicitly enabled
@@ -107,7 +107,7 @@ def _ioc_to_stix_indicator(ioc: SharedIOC) -> dict:
 
 
 def _threat_type_to_stix_category(threat_type: str) -> str:
-    """Map AEGIS threat types to STIX indicator types."""
+    """Map Ram Antivirus threat types to STIX indicator types."""
     mapping = {
         "brute_force": "malicious-activity",
         "c2": "malicious-activity",
@@ -141,7 +141,7 @@ class IntelCloud:
     """
     Shared Threat Intelligence Cloud service.
 
-    Manages bidirectional IOC sharing between AEGIS instances.
+    Manages bidirectional IOC sharing between Ram Antivirus instances.
     One instance can act as both client and hub simultaneously.
     """
 

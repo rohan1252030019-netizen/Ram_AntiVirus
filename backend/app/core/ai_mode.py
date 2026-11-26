@@ -1,5 +1,5 @@
 """
-Central AI mode flag for AEGIS.
+Central AI mode flag for Ram Antivirus.
 
 AEGIS_AI_MODE ∈ {required, optional, disabled}  (default: optional)
   required  — AI must be available; fail hard if not

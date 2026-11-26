@@ -168,6 +168,6 @@ doc.add_paragraph('4. Verify real-time population of logs in the dashboard table
 doc.add_paragraph('5. Demonstrate search by process name / PID and filter by event category.')
 doc.add_paragraph('6. Open event detail drawer to review raw JSON parameters.')
 
-output_path = r'c:\Users\ADMIN\Documents\INDAEGIS\AEGIS\RAM_ANTIVIRUS_GROUP3_WEEK1_TASK_COMPLETION.docx'
+output_path = r'c:\Users\ADMIN\Documents\INDAEGIS\Ram Antivirus\RAM_ANTIVIRUS_GROUP3_WEEK1_TASK_COMPLETION.docx'
 doc.save(output_path)
 print(f'Successfully generated {output_path}')

@@ -1,6 +1,6 @@
-"""Auto-updater service for AEGIS.
+"""Auto-updater service for Ram Antivirus.
 
-Checks GitHub releases for new AEGIS versions, notifies the user, and
+Checks GitHub releases for new Ram Antivirus versions, notifies the user, and
 optionally performs automatic updates via docker compose pull + restart.
 
 Runs in the background on startup. Users configure update behavior
@@ -25,11 +25,11 @@ import httpx
 
 logger = logging.getLogger("aegis.auto_updater")
 
-GITHUB_REPO = "alejandxr/AEGIS"
+GITHUB_REPO = "alejandxr/Ram Antivirus"
 GITHUB_RELEASES_API = f"https://api.github.com/repos/{GITHUB_REPO}/releases/latest"
 CURRENT_VERSION = "1.4.0"
 
-# Path to the AEGIS install directory (where docker-compose.yml lives)
+# Path to the Ram Antivirus install directory (where docker-compose.yml lives)
 INSTALL_DIR = os.environ.get("AEGIS_INSTALL_DIR", "/app")
 
 

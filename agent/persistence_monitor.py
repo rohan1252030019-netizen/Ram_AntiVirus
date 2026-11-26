@@ -1,5 +1,6 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """
-AEGIS EDR/MDR - Windows Persistence Monitoring (FR-03)
+Ram Antivirus EDR/MDR - Windows Persistence Monitoring (FR-03)
 ======================================================
 Monitors Windows Registry autorun keys and Scheduled Tasks for persistence mechanisms.
 
@@ -526,8 +527,8 @@ class PersistenceMonitor:
 
     def generate_events(self, changes: dict[str, list[PersistenceItem]]) -> list[dict]:
         """
-        Convert detected changes into structured AEGIS agent event payloads.
-        Category: 'fim' (or 'persistence'), matching AEGIS schema.
+        Convert detected changes into structured Ram Antivirus agent event payloads.
+        Category: 'fim' (or 'persistence'), matching Ram Antivirus schema.
         """
         events: list[dict] = []
 

@@ -15,6 +15,36 @@ from app.models.endpoint_agent import EndpointAgent, AgentStatus
 from tests.conftest import api_key_headers
 
 
+@pytest.fixture(autouse=True)
+async def setup_test_db(tmp_path):
+    import app.database as db_mod
+    from app.models import Base
+    from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+    from app.main import app
+    from app.database import get_db
+
+    db_file = tmp_path / "test_edr.db"
+    engine = create_async_engine(f"sqlite+aiosqlite:///{db_file.as_posix()}")
+    session_factory = async_sessionmaker(engine, expire_on_commit=False)
+    db_mod.engine = engine
+    db_mod.async_session = session_factory
+
+    async def override_get_db():
+        async with session_factory() as s:
+            yield s
+
+    app.dependency_overrides[get_db] = override_get_db
+
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+    yield
+
+    app.dependency_overrides.pop(get_db, None)
+    await engine.dispose()
+
+
+
 @pytest.fixture
 async def seeded_agent(test_client_a: Client) -> EndpointAgent:
     from app.database import async_session

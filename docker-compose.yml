@@ -1,5 +1,5 @@
 # ============================================================
-# AEGIS Autonomous Defense Platform â€” Docker Compose
+# Ram Antivirus Autonomous Defense Platform â€” Docker Compose
 # ============================================================
 #
 # Quick start:
@@ -7,7 +7,7 @@
 #   AEGIS_ADMIN_PASSWORD="$(openssl rand -base64 24)" \
 #     docker compose up -d
 #
-# Secrets are REQUIRED. AEGIS refuses to boot in production with the old
+# Secrets are REQUIRED. Ram Antivirus refuses to boot in production with the old
 # built-in defaults.
 #
 # Full stack (with Redis for event bus + caching):
@@ -39,7 +39,7 @@
 
 services:
   # --- PostgreSQL Database ---
-  # Stores all AEGIS data: assets, vulnerabilities, incidents, clients
+  # Stores all Ram Antivirus data: assets, vulnerabilities, incidents, clients
   aegis-db:
     image: postgres:16-alpine
     container_name: aegis-db
@@ -103,7 +103,7 @@ services:
       - aegis-net
 
   # --- Backend API ---
-  # FastAPI application serving all AEGIS endpoints
+  # FastAPI application serving all Ram Antivirus endpoints
   aegis-api:
     build:
       context: ./backend
@@ -173,7 +173,7 @@ services:
       - aegis-net
 
   # --- Frontend Dashboard ---
-  # Next.js application serving the AEGIS web UI
+  # Next.js application serving the Ram Antivirus web UI
   aegis-frontend:
     build:
       context: ./frontend

@@ -1,7 +1,7 @@
 """
 Post-block IP investigation service.
 
-After AEGIS auto-blocks an IP, this service runs an AI-powered investigation
+After Ram Antivirus auto-blocks an IP, this service runs an AI-powered investigation
 to verify the block is legitimate. If the AI determines with high confidence
 that it's a false positive, the IP is auto-unblocked.
 

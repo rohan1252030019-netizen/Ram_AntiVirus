@@ -1,5 +1,6 @@
+from pydantic import model_validator
 from pydantic_settings import BaseSettings
-from typing import Optional
+from typing import Optional, Any
 
 
 class Settings(BaseSettings):
@@ -19,7 +20,7 @@ class Settings(BaseSettings):
     # Defence in depth: this is the one API key that is public in the repo and
     # in the hosted dashboard. It is *always* sandboxed, even if demo mode was
     # left off by mistake, because anybody on the internet knows it.
-    AEGIS_PUBLIC_DEMO_API_KEY: str = "c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ"
+    AEGIS_PUBLIC_DEMO_API_KEY: str = ""
     # Master switch for the request sandbox. Do not disable on a public host.
     AEGIS_DEMO_SANDBOX: bool = True
 
@@ -85,16 +86,16 @@ class Settings(BaseSettings):
 
     # Community Threat Intel Hub
     AEGIS_MONGODB_URI: str = ""     # Direct MongoDB connection (for self-hosted hubs)
-    AEGIS_HUB_URL: str = ""         # HTTP hub URL (connect to another AEGIS instance)
+    AEGIS_HUB_URL: str = ""         # HTTP hub URL (connect to another Ram Antivirus instance)
 
     # Log watcher — comma-separated list of PM2 app names to tail.
-    # Prevents AEGIS from monitoring unrelated projects on the same host
+    # Prevents Ram Antivirus from monitoring unrelated projects on the same host
     # (which produced self-referential SQLi false positives from other apps'
     # traceback dividers). Empty string = tail all apps (legacy behavior).
     AEGIS_MONITORED_APPS: str = "cayde6-api,cayde6-frontend"
 
     # Extra log paths to tail in addition to PM2 stdout/stderr.
-    # Colon-separated, supports glob patterns. Used to point AEGIS at the
+    # Colon-separated, supports glob patterns. Used to point Ram Antivirus at the
     # unified aegis-feed.jsonl that web apps write to.
     # Example: AEGIS_EXTRA_LOG_PATHS=/Users/alejandxr/web-logs/aegis-feed.jsonl
     AEGIS_EXTRA_LOG_PATHS: str = ""
@@ -118,8 +119,8 @@ class Settings(BaseSettings):
     AEGIS_SAFE_IPS: str = ""
     AEGIS_INTERNAL_IPS: str = ""
 
-    # External firewall API URL (e.g. AEGIS Firewall Agent on Raspberry Pi).
-    # When set, AEGIS uses this for real iptables blocking + threat intel.
+    # External firewall API URL (e.g. Ram Antivirus Firewall Agent on Raspberry Pi).
+    # When set, Ram Antivirus uses this for real iptables blocking + threat intel.
     AEGIS_FIREWALL_URL: str = ""
 
     # Shared secret for the Mac Pro <-> firewall agent channel. Must match the
@@ -215,6 +216,39 @@ class Settings(BaseSettings):
         "http://localhost:3000,http://127.0.0.1:3000,"
         "http://localhost:3007,http://127.0.0.1:3007"
     )
+
+    @model_validator(mode="before")
+    @classmethod
+    def apply_ram_env_fallbacks(cls, data: Any) -> Any:
+        import os, logging
+        log = logging.getLogger("ram_antivirus.config")
+        if isinstance(data, dict):
+            for key, val in list(os.environ.items()):
+                if key.startswith("RAM_"):
+                    aegis_key = "AEGIS_" + key[4:]
+                    if aegis_key not in data:
+                        data[aegis_key] = val
+                elif key.startswith("AEGIS_"):
+                    ram_key = "RAM_" + key[6:]
+                    if ram_key not in os.environ:
+                        log.warning(
+                            "DEPRECATION: Environment variable '%s' is deprecated; please use '%s' instead.",
+                            key,
+                            ram_key,
+                        )
+        return data
+
+    @model_validator(mode="after")
+    def validate_production_secrets(self) -> "Settings":
+        from app.core.boot_guard import assert_production_secrets
+        assert_production_secrets(
+            env=self.AEGIS_ENV,
+            secret_key=self.AEGIS_SECRET_KEY,
+            admin_password=self.AEGIS_ADMIN_PASSWORD,
+            demo_mode=self.AEGIS_DEMO_MODE,
+            database_url=self.DATABASE_URL,
+        )
+        return self
 
     model_config = {"env_file": [".env", "../.env"], "extra": "ignore"}
 

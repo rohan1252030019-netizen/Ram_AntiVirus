@@ -1,4 +1,4 @@
-# AEGIS CI parity — mirrors .github/workflows/ci.yml exactly so local runs
+# Ram Antivirus CI parity — mirrors .github/workflows/ci.yml exactly so local runs
 # catch failures before push.
 #
 # Usage:

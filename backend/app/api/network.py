@@ -1,5 +1,5 @@
 """
-Network monitoring API endpoints for AEGIS.
+Network monitoring API endpoints for Ram Antivirus.
 
 Provides DNS monitoring stats/threats and NDR connection/anomaly data.
 """

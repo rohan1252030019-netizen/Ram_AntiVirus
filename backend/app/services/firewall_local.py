@@ -1,5 +1,5 @@
 """
-Local firewall abstraction for AEGIS.
+Local firewall abstraction for Ram Antivirus.
 
 Gated by AEGIS_REAL_FW=1. Without the flag (or when run as non-root / in CI),
 falls back to NoopFirewall which tracks blocks in-memory only.
@@ -15,7 +15,7 @@ from pathlib import Path
 
 logger = logging.getLogger("aegis.firewall_local")
 
-_BLOCKED_IPS_FILE = Path(os.environ.get("BLOCKED_IPS_FILE", str(Path.home() / "AEGIS" / "blocked_ips.txt")))
+_BLOCKED_IPS_FILE = Path(os.environ.get("BLOCKED_IPS_FILE", str(Path.home() / "Ram Antivirus" / "blocked_ips.txt")))
 _PF_ANCHOR_PATH = "/etc/pf.anchors/aegis"
 _PF_TABLE = "aegis_block"
 _IPT_CHAIN = "AEGIS_BLOCK"

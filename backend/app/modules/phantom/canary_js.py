@@ -1,7 +1,7 @@
 """
 Defensive canary JS payload — embedded in HTTP honeypot decoy pages ONLY.
 
-NEVER include this in real AEGIS dashboard templates. The JS collects
+NEVER include this in real Ram Antivirus dashboard templates. The JS collects
 voluntarily-disclosed browser features (WebRTC ICE candidates, canvas /
 WebGL / audio fingerprint, screen / UA / timezone, automation markers).
 No exploits, no XSS, no side-effects to the visitor's machine.
@@ -14,7 +14,7 @@ Headless Chrome / Puppeteer / Playwright execute and trigger the
 """
 
 # Endpoint the JS POSTs to. Honeypots can override with a full absolute URL
-# (e.g. the Pi honeypot points back to the central AEGIS API).
+# (e.g. the Pi honeypot points back to the central Ram Antivirus API).
 DEFAULT_ENDPOINT = "/api/v1/phantom/canary"
 
 
@@ -26,7 +26,7 @@ def build_canary_script(
     # Note: kept under 200 lines per task constraint.
     js = """
 (function(){
-  // AEGIS defensive canary — runs inside a honeypot decoy page.
+  // Ram Antivirus defensive canary — runs inside a honeypot decoy page.
   // No-op if document is gone (navigated away before window 'load').
   if (!document || !window) return;
   var endpoint = "__ENDPOINT__";
@@ -83,7 +83,7 @@ def build_canary_script(
     if (ctx) {
       ctx.textBaseline = 'top'; ctx.font = '14px Arial';
       ctx.fillStyle = '#069'; ctx.fillText('aegis canary ☃ ' + (navigator.platform||''), 2, 2);
-      ctx.fillStyle = 'rgba(102,204,0,0.7)'; ctx.fillText('AEGIS', 4, 18);
+      ctx.fillStyle = 'rgba(102,204,0,0.7)'; ctx.fillText('Ram Antivirus', 4, 18);
       fp_parts.push(canvas.toDataURL());
     }
     var gl_canvas = document.createElement('canvas');

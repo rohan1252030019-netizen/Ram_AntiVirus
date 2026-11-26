@@ -6,7 +6,7 @@ Only connects if AEGIS_MONGODB_URI is configured in .env.
 
 Database: aegis_intel
 Collections:
-  - aegis_threats: IOCs detected by THIS AEGIS instance (honeypots, attack detector, AI)
+  - aegis_threats: IOCs detected by THIS Ram Antivirus instance (honeypots, attack detector, AI)
   - external_feeds: IOCs pulled from third-party feeds (AbuseIPDB, OTX, ET, Tor, Feodo)
   - attack_patterns: MITRE ATT&CK patterns observed
   - attacker_profiles: Aggregated attacker behavior profiles

@@ -1,5 +1,6 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 """
-Unit tests for AEGIS Windows Host Network Isolation (FR-09).
+Unit tests for Ram Antivirus Windows Host Network Isolation (FR-09).
 Covers state machine, firewall rule construction, control plane preservation,
 watchdog recovery lease, and safe idempotent restore.
 Uses an injected mock command runner so tests execute safely on any platform without altering the host.
@@ -103,7 +104,7 @@ class TestWindowsHostIsolation:
         assert WindowsHostIsolator.RULE_ALLOW_DNS_OUT in mock_runner.rules
         assert WindowsHostIsolator.RULE_ALLOW_DHCP_OUT in mock_runner.rules
 
-        # Ensure AEGIS server IP is preserved in rule
+        # Ensure Ram Antivirus server IP is preserved in rule
         aegis_out_rule = mock_runner.rules[WindowsHostIsolator.RULE_ALLOW_AEGIS_OUT]["argv"]
         assert any("remoteip=" in arg and "192.168.1.100" in arg for arg in aegis_out_rule)
 
@@ -130,7 +131,7 @@ class TestWindowsHostIsolation:
         assert status.state == IsolationState.NORMAL
         assert status.rules_applied == []
 
-        # All AEGIS rules removed
+        # All Ram Antivirus rules removed
         for r_name in list(mock_runner.rules.keys()):
             assert not r_name.startswith(WindowsHostIsolator.RULE_PREFIX)
 

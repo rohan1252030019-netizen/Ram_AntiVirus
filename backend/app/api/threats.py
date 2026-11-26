@@ -152,7 +152,7 @@ async def get_threat_feed(
     """
     Public threat feed endpoint -- NO authentication required.
 
-    Remote AEGIS nodes and third-party tools can pull shared IOCs from here.
+    Remote Ram Antivirus nodes and third-party tools can pull shared IOCs from here.
     Supports JSON (default) and STIX format.
     Optionally pass ?since=<ISO8601> to get only recent IOCs.
     Optionally pass ?limit=<n> (default 1000, max 10000) to pull more of the
@@ -207,7 +207,7 @@ async def share_ioc_public(
     x_aegis_hub_secret: Optional[str] = Header(None, alias="X-AEGIS-Hub-Secret"),
 ):
     """
-    IOC sharing endpoint -- remote AEGIS nodes submit IOCs here.
+    IOC sharing endpoint -- remote Ram Antivirus nodes submit IOCs here.
 
     Authenticated with the hub shared secret (AEGIS_HUB_SHARED_SECRET). The old
     open endpoint let anybody poison the shared intel database.
@@ -306,7 +306,7 @@ async def search_iocs_public(
 async def hub_info():
     """
     Public hub info endpoint. Returns capabilities and connection details
-    so remote AEGIS nodes can auto-configure.
+    so remote Ram Antivirus nodes can auto-configure.
     """
     from app.config import settings as cfg
 
@@ -354,7 +354,7 @@ async def register_sharing_node(
     x_aegis_hub_secret: Optional[str] = Header(None, alias="X-AEGIS-Hub-Secret"),
 ):
     """
-    Register a remote AEGIS node for threat sharing.
+    Register a remote Ram Antivirus node for threat sharing.
 
     Requires X-AEGIS-Hub-Secret. The registry is capped and evicts the oldest
     entry once full.

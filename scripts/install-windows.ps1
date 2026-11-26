@@ -1,5 +1,5 @@
 # ============================================================================
-# AEGIS Autonomous Defense Platform - Windows Installer
+# Ram Antivirus Autonomous Defense Platform - Windows Installer
 # ============================================================================
 # Usage:
 #   powershell -ExecutionPolicy Bypass -File install-windows.ps1
@@ -30,7 +30,7 @@ $ErrorActionPreference = "Stop"
 function Write-Banner {
     Write-Host ""
     Write-Host "  ========================================" -ForegroundColor Cyan
-    Write-Host "   AEGIS Autonomous Defense Platform" -ForegroundColor Cyan
+    Write-Host "   Ram Antivirus Autonomous Defense Platform" -ForegroundColor Cyan
     Write-Host "   Windows Installer v1.0" -ForegroundColor Cyan
     Write-Host "  ========================================" -ForegroundColor Cyan
     Write-Host ""
@@ -154,7 +154,7 @@ function New-EnvFile {
 
     $envContent = @"
 # ============================================================
-# AEGIS Configuration - Generated $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
+# Ram Antivirus Configuration - Generated $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')
 # ============================================================
 
 # --- Platform ---
@@ -220,7 +220,7 @@ function Install-WithDocker {
     }
     else {
         Write-Err "docker-compose.yml not found at $composeSource"
-        Write-Err "Please copy the AEGIS project files to $InstallDir manually."
+        Write-Err "Please copy the Ram Antivirus project files to $InstallDir manually."
         return
     }
 
@@ -242,7 +242,7 @@ function Install-WithDocker {
     $secrets = New-EnvFile -Path $InstallDir
 
     # Start services
-    Write-Step "Starting AEGIS services..."
+    Write-Step "Starting Ram Antivirus services..."
     Push-Location $InstallDir
     try {
         docker compose up -d --build
@@ -258,7 +258,7 @@ function Install-WithDocker {
     }
 
     Write-Host ""
-    Write-Ok "AEGIS is running."
+    Write-Ok "Ram Antivirus is running."
     Write-Step "Dashboard:  http://localhost:$FrontendPort"
     Write-Step "API:        http://localhost:$ApiPort"
     Write-Step "API Docs:   http://localhost:${ApiPort}/docs"

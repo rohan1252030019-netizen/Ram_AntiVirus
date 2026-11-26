@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AEGIS pre-commit secret guard.
+# Ram Antivirus pre-commit secret guard.
 #
 # This repo is public. It has already leaked a sudo password (2 months, 7 forks)
 # and ~820 lines of unrelated private projects, both because a .gitignore rule

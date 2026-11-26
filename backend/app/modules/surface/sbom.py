@@ -1,5 +1,5 @@
 """
-SBOM (Software Bill of Materials) scanner for AEGIS Surface module.
+SBOM (Software Bill of Materials) scanner for Ram Antivirus Surface module.
 
 Inventories installed software across Python, Node, system packages, and Docker
 images, then cross-references against the NVD CVE database. Outputs CycloneDX
@@ -368,7 +368,7 @@ class SBOMScanner:
                 "timestamp": datetime.utcnow().isoformat(),
                 "tools": [
                     {
-                        "vendor": "AEGIS",
+                        "vendor": "Ram Antivirus",
                         "name": "SBOM Scanner",
                         "version": "1.0.0",
                     }

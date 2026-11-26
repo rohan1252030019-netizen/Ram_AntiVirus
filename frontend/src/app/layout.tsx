@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     siteName: 'Ram Antivirus',
     title: 'Ram Antivirus — Open-Source Ransomware Defense and EDR Platform',
     description: 'Self-hosted. Deterministic-first. Detects ransomware in <1 ms with 134 Sigma rules. Offline-capable. Free, AGPL-3.0.',
-    url: 'https://github.com/rohan1252030019-netizen/AEGIS',
+    url: 'https://github.com/rohan1252030019-netizen/Ram Antivirus',
     images: [
       {
         url: '/og-image.png',
@@ -119,11 +119,11 @@ export default function RootLayout({
                   "softwareVersion": AEGIS_VERSION || "1.6.2",
                   "datePublished": "2026-05-01",
                   "license": "https://www.gnu.org/licenses/agpl-3.0.html",
-                  "url": "https://github.com/rohan1252030019-netizen/AEGIS",
+                  "url": "https://github.com/rohan1252030019-netizen/Ram Antivirus",
                   "downloadUrl": AEGIS_VERSION
-                    ? `https://github.com/rohan1252030019-netizen/AEGIS/releases/tag/v${AEGIS_VERSION}`
-                    : "https://github.com/rohan1252030019-netizen/AEGIS/releases/tag/v1.6.2",
-                  "codeRepository": "https://github.com/rohan1252030019-netizen/AEGIS",
+                    ? `https://github.com/rohan1252030019-netizen/Ram Antivirus/releases/tag/v${AEGIS_VERSION}`
+                    : "https://github.com/rohan1252030019-netizen/Ram Antivirus/releases/tag/v1.6.2",
+                  "codeRepository": "https://github.com/rohan1252030019-netizen/Ram Antivirus",
                   "programmingLanguage": ["Python", "TypeScript", "Rust"],
                   "keywords": "open source EDR, self-hosted ransomware defense, deterministic SOAR, open source SIEM alternative, MITRE ATT&CK detection, ransomware kill-chain, offline security platform",
                   "featureList": [

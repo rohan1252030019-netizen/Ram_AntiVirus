@@ -1,6 +1,6 @@
 # Linux Server Hardening
 
-AEGIS solution for hardening Linux servers and detecting post-exploitation activity.
+Ram Antivirus solution for hardening Linux servers and detecting post-exploitation activity.
 
 ## Coverage
 

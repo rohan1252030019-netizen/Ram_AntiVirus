@@ -1,4 +1,4 @@
-"""Generate AEGIS complete architecture diagram."""
+"""Generate Ram Antivirus complete architecture diagram."""
 import os
 from PIL import Image, ImageDraw, ImageFont
 import math
@@ -48,7 +48,7 @@ def section(y, text):
 
 
 # TITLE
-draw.text((W // 2 - 180, 20), "AEGIS v1.6.2", fill=cyan, font=title_font)
+draw.text((W // 2 - 180, 20), "Ram Antivirus v1.6.2", fill=cyan, font=title_font)
 draw.text((W // 2 - 260, 65), "Complete Architecture Diagram", fill=muted, font=heading_font)
 draw.line([(80, 100), (W - 80, 100)], fill=border, width=1)
 

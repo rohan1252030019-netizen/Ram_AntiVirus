@@ -1,5 +1,5 @@
 """
-Grover's Algorithm Quantum Cryptographic Assessment for AEGIS.
+Grover's Algorithm Quantum Cryptographic Assessment for Ram Antivirus.
 
 Models the impact of quantum computing on current cryptographic primitives:
 - Grover's algorithm: O(2^(n/2)) search -> symmetric key strength halved

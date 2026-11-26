@@ -190,8 +190,8 @@ class ProxyLoggingHandler(http.server.SimpleHTTPRequestHandler):
         with open(LOG_FILE, "a") as f:
             f.write(log_line + "\n")
 
-        # === AEGIS unified feed (inline — no external dep) ===
-        # Append one JSON line per request to the central feed so AEGIS
+        # === Ram Antivirus unified feed (inline — no external dep) ===
+        # Append one JSON line per request to the central feed so Ram Antivirus
         # log_watcher gets HTTP-layer visibility with real client IPs.
         try:
             import json as _aegis_json
@@ -364,7 +364,7 @@ class ProxyLoggingHandler(http.server.SimpleHTTPRequestHandler):
             if self.headers.get(header):
                 headers[header] = self.headers.get(header)
 
-        # AEGIS: inject real client IP into upstream request so the backend
+        # Ram Antivirus: inject real client IP into upstream request so the backend
         # (e.g. FastAPI sid-backend) sees the real attacker instead of 127.0.0.1.
         # Combined with uvicorn --proxy-headers --forwarded-allow-ips=127.0.0.1
         # this lets request.client.host resolve correctly.

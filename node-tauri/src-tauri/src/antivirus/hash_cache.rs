@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 // ---------------------------------------------------------------------------
 // SHA256 reputation cache (Task #6)
 //
@@ -22,6 +23,7 @@ pub enum Status {
 mod sled_backend {
     use super::*;
 
+    #[derive(Debug)]
     pub struct Inner {
         db: sled::Db,
     }

@@ -29,7 +29,7 @@ logger = logging.getLogger("aegis.phantom.ssh_honeypot")
 # Path to store the server host key
 KEY_PATH = Path.home() / ".aegis" / "ssh_honeypot_key"
 
-_SSH_CONFIG_PATH = Path.home() / "AEGIS" / "backend" / "honeypot_config.json"
+_SSH_CONFIG_PATH = Path.home() / "Ram Antivirus" / "backend" / "honeypot_config.json"
 
 
 def _get_ssh_cfg() -> dict:

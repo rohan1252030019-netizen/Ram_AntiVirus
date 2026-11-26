@@ -3,7 +3,7 @@ Offline GeoIP / ASN lookup — db-ip.com Lite CSV.
 
 The db-ip.com Lite CSV is sorted by start_ip range. We load it once into a
 list of (start_int, end_int, asn, owner) tuples and binary-search at lookup
-time. Memory cost: ~470K rows × ~80B = ~38 MB. Acceptable for AEGIS.
+time. Memory cost: ~470K rows × ~80B = ~38 MB. Acceptable for Ram Antivirus.
 
 Refresh policy: the file is updated monthly. Re-downloaded by
 `threat_feeds._refresh_offline_geoip()` (weekly cron). Manual override:
@@ -13,7 +13,7 @@ CSV format (no header):
     start_ip,end_ip,asn,"owner"
 
 ASN field is the bare number ("13335"); we return "AS13335" to match the
-rest of AEGIS's ASN convention.
+rest of Ram Antivirus's ASN convention.
 
 No external HTTP at lookup time. No PyPI dependency. Pure Python stdlib.
 """

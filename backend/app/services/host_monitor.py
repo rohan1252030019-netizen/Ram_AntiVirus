@@ -2,7 +2,7 @@
 Host self-monitoring service for EDR.
 
 Uses psutil to collect process and network telemetry from the host
-AEGIS runs on, feeding data into the same agent_events pipeline as
+Ram Antivirus runs on, feeding data into the same agent_events pipeline as
 external Rust agents. This means the host is auto-protected without
 needing any external agent installation.
 

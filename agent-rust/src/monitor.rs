@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 //! Process and system monitoring module.
 //!
 //! Mirrors the Python agent's process_monitor_loop and system info collection.

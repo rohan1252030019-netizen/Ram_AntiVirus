@@ -1,9 +1,10 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
 #!/usr/bin/env python3
 """
-AEGIS EDR-lite Endpoint Agent
+Ram Antivirus EDR-lite Endpoint Agent
 ================================
 Lightweight endpoint detection & response agent that monitors a host and
-reports events to the AEGIS API.
+reports events to the Ram Antivirus API.
 
 Capabilities:
   - Process monitoring (new processes, suspicious names, port listeners)
@@ -22,6 +23,8 @@ Usage:
 import argparse
 import asyncio
 import hashlib
+import hmac
+import json
 import json
 import logging
 import os
@@ -84,13 +87,60 @@ if platform.system() == "Windows":
 # ---------------------------------------------------------------------------
 # HTTP client
 # ---------------------------------------------------------------------------
+_envelope_seq = 0
+_envelope_lock = asyncio.Lock()
+
+
+async def _wrap_envelope(payload: dict) -> dict:
+    global _envelope_seq
+    async with _envelope_lock:
+        _envelope_seq += 1
+        seq = _envelope_seq
+    nonce = uuid.uuid4().hex
+    ts = time.time()
+    sig = ""
+    if cfg.AEGIS_API_KEY:
+        canonical_str = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+        msg = f"{cfg.AGENT_ID}:{seq}:{nonce}:{ts:.3f}:{canonical_str}"
+        sig = hmac.new(cfg.AEGIS_API_KEY.encode("utf-8"), msg.encode("utf-8"), hashlib.sha256).hexdigest()
+    wrapped = dict(payload)
+    wrapped.update({
+        "seq": seq,
+        "nonce": nonce,
+        "timestamp": ts,
+        "signature": sig,
+        "payload": payload,
+    })
+    return wrapped
+
+
 def _build_client() -> httpx.AsyncClient:
+    api_url = cfg.AEGIS_API_URL
+    if api_url.startswith("http://") and not api_url.startswith("https://"):
+        if cfg.AEGIS_ALLOW_INSECURE_HTTP != "1":
+            raise RuntimeError(
+                f"Insecure plain HTTP connection to {api_url} is rejected by default. "
+                "Use https:// or set AEGIS_ALLOW_INSECURE_HTTP=1 for testing."
+            )
+        log.warning("INSECURE HTTP WARNING: AEGIS_ALLOW_INSECURE_HTTP=1 is set. Plain HTTP traffic is unencrypted!")
+
     headers = {}
     if cfg.AEGIS_API_KEY:
         headers["X-API-Key"] = cfg.AEGIS_API_KEY
+
+    cert = None
+    if cfg.AEGIS_CLIENT_CERT and cfg.AEGIS_CLIENT_KEY:
+        cert = (cfg.AEGIS_CLIENT_CERT, cfg.AEGIS_CLIENT_KEY)
+
+    verify = True
+    if cfg.AEGIS_CA_CERT:
+        verify = cfg.AEGIS_CA_CERT
+
     return httpx.AsyncClient(
         base_url=cfg.AEGIS_API_URL,
         headers=headers,
+        cert=cert,
+        verify=verify,
         timeout=15.0,
     )
 
@@ -157,7 +207,8 @@ async def register(client: httpx.AsyncClient) -> bool:
     }
     for attempt in range(5):
         try:
-            resp = await client.post("/agents/register", json=payload)
+            wrapped_payload = await _wrap_envelope(payload)
+            resp = await client.post("/agents/register", json=wrapped_payload)
             if resp.status_code in (200, 201):
                 data = resp.json()
                 log.info("Registered: %s (status=%s)", data.get("message"), data.get("status"))
@@ -204,7 +255,8 @@ async def heartbeat_loop(client: httpx.AsyncClient):
                 "connection_count": len(psutil.net_connections(kind="inet")),
                 "isolation_state": _host_isolator.status.state if _host_isolator else "NORMAL",
             }
-            resp = await client.post("/agents/heartbeat", json=payload)
+            wrapped_payload = await _wrap_envelope(payload)
+            resp = await client.post("/agents/heartbeat", json=wrapped_payload)
             if resp.status_code == 200:
                 data = resp.json()
                 commands = data.get("commands", [])
@@ -289,7 +341,8 @@ async def event_flush_loop(client: httpx.AsyncClient):
         if batch:
             payload = {"agent_id": cfg.AGENT_ID, "events": batch}
             try:
-                resp = await client.post("/agents/events", json=payload)
+                wrapped_payload = await _wrap_envelope(payload)
+                resp = await client.post("/agents/events", json=wrapped_payload)
                 if resp.status_code == 200:
                     data = resp.json()
                     log.debug("Flushed %d events (accepted=%d)", len(batch), data.get("accepted", 0))
@@ -309,7 +362,9 @@ async def event_flush_loop(client: httpx.AsyncClient):
         _event_queue.clear()
     if batch:
         try:
-            await client.post("/agents/events", json={"agent_id": cfg.AGENT_ID, "events": batch})
+            ev_payload = {"agent_id": cfg.AGENT_ID, "events": batch}
+            wrapped_ev = await _wrap_envelope(ev_payload)
+            await client.post("/agents/events", json=wrapped_ev)
         except Exception:
             pass
 
@@ -1292,7 +1347,7 @@ async def main(ipc: bool = False):
         logging.root.addHandler(stderr_handler)
 
     log.info("=" * 60)
-    log.info("AEGIS EDR-lite Agent v%s", cfg.AGENT_VERSION)
+    log.info("Ram Antivirus EDR-lite Agent v%s", cfg.AGENT_VERSION)
     log.info("Agent ID : %s", cfg.AGENT_ID)
     log.info("Hostname : %s", cfg.HOSTNAME)
     log.info("OS       : %s", cfg.OS_INFO)
@@ -1344,7 +1399,7 @@ async def main(ipc: bool = False):
     if cfg.AEGIS_API_KEY:
         registered = await register(client)
         if not registered and not _ipc_mode:
-            log.error("Failed to register with AEGIS API after retries. Exiting.")
+            log.error("Failed to register with Ram Antivirus API after retries. Exiting.")
             sys.exit(1)
         elif not registered:
             log.warning("Could not register with API, running in local-only IPC mode")
@@ -1434,11 +1489,11 @@ async def main(ipc: bool = False):
         breadcrumb_observer.join(timeout=5)
 
     await client.aclose()
-    log.info("AEGIS agent stopped.")
+    log.info("Ram Antivirus agent stopped.")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="AEGIS EDR-lite Agent")
+    parser = argparse.ArgumentParser(description="Ram Antivirus EDR-lite Agent")
     parser.add_argument(
         "--ipc",
         action="store_true",

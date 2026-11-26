@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
 use aegis_agent::{discovery, fim, monitor};
 use chrono::Utc;
 use rand::Rng;
@@ -15,15 +16,15 @@ use tokio::sync::Mutex;
 use tokio::time::Duration;
 
 // Task #2: Ransomware protection module
-mod ransomware;
+pub mod ransomware;
 use ransomware::RansomwareState;
 
 // Task #5: EDR/XDR core
-mod edr;
+pub mod edr;
 use edr::EdrState;
 
 // Task #6: Antivirus engine
-mod antivirus;
+pub mod antivirus;
 use antivirus::AntivirusState;
 
 // ---------------------------------------------------------------------------
@@ -32,7 +33,7 @@ use antivirus::AntivirusState;
 
 /// Create a Command that runs hidden on Windows (no visible CMD window)
 fn hidden_command(program: &str) -> std::process::Command {
-    let mut cmd = hidden_command(program);
+    let mut cmd = std::process::Command::new(program);
     #[cfg(target_os = "windows")]
     {
         use std::os::windows::process::CommandExt;

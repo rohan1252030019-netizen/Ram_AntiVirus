@@ -1,5 +1,5 @@
 """
-Renyi Entropy Analyzer for AEGIS Quantum Security Module.
+Renyi Entropy Analyzer for Ram Antivirus Quantum Security Module.
 
 Implements generalized Renyi entropy H_alpha(X) = 1/(1-alpha) * log2(sum(p_i^alpha))
 for detecting C2 beacons, steganography, and anomalous network flows using
