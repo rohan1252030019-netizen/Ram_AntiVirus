@@ -1,0 +1,9 @@
+{
+  "total_assets": 28,
+  "open_vulnerabilities": 4,
+  "critical_vulnerabilities": 0,
+  "active_incidents": 0,
+  "honeypot_interactions": 0,
+  "actions_taken": 0,
+  "risk_level": "low"
+}

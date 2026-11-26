@@ -1,0 +1,18 @@
+{
+  "id": "33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+  "name": "AEGIS Demo",
+  "slug": "demo",
+  "api_key": "PLACEHOLDER_API_KEY_AEGIS_DEV_ONLY",
+  "settings": {
+    "auto_response": true,
+    "email_enabled": false,
+    "scan_interval": 3600,
+    "notify_on_high": true,
+    "email_recipients": [],
+    "notify_on_actions": true,
+    "notify_on_critical": true,
+    "notification_channels": [
+      "webhook"
+    ]
+  }
+}

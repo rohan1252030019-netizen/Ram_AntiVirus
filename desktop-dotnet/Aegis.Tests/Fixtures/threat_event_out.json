@@ -1,0 +1,10 @@
+{
+  "id": "te_01",
+  "rule_id": "rule_01",
+  "rule_name": "Credential Dump Attempt",
+  "host": "WORKSTATION-01",
+  "severity": "critical",
+  "triggered_at": "2026-11-03T00:00:00Z",
+  "process": "sample_dump.exe",
+  "details": "Memory dump attempted"
+}

@@ -1,0 +1,40 @@
+{
+  "campaigns": [
+    {
+      "cluster_id": "41b23bd8",
+      "ttp_fingerprint": "Credential Access::T1110.001",
+      "mitre_technique": "T1110.001",
+      "mitre_tactic": "Credential Access",
+      "distinct_ips": 3,
+      "total_incidents": 107,
+      "first_seen": "2026-10-29T03:58:02",
+      "last_seen": "2026-10-31T11:39:51",
+      "sample_ips": [
+        "192.0.2.10",
+        "192.0.2.11",
+        "45.33.32.156"
+      ],
+      "window_hours": 168
+    },
+    {
+      "cluster_id": "9534efba",
+      "ttp_fingerprint": "Reconnaissance::T1595.001",
+      "mitre_technique": "T1595.001",
+      "mitre_tactic": "Reconnaissance",
+      "distinct_ips": 3,
+      "total_incidents": 24,
+      "first_seen": "2026-10-29T03:48:00",
+      "last_seen": "2026-10-31T11:38:47",
+      "sample_ips": [
+        "185.220.101.230",
+        "185.220.101.250",
+        "185.220.101.42"
+      ],
+      "window_hours": 168
+    }
+  ],
+  "count": 2,
+  "window_hours": 168,
+  "effective_window_hours": 168,
+  "min_distinct_ips": 3
+}

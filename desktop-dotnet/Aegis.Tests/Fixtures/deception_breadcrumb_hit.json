@@ -1,0 +1,11 @@
+{
+  "id": "hit_01",
+  "campaign_id": "cmp_01",
+  "breadcrumb_uuid": "bc_01",
+  "planted_in": "C:\\Users\\Admin\\.aws\\credentials",
+  "bait_kind": "aws_key",
+  "hit_count": 3,
+  "last_hit_at": "2026-11-03T00:00:00Z",
+  "last_hit_source": "185.220.101.42",
+  "planted_at": "2026-11-01T00:00:00Z"
+}

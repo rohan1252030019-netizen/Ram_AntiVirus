@@ -1,0 +1,651 @@
+[
+  {
+    "route": "POST /api/v1/auth/user/login",
+    "backend_file": "backend/app/api/auth.py",
+    "schema_name": "UserLoginResponse",
+    "dto": "UserLoginResponse",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/auth/login",
+    "backend_file": "backend/app/api/auth.py",
+    "schema_name": "LoginResponse",
+    "dto": "ClientLoginResponse",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/dashboard/overview",
+    "backend_file": "backend/app/api/dashboard.py",
+    "schema_name": "OverviewStats",
+    "dto": "DashboardOverviewDto",
+    "extra_in_dto": [
+      "active_threats",
+      "assets_protected",
+      "avg_triage_time_ms",
+      "blocked_ips_count",
+      "honeypot_interactions_24h",
+      "incidents_today",
+      "system_health"
+    ],
+    "missing_in_dto": [
+      "actions_taken",
+      "active_incidents",
+      "critical_vulnerabilities",
+      "honeypot_interactions",
+      "open_vulnerabilities",
+      "risk_level",
+      "total_assets"
+    ]
+  },
+  {
+    "route": "GET /api/v1/dashboard/timeline",
+    "backend_file": "backend/app/api/dashboard.py",
+    "schema_name": "List<TimelineEvent>",
+    "dto": "List<TimelineEventDto>",
+    "extra_in_dto": [
+      "date",
+      "incident_count",
+      "threat_count"
+    ],
+    "missing_in_dto": [
+      "confidence",
+      "decision",
+      "description",
+      "id",
+      "linked_incident_id",
+      "model_used",
+      "module",
+      "navigable",
+      "severity",
+      "timestamp",
+      "title",
+      "type"
+    ]
+  },
+  {
+    "route": "GET /api/v1/response/incidents",
+    "backend_file": "backend/app/api/response.py",
+    "schema_name": "List<IncidentOut>",
+    "dto": "List<IncidentDto>",
+    "extra_in_dto": [
+      "created_at",
+      "raw_log",
+      "risk_score",
+      "tags"
+    ],
+    "missing_in_dto": [
+      "ai_analysis",
+      "contained_at",
+      "detected_at",
+      "mitre_tactic",
+      "raw_alert",
+      "resolved_at",
+      "source"
+    ]
+  },
+  {
+    "route": "GET /api/v1/response/incidents/{id}",
+    "backend_file": "backend/app/api/response.py",
+    "schema_name": "IncidentOut",
+    "dto": "IncidentDto",
+    "extra_in_dto": [
+      "created_at",
+      "raw_log",
+      "risk_score",
+      "tags"
+    ],
+    "missing_in_dto": [
+      "ai_analysis",
+      "contained_at",
+      "detected_at",
+      "mitre_tactic",
+      "raw_alert",
+      "resolved_at",
+      "source"
+    ]
+  },
+  {
+    "route": "POST /api/v1/response/actions/{action_id}/approve",
+    "backend_file": "backend/app/api/response.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/response/actions/{action_id}/reject",
+    "backend_file": "backend/app/api/response.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/ransomware/stats",
+    "backend_file": "backend/app/api/ransomware.py",
+    "schema_name": "RansomwareStatsOut",
+    "dto": "RansomwareStatsDto",
+    "extra_in_dto": [],
+    "missing_in_dto": [
+      "raas_groups_tracked",
+      "triggers_24h"
+    ]
+  },
+  {
+    "route": "GET /api/v1/ransomware/raas-groups",
+    "backend_file": "backend/app/api/ransomware.py",
+    "schema_name": "RaaSGroupsOut",
+    "dto": "List<RaaSGroupDto>",
+    "extra_in_dto": [
+      "name"
+    ],
+    "missing_in_dto": [
+      "groups",
+      "timeline"
+    ]
+  },
+  {
+    "route": "GET /api/v1/ransomware/recovery-options/{event_id}",
+    "backend_file": "backend/app/api/ransomware.py",
+    "schema_name": "RecoveryOptionsOut",
+    "dto": "RecoveryOptionsDto",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/ransomware/restore",
+    "backend_file": "backend/app/api/ransomware.py",
+    "schema_name": "RestoreJobOut",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/firewall/rules",
+    "backend_file": "backend/app/api/firewall.py",
+    "schema_name": "List<FirewallRuleOut>",
+    "dto": "List<FirewallRuleDto>",
+    "extra_in_dto": [],
+    "missing_in_dto": [
+      "client_id",
+      "hits",
+      "last_hit_at",
+      "updated_at"
+    ]
+  },
+  {
+    "route": "GET /api/v1/firewall/blocked",
+    "backend_file": "backend/app/api/firewall.py",
+    "schema_name": "BlockedIPsResponse",
+    "dto": "BlockedIpsResponse",
+    "extra_in_dto": [
+      "blocked_ips",
+      "total"
+    ],
+    "missing_in_dto": [
+      "count",
+      "items",
+      "local_path",
+      "pi_reachable"
+    ]
+  },
+  {
+    "route": "DELETE /api/v1/firewall/blocked/{ip}",
+    "backend_file": "backend/app/api/firewall.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/infra/systems",
+    "backend_file": "backend/app/api/infra.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "SystemsResponse",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/settings/client",
+    "backend_file": "backend/app/api/settings.py",
+    "schema_name": "ClientSettings",
+    "dto": "ClientSettingsDto",
+    "extra_in_dto": [
+      "ai_mode",
+      "client_id",
+      "risk_threshold",
+      "safe_ips"
+    ],
+    "missing_in_dto": [
+      "api_key",
+      "id",
+      "settings"
+    ]
+  },
+  {
+    "route": "PUT /api/v1/settings/client",
+    "backend_file": "backend/app/api/settings.py",
+    "schema_name": "ClientSettings",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/settings/notifications",
+    "backend_file": "backend/app/api/settings.py",
+    "schema_name": "NotificationConfig",
+    "dto": "NotificationConfigDto",
+    "extra_in_dto": [
+      "enabled",
+      "notify_critical_only"
+    ],
+    "missing_in_dto": [
+      "channels",
+      "email_enabled",
+      "email_recipients",
+      "notify_on_actions",
+      "notify_on_critical",
+      "notify_on_high",
+      "notify_on_scan_completed",
+      "telegram_connected",
+      "telegram_enabled",
+      "webhook_format"
+    ]
+  },
+  {
+    "route": "PUT /api/v1/settings/notifications",
+    "backend_file": "backend/app/api/settings.py",
+    "schema_name": "NotificationConfig",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/settings/notifications",
+    "backend_file": "backend/app/api/settings.py",
+    "schema_name": "object",
+    "dto": "NotificationTestResponse",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/edr/events",
+    "backend_file": "backend/app/api/edr.py",
+    "schema_name": "EdrEventsOut",
+    "dto": "EdrEventsOut",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/edr/events/recent",
+    "backend_file": "backend/app/api/edr.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "List<RecentEdrEventDto>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/edr/kill-process",
+    "backend_file": "backend/app/api/edr.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/edr/quarantine-file",
+    "backend_file": "backend/app/api/edr.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/edr/hosts/{agent_id}/isolate",
+    "backend_file": "backend/app/api/edr.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/edr/hosts/{agent_id}/unisolate",
+    "backend_file": "backend/app/api/edr.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/antivirus/signatures",
+    "backend_file": "backend/app/api/antivirus.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "SignatureBundleDto",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/antivirus/signatures/update",
+    "backend_file": "backend/app/api/antivirus.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "SignatureBundleDto",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/antivirus/detections",
+    "backend_file": "backend/app/api/antivirus.py",
+    "schema_name": "DetectionOut",
+    "dto": "DetectionOut",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/antivirus/quarantine",
+    "backend_file": "backend/app/api/antivirus.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "List<QuarantineItemDto>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/antivirus/quarantine/{detection_id}/release",
+    "backend_file": "backend/app/api/antivirus.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "ReleaseQuarantineResponse",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/antivirus/hash/{sha256}/lookup",
+    "backend_file": "backend/app/api/antivirus.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "HashLookupDto",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/surface/scan",
+    "backend_file": "backend/app/api/surface.py",
+    "schema_name": "ScanResponse",
+    "dto": "ScanResponse",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/surface/scans",
+    "backend_file": "backend/app/api/surface.py",
+    "schema_name": "List<ScanDetail>",
+    "dto": "List<ScanDetail>",
+    "extra_in_dto": [
+      "dictionary<string"
+    ],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/surface/assets",
+    "backend_file": "backend/app/api/surface.py",
+    "schema_name": "List<AssetOut>",
+    "dto": "List<AssetOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/surface/vulnerabilities",
+    "backend_file": "backend/app/api/surface.py",
+    "schema_name": "List<VulnOut>",
+    "dto": "List<VulnOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "PATCH /api/v1/surface/vulnerabilities/{vuln_id}",
+    "backend_file": "backend/app/api/surface.py",
+    "schema_name": "VulnOut",
+    "dto": "VulnOut",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/surface/harden",
+    "backend_file": "backend/app/api/surface.py",
+    "schema_name": "HardenResponse",
+    "dto": "HardenResponse",
+    "extra_in_dto": [
+      "dictionary<string"
+    ],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/phantom/honeypots",
+    "backend_file": "backend/app/api/phantom.py",
+    "schema_name": "List<HoneypotOut>",
+    "dto": "List<HoneypotOut>",
+    "extra_in_dto": [
+      "dictionary<string"
+    ],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/phantom/honeypots",
+    "backend_file": "backend/app/api/phantom.py",
+    "schema_name": "HoneypotOut",
+    "dto": "HoneypotOut",
+    "extra_in_dto": [
+      "dictionary<string"
+    ],
+    "missing_in_dto": []
+  },
+  {
+    "route": "DELETE /api/v1/phantom/honeypots/{honeypot_id}",
+    "backend_file": "backend/app/api/phantom.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/phantom/honeypots/{honeypot_id}/rotate",
+    "backend_file": "backend/app/api/phantom.py",
+    "schema_name": "HoneypotOut",
+    "dto": "HoneypotOut",
+    "extra_in_dto": [
+      "dictionary<string"
+    ],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/phantom/interactions",
+    "backend_file": "backend/app/api/phantom.py",
+    "schema_name": "List<InteractionOut>",
+    "dto": "List<InteractionOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/phantom/attackers",
+    "backend_file": "backend/app/api/phantom.py",
+    "schema_name": "List<AttackerOut>",
+    "dto": "List<AttackerOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/deception/campaigns",
+    "backend_file": "backend/app/api/deception.py",
+    "schema_name": "List<CampaignOut>",
+    "dto": "List<CampaignOut>",
+    "extra_in_dto": [
+      "dictionary<string"
+    ],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/deception/campaigns",
+    "backend_file": "backend/app/api/deception.py",
+    "schema_name": "CampaignOut",
+    "dto": "CampaignOut",
+    "extra_in_dto": [
+      "dictionary<string"
+    ],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/deception/campaigns/{campaign_id}/rotate",
+    "backend_file": "backend/app/api/deception.py",
+    "schema_name": "CampaignOut",
+    "dto": "CampaignOut",
+    "extra_in_dto": [
+      "dictionary<string"
+    ],
+    "missing_in_dto": []
+  },
+  {
+    "route": "DELETE /api/v1/deception/campaigns/{campaign_id}",
+    "backend_file": "backend/app/api/deception.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/deception/breadcrumb-hits",
+    "backend_file": "backend/app/api/deception.py",
+    "schema_name": "List<BreadcrumbHitOut>",
+    "dto": "List<BreadcrumbHitOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/deception/themes",
+    "backend_file": "backend/app/api/deception.py",
+    "schema_name": "List<ThemeOut>",
+    "dto": "List<ThemeOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/threats/intel",
+    "backend_file": "backend/app/api/threats.py",
+    "schema_name": "List<IOCOut>",
+    "dto": "List<IOCOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/threats/intel",
+    "backend_file": "backend/app/api/threats.py",
+    "schema_name": "IOCOut",
+    "dto": "IOCOut",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/threats/events",
+    "backend_file": "backend/app/api/threats.py",
+    "schema_name": "List<ThreatEventOut>",
+    "dto": "List<ThreatEventOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/intel/ip/{ip}",
+    "backend_file": "backend/app/api/intel.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "IpIntelDto",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/threats/campaigns",
+    "backend_file": "backend/app/api/threats.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "List<TtpCampaignOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/dos/status",
+    "backend_file": "backend/app/api/dos.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "DosStatusDto",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/dos/offenders",
+    "backend_file": "backend/app/api/dos.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "List<DosOffenderDto>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/dos/config",
+    "backend_file": "backend/app/api/dos.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "DosConfigDto",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/nodes",
+    "backend_file": "backend/app/api/nodes.py",
+    "schema_name": "List<NodeOut>",
+    "dto": "List<NodeOut>",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/nodes/{node_id}",
+    "backend_file": "backend/app/api/nodes.py",
+    "schema_name": "NodeOut",
+    "dto": "NodeOut",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/nodes/enroll",
+    "backend_file": "backend/app/api/nodes.py",
+    "schema_name": "EnrollResponse",
+    "dto": "EnrollResponse",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "DELETE /api/v1/nodes/{node_id}",
+    "backend_file": "backend/app/api/nodes.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "bool",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/compliance/frameworks",
+    "backend_file": "backend/app/api/compliance.py",
+    "schema_name": "ComplianceOverview",
+    "dto": "ComplianceOverview",
+    "extra_in_dto": [
+      "list<dictionary<string"
+    ],
+    "missing_in_dto": []
+  },
+  {
+    "route": "GET /api/v1/quantum/readiness",
+    "backend_file": "backend/app/api/quantum.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "QuantumReadinessDto",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  },
+  {
+    "route": "POST /api/v1/quantum/entropy",
+    "backend_file": "backend/app/api/quantum.py",
+    "schema_name": "Not in OpenAPI (Raw dict/primitive)",
+    "dto": "EntropyAnalysisResult",
+    "extra_in_dto": [],
+    "missing_in_dto": []
+  }
+]

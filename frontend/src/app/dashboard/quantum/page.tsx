@@ -79,6 +79,75 @@ function timelineBarColor(status: string): string {
   return 'var(--danger)';
 }
 
+// ─── API → view-model normalisation ───────────────────────────────────────────
+// /quantum/crypto/assess and /quantum/crypto/timeline return envelopes with
+// their own shape (classical_bits / quantum_bits, status critical|migrate) and
+// the timeline is three arrays, not one. The page was written against a flat
+// array, so assigning the envelope straight into state crashed it on
+// `assessments.filter(...)`. Normalise at the edge so unknown statuses can
+// never paint a critical finding green either.
+
+type ApiStatus = 'critical' | 'migrate' | 'safe' | 'at_risk' | 'vulnerable' | 'broken' | string;
+
+const API_STATUS: Record<string, AlgorithmAssessment['status']> = {
+  critical: 'vulnerable',
+  vulnerable: 'vulnerable',
+  broken: 'broken',
+  migrate: 'at_risk',
+  at_risk: 'at_risk',
+  safe: 'safe',
+};
+
+interface ApiAssessment {
+  algorithm: string;
+  key_bits?: number;
+  classical_bits?: number;
+  quantum_bits?: number;
+  type?: string;
+  classical_security?: string;
+  quantum_security?: string;
+  status?: ApiStatus;
+  recommendation?: string;
+}
+
+interface ApiTimelineEntry {
+  algorithm: string;
+  key_bits?: number;
+  classical_bits?: number;
+  type?: string;
+  status?: ApiStatus;
+  vulnerable_by?: number;
+  vulnerable_since?: number;
+}
+
+function toStatus(status?: ApiStatus): AlgorithmAssessment['status'] {
+  return API_STATUS[String(status ?? '').toLowerCase()] ?? 'at_risk';
+}
+
+function toAssessment(a: ApiAssessment): AlgorithmAssessment {
+  const keyBits = a.key_bits ?? a.classical_bits ?? 0;
+  return {
+    algorithm: a.algorithm,
+    key_bits: keyBits,
+    type: a.type ?? 'unknown',
+    classical_security: a.classical_security ?? `${keyBits}-bit`,
+    quantum_security: a.quantum_security ?? (a.quantum_bits ? `${a.quantum_bits}-bit` : 'unknown'),
+    status: toStatus(a.status),
+    recommendation: a.recommendation ?? '',
+  };
+}
+
+function toTimelineRow(e: ApiTimelineEntry, fallbackYear: number): CryptoTimelineEntry {
+  return {
+    algorithm: e.algorithm,
+    key_bits: e.key_bits ?? e.classical_bits ?? 0,
+    type: e.type ?? 'unknown',
+    vulnerable_by: e.vulnerable_by ?? e.vulnerable_since ?? fallbackYear,
+    status: toStatus(e.status),
+  };
+}
+
+
 // ─── Fallback data ────────────────────────────────────────────────────────────
 
 const FALLBACK_READINESS: QuantumReadiness = {
@@ -151,14 +220,37 @@ export default function QuantumPage() {
 
     try {
       const data = await api.quantum.timeline();
-      setTimeline(data as CryptoTimelineEntry[]);
+      // { generated_at, current_year, already_vulnerable, upcoming_vulnerabilities, quantum_safe }
+      const payload = data as unknown as {
+        current_year?: number;
+        already_vulnerable?: ApiTimelineEntry[];
+        upcoming_vulnerabilities?: ApiTimelineEntry[];
+        quantum_safe?: ApiTimelineEntry[];
+      };
+      const rows = [
+        ...(payload?.already_vulnerable ?? []),
+        ...(payload?.upcoming_vulnerabilities ?? []),
+        ...(payload?.quantum_safe ?? []),
+      ];
+      if (rows.length > 0) {
+        const year = payload?.current_year ?? new Date().getFullYear();
+        setTimeline(rows.map((r) => toTimelineRow(r, year)));
+      } else {
+        usedFallback = true;
+      }
     } catch {
       usedFallback = true;
     }
 
     try {
       const data = await api.quantum.assessAll();
-      setAssessments(data as AlgorithmAssessment[]);
+      // The endpoint returns an envelope; older builds assumed a bare array.
+      const list = Array.isArray(data) ? data : data?.assessments;
+      if (Array.isArray(list) && list.length > 0) {
+        setAssessments((list as ApiAssessment[]).map(toAssessment));
+      } else {
+        usedFallback = true;
+      }
     } catch {
       usedFallback = true;
     }

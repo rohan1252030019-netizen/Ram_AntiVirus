@@ -1,0 +1,13 @@
+{
+  "token": "PLACEHOLDER_JWT_TOKEN_SAMPLE_DEV_ONLY",
+  "user": {
+    "id": "usr_01",
+    "email": "admin@aegis.local",
+    "name": "SecOps Admin",
+    "role": "admin",
+    "client_id": "client_01",
+    "is_active": true,
+    "created_at": null,
+    "last_login": null
+  }
+}

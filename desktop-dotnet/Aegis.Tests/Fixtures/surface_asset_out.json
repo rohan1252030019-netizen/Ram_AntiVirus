@@ -1,0 +1,33 @@
+{
+  "id": "ast_01",
+  "hostname": "srv-app-01",
+  "ip_address": "192.168.1.50",
+  "asset_type": "server",
+  "ports": [
+    80,
+    443
+  ],
+  "technologies": [
+    "nginx",
+    "fastapi"
+  ],
+  "status": "active",
+  "risk_score": 45.2,
+  "last_scan_at": "2026-11-03T00:00:00Z",
+  "vulnerability_count": 3,
+  "risk_band": "medium",
+  "risk_method": "cve_density",
+  "risk_ai_used": false,
+  "exposure": "internal",
+  "exposure_multiplier": 1.0,
+  "base_score": 40.0,
+  "vuln_term": 5.2,
+  "risk_drivers": [
+    "outdated_nginx"
+  ],
+  "service_classes": [
+    "web"
+  ],
+  "host_wide_count": 0,
+  "owned_count": 0
+}

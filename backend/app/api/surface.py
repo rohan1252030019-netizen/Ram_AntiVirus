@@ -117,11 +117,17 @@ async def launch_scan(
     """Launch a new scan against a target. Analyst or admin only."""
     client = auth.client
     result = await scan_orchestrator.launch_scan(body.target, body.scan_type, client, db)
+    simulated = bool((result.get("results") or {}).get("simulated"))
     return ScanResponse(
         scan_id=result["id"],
         target=body.target,
         status=result["status"],
-        message=f"Scan {'completed' if result['status'] == 'completed' else 'started'} for {body.target}",
+        message=(
+            f"Simulated scan completed for {body.target} — the public demo never "
+            "probes the network"
+            if simulated
+            else f"Scan {'completed' if result['status'] == 'completed' else 'started'} for {body.target}"
+        ),
     )
 
 

@@ -15,8 +15,7 @@ const pkg = require('./package.json');
 // backend: shipping one meant every copy of the dashboard silently sent its
 // API traffic (and keys) to a third-party origin.
 const BACKEND_URL =
-  process.env.BACKEND_URL ||
-  (process.env.NODE_ENV !== 'production' ? 'http://localhost:8000' : '');
+  process.env.BACKEND_URL || 'http://localhost:8000';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -26,6 +25,31 @@ const nextConfig = {
   },
   turbopack: {
     root: path.resolve('.'),
+  },
+  // Baseline browser hardening. The FastAPI middleware sets these on API
+  // responses, but the HTML everybody actually loads is served by Next, and
+  // next dev / next start do not add any of them on their own — so the
+  // dashboard was framing-enabled and had no nosniff/referrer policy.
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'Referrer-Policy', value: 'no-referrer' },
+          {
+            key: 'Permissions-Policy',
+            value: 'geolocation=(), microphone=(), camera=(), payment=()',
+          },
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains',
+          },
+        ],
+      },
+    ];
   },
   async rewrites() {
     if (!BACKEND_URL) {

@@ -1,0 +1,114 @@
+<UserControl x:Class="Aegis.App.Views.IncidentDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Aegis.App.ViewModels"
+             Background="{StaticResource AppBackground}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="28">
+        <StackPanel MaxWidth="1100" HorizontalAlignment="Left">
+            <!-- Navigation Back Bar -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <Button Content="← Back to Incident Queue" Command="{Binding BackToQueueCommand}" Background="Transparent" Foreground="{StaticResource PrimaryCyan}" Padding="0" FontSize="13" Margin="0,0,16,0"/>
+            </StackPanel>
+
+            <!-- Incident Overview Header Card -->
+            <Border Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="24" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Border Background="{Binding Incident.Severity, Converter={StaticResource SeverityToBrush}}" CornerRadius="4" Padding="6,2" Margin="0,0,8,0">
+                                <TextBlock Text="{Binding Incident.Severity}" FontSize="11" FontWeight="Bold" Foreground="#0B0D12"/>
+                            </Border>
+                            <Border Background="#1E293B" CornerRadius="4" Padding="6,2" Margin="0,0,8,0">
+                                <TextBlock Text="{Binding Incident.Status}" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextSecondary}"/>
+                            </Border>
+                            <TextBlock Text="{Binding Incident.Id}" Foreground="{StaticResource TextMuted}" FontSize="12" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <TextBlock Text="{Binding Incident.Title}" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,8"/>
+                        <TextBlock Text="{Binding Incident.Description}" FontSize="13" Foreground="{StaticResource TextSecondary}" TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                    <!-- Risk Gauge Score -->
+                    <Border Grid.Column="1" Background="#1E293B" CornerRadius="8" Padding="16,10" VerticalAlignment="Center">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="RISK SCORE" FontSize="10" FontWeight="SemiBold" Foreground="{StaticResource TextMuted}" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Incident.RiskScore, StringFormat='{}{0:F1}'}" FontSize="24" FontWeight="Bold" Foreground="{StaticResource AlertRed}" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Evidence & Raw Logs -->
+            <Border Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+                <StackPanel>
+                    <TextBlock Text="Telemetry Evidence &amp; Process Execution" FontSize="15" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,12"/>
+                    <Border Background="#090B10" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="6" Padding="14">
+                        <TextBox Text="{Binding Incident.RawLog, Mode=OneWay}" 
+                                 FontFamily="Consolas, Cascadia Code" 
+                                 FontSize="12" 
+                                 Foreground="#38BDF8" 
+                                 Background="Transparent" 
+                                 BorderThickness="0" 
+                                 IsReadOnly="True" 
+                                 TextWrapping="Wrap"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- SOAR Containment Playbooks Actions -->
+            <Border Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="20">
+                <StackPanel>
+                    <TextBlock Text="Autonomous Containment &amp; Remediation Actions" FontSize="15" FontWeight="Bold" Foreground="{StaticResource TextPrimary}" Margin="0,0,0,14"/>
+
+                    <ItemsControl ItemsSource="{Binding Actions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{StaticResource CardHover}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="6" Padding="16,12" Margin="0,0,0,10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0">
+                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                                <TextBlock Text="{Binding ActionType}" FontWeight="Bold" FontSize="14" Foreground="{StaticResource PrimaryCyan}" Margin="0,0,8,0"/>
+                                                <Border Background="#334155" CornerRadius="3" Padding="4,1">
+                                                    <TextBlock Text="{Binding Status}" FontSize="10" FontWeight="SemiBold" Foreground="{StaticResource TextPrimary}"/>
+                                                </Border>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Target, StringFormat='Target: {0}'}" FontSize="12" Foreground="{StaticResource TextSecondary}"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                            <Button Content="Dismiss" 
+                                                    Command="{Binding DataContext.RejectActionCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    Background="Transparent" 
+                                                    Foreground="{StaticResource TextMuted}" 
+                                                    Margin="0,0,8,0" 
+                                                    Padding="10,6" 
+                                                    FontSize="12"/>
+                                            <Button Content="Execute Now" 
+                                                    Command="{Binding DataContext.ApproveActionCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    Background="{StaticResource AlertRed}" 
+                                                    Foreground="#FFFFFF" 
+                                                    Padding="12,6" 
+                                                    FontSize="12"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

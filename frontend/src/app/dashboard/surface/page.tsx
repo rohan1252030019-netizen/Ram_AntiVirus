@@ -193,6 +193,10 @@ export default function SurfacePage() {
   const [scanTarget, setScanTarget] = useState('');
   const [scanType, setScanType] = useState('full');
   const [triggeringScan, setTriggeringScan] = useState(false);
+  const [scanError, setScanError] = useState<string | null>(null);
+  // Public demo: the backend fabricates scan results instead of running nmap,
+  // so the page says so rather than letting the button look broken.
+  const [isDemo, setIsDemo] = useState(false);
 
   // Filters & State
   const [searchQuery, setSearchQuery] = useState('');
@@ -226,6 +230,16 @@ export default function SurfacePage() {
     loadData();
   }, [loadData]);
 
+  // Ask the backend whether this session is the public read-only demo. The
+  // threats page guesses from a failed GET, which no longer works now that the
+  // sandbox allows reads.
+  useEffect(() => {
+    api.auth
+      .me()
+      .then((me) => setIsDemo(Boolean(me?.is_demo)))
+      .catch(() => setIsDemo(false));
+  }, []);
+
   // Polling for active scan progress
   const hasActiveScan = scans.some((s) => s.status === 'running' || s.status === 'queued');
   useEffect(() => {
@@ -242,13 +256,20 @@ export default function SurfacePage() {
     const targetToScan = targetOverride || scanTarget;
     if (!targetToScan.trim()) return;
     setTriggeringScan(true);
+    setScanError(null);
     try {
       await api.surface.scan(targetToScan, scanType);
       setShowScanModal(false);
       setScanTarget('');
       await loadData();
-    } catch {
-      // ignore error
+    } catch (err) {
+      // Previously swallowed with `catch {}`, so a rejected scan (demo
+      // sandbox, read-only key, network failure) looked like a dead button.
+      setScanError(
+        err instanceof Error && err.message
+          ? err.message
+          : 'Scan could not be started. This deployment is read-only.',
+      );
     } finally {
       setTriggeringScan(false);
     }
@@ -525,13 +546,29 @@ export default function SurfacePage() {
         </div>
 
         <Button
-          onClick={() => setShowScanModal(true)}
+          onClick={() => {
+            setScanError(null);
+            setShowScanModal(true);
+          }}
           className="bg-[#22D3EE] hover:bg-[#22D3EE]/90 text-black font-semibold gap-2 shadow-[0_0_20px_rgba(34,211,238,0.2)]"
         >
           <Radar01Icon size={16} />
           <span>Launch Scan</span>
         </Button>
       </div>
+
+      {isDemo && (
+        <div className="mb-4 rounded-2xl border border-cyan-500/30 bg-cyan-500/[0.07] p-3.5 flex items-start gap-3">
+          <Radar01Icon size={18} className="text-cyan-400 mt-0.5 shrink-0" aria-hidden />
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-medium text-cyan-200">Simulated scanning</p>
+            <p className="text-xs text-cyan-100/70 mt-0.5">
+              This is the public demo, so scans run against seeded demo data instead of
+              probing the network. Everything else on this page is live from the demo tenant.
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* R1: Live Scan Progress HUD Widget */}
       {runningScan && (
@@ -872,6 +909,16 @@ export default function SurfacePage() {
               <option value="vuln">Vulnerability Audit Only</option>
             </select>
           </div>
+          {isDemo && (
+            <p className="text-[11px] text-cyan-200/70 bg-cyan-500/[0.07] border border-cyan-500/20 rounded-lg px-3 py-2">
+              Demo mode: results are simulated from seeded data. No hosts are contacted.
+            </p>
+          )}
+          {scanError && (
+            <p role="alert" className="text-[11px] text-red-300 bg-red-500/10 border border-red-500/30 rounded-lg px-3 py-2">
+              {scanError}
+            </p>
+          )}
           <div className="flex justify-end gap-3 pt-3">
             <Button variant="ghost" onClick={() => setShowScanModal(false)}>
               Cancel

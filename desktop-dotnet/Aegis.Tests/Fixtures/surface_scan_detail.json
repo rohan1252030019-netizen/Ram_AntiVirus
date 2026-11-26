@@ -1,0 +1,11 @@
+{
+  "id": "scan_01",
+  "target": "192.168.1.0/24",
+  "type": "full",
+  "status": "completed",
+  "started_at": "2026-11-03T00:00:00Z",
+  "completed_at": "2026-11-03T00:05:00Z",
+  "results": {},
+  "assets_found": 14,
+  "progress": 1.0
+}

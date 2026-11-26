@@ -1,6 +1,7 @@
 import asyncio
 import json
 import logging
+import secrets
 from datetime import datetime
 from typing import Optional
 
@@ -79,6 +80,87 @@ class ScanOrchestrator:
             except Exception:  # noqa: BLE001
                 pass
 
+    async def _simulate_demo_scan(
+        self,
+        target: str,
+        scan_type: str,
+        client: Client,
+        db: AsyncSession,
+    ) -> dict:
+        """Return a fabricated, already-complete scan for the public demo tenant.
+
+        The public demo publishes its admin password, so a real scan would let
+        any anonymous visitor run ``nmap -sT`` from this host's IP address and
+        consume its CPU. Nothing here spawns a subprocess or opens a socket: the
+        discovery payload is derived from the tenant's own seeded inventory, so
+        the Surface page keeps demonstrating the workflow without touching the
+        host or the network.
+        """
+        now = datetime.utcnow()
+        # Second-precision ids collide if a demo visitor double-clicks; the
+        # random suffix keeps every simulated scan a distinct PK row.
+        scan_id = f"scan_demo_{now.strftime('%Y%m%d_%H%M%S')}_{secrets.token_hex(3)}"
+
+        rows = (
+            await db.execute(
+                select(Asset).where(Asset.client_id == client.id).limit(25)
+            )
+        ).scalars().all()
+
+        hosts = [
+            {
+                "hostname": asset.hostname,
+                "ip": asset.ip_address or "",
+                "type": asset.asset_type or "web",
+                "ports": asset.ports or [],
+                "technologies": asset.technologies or [],
+            }
+            for asset in rows
+        ]
+        if not hosts:
+            hosts = [
+                {
+                    "hostname": target,
+                    "ip": "",
+                    "type": "web",
+                    "ports": [80, 443],
+                    "technologies": [],
+                }
+            ]
+
+        results: dict = {
+            "simulated": True,
+            "discovery": {
+                "source": "demo-simulation",
+                "hosts": hosts,
+            },
+        }
+        if scan_type in ("full", "vuln"):
+            results["vulnerabilities"] = {
+                "source": "demo-simulation",
+                "vulnerabilities": [],
+            }
+
+        state = {
+            "id": scan_id,
+            "target": target,
+            "type": scan_type,
+            "status": "completed",
+            "started_at": now.isoformat(),
+            "completed_at": now.isoformat(),
+            "client_id": client.id,
+            "results": results,
+            "assets_found": len(hosts),
+        }
+        await self.persist_scan(db, state)
+        logger.info(
+            "Demo tenant scan simulated for %s (%s, %d assets, no subprocess)",
+            target,
+            scan_type,
+            len(hosts),
+        )
+        return state
+
     async def launch_scan(
         self,
         target: str,
@@ -86,7 +168,16 @@ class ScanOrchestrator:
         client: Client,
         db: AsyncSession,
     ) -> dict:
-        """Launch a scan against a target."""
+        """Launch a scan against a target.
+
+        The public demo tenant never reaches a real scan. See
+        :meth:`_simulate_demo_scan`.
+        """
+        from app.core.demo import is_demo_tenant
+
+        if is_demo_tenant(client.id):
+            return await self._simulate_demo_scan(target, scan_type, client, db)
+
         from app.modules.surface.discovery import discovery_engine
         from app.modules.surface.nuclei import nuclei_scanner
 

@@ -1,0 +1,8 @@
+{
+  "id": "fw_01",
+  "name": "Block Malicious C2",
+  "enabled": true,
+  "priority": 10,
+  "yaml_def": "action: block\nsource: 185.220.101.0/24",
+  "created_at": "2026-11-01T00:00:00Z"
+}

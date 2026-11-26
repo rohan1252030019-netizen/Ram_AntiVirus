@@ -1,0 +1,11 @@
+{
+  "cluster_id": "cluster_t1490",
+  "tactic": "Impact",
+  "technique": "T1490 - Inhibit System Recovery",
+  "incident_count": 8,
+  "first_seen": "2026-10-30T00:00:00Z",
+  "last_seen": "2026-11-03T00:00:00Z",
+  "source_ips": [
+    "185.220.101.42"
+  ]
+}

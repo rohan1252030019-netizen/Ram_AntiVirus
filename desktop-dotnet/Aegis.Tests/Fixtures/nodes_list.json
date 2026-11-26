@@ -1,0 +1,39 @@
+[
+  {
+    "id": "aegis-msi",
+    "hostname": "MSI",
+    "os_info": "Windows 11",
+    "ip_address": "127.0.0.1",
+    "agent_version": "host-monitor-1.0",
+    "status": "online",
+    "last_heartbeat": "2026-11-03T16:56:24",
+    "node_type": "server",
+    "tags": [
+      "host-monitor",
+      "auto"
+    ],
+    "asset_count": 0,
+    "created_at": "2026-09-22T19:11:26",
+    "cpu": 0.0,
+    "mem": 0.0,
+    "disk": 0.0,
+    "processes": 0
+  },
+  {
+    "id": "5d0b581f-d879-4411-9134-c025c5c86d5d",
+    "hostname": "MSI",
+    "os_info": "Windows 11 (AMD64)",
+    "ip_address": "10.20.25.147",
+    "agent_version": "1.0.0",
+    "status": "stale",
+    "last_heartbeat": "2026-10-13T12:11:21",
+    "node_type": "workspace",
+    "tags": [],
+    "asset_count": 0,
+    "created_at": "2026-10-13T10:19:58",
+    "cpu": 0.0,
+    "mem": 0.0,
+    "disk": 0.0,
+    "processes": 0
+  }
+]

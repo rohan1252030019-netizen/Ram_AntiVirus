@@ -1,0 +1,10 @@
+{
+  "name": "finance",
+  "label": "Financial Services",
+  "description": "Banking decoys",
+  "industry": "banking",
+  "bait_kinds": [
+    "aws_key",
+    "db_creds"
+  ]
+}

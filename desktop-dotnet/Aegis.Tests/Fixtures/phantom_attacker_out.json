@@ -1,0 +1,18 @@
+{
+  "id": "atk_01",
+  "source_ip": "185.220.101.42",
+  "known_ips": [
+    "185.220.101.42"
+  ],
+  "tools_used": [
+    "hydra"
+  ],
+  "techniques": [
+    "T1110"
+  ],
+  "sophistication": "advanced",
+  "total_interactions": 48,
+  "first_seen": "2026-10-25T00:00:00Z",
+  "last_seen": "2026-11-03T00:00:00Z",
+  "ai_assessment": "Automated bruteforce scanner"
+}

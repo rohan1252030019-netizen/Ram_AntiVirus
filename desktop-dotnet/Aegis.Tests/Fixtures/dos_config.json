@@ -1,0 +1,14 @@
+{
+  "thresholds": {
+    "per_ip_rps": 10.0,
+    "subnet_rps": 40.0,
+    "global_rps": 50.0,
+    "expensive_rpm": 6.0,
+    "concurrency_per_ip": 20,
+    "block_duration_s": 900
+  },
+  "mode": "monitor",
+  "netshield_enabled": false,
+  "netshield_env_gate": false,
+  "under_attack": false
+}

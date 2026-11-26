@@ -1,0 +1,15 @@
+{
+  "event_id": "inc_001",
+  "host_id": "WORKSTATION-04",
+  "snapshots": [
+    {
+      "id": "snap_01",
+      "host_id": "WORKSTATION-04",
+      "created_at": "2026-11-03T00:00:00Z",
+      "age_hours": 2.5,
+      "label": "Daily VSS Snapshot",
+      "provider": "vss"
+    }
+  ],
+  "decryptors": []
+}

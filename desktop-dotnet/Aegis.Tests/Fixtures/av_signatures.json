@@ -1,0 +1,8 @@
+{
+  "version": "2026.11.03.01",
+  "bad_hashes": [
+    "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  ],
+  "generated_at": "2026-11-03T00:00:00Z",
+  "bad_hash_count": 1
+}

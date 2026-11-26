@@ -49,13 +49,26 @@ function LoginCard() {
 
   const [mode, setMode] = useState<AuthMode>('credentials');
   const [key, setKey] = useState('c6_vOoMiwHmU50GfuPUMp5G2doB0eXZaslXfpSAof7tBgQ');
-  const [email, setEmail] = useState('admin@aegis.local');
-  const [password, setPassword] = useState('admin123456');
+  // Demo credentials are filled in after mount, not during SSR. Cloudflare's
+  // Email Obfuscation rewrites any `admin@aegis.local` in the served HTML into
+  // a /cdn-cgi/l/email-protection link, so the server text and the client text
+  // disagreed, React aborted hydration on every /login load, and the Instant
+  // Demo button was dead until the client-side re-render finished (which over
+  // a tunnel can be many seconds).
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [mounted, setMounted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
   const keyRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+    setEmail((v) => v || 'admin@aegis.local');
+    setPassword((v) => v || 'admin123456');
+  }, []);
 
   useEffect(() => {
     if (hasAuth()) {
@@ -331,14 +344,27 @@ function LoginCard() {
             </div>
           )}
 
-          {/* Instant Demo Access Button */}
+          {/* Instant Demo Access Button.
+              Gated on `mounted` because a click that lands before React has
+              hydrated is silently dropped by the browser — the markup is
+              there, but no handler is attached yet. Over a tunnel that window
+              can last several seconds, so the button looked dead. Disabling
+              it until the effect runs makes the wait visible and lets
+              automation (and impatient humans) queue the click instead of
+              losing it. */}
           <button
             type="button"
             onClick={instantDemoLogin}
-            disabled={busy}
-            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 font-semibold text-[13px] transition-all duration-150"
+            disabled={busy || !mounted}
+            aria-busy={!mounted || busy}
+            aria-label="Instant Demo Sign-In"
+            className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 font-semibold text-[13px] transition-all duration-150 disabled:opacity-60 disabled:cursor-progress"
           >
-            <span>⚡ Instant Demo Sign-In (Click to Enter)</span>
+            <span>
+              {mounted
+                ? '⚡ Instant Demo Sign-In (Click to Enter)'
+                : '⚡ Preparing Demo Sign-In…'}
+            </span>
           </button>
 
           <button
@@ -367,8 +393,14 @@ function LoginCard() {
           </button>
 
           <div className="pt-2 rounded-lg bg-background/50 border border-border/50 p-2 text-center text-[11px] text-muted-foreground/80 space-y-0.5">
-            <p><span className="text-foreground font-medium">Demo Email:</span> admin@aegis.local</p>
-            <p><span className="text-foreground font-medium">Password:</span> admin123456</p>
+            <p>
+              <span className="text-foreground font-medium">Demo Email:</span>{' '}
+              {mounted ? 'admin@aegis.local' : '\u00a0'}
+            </p>
+            <p>
+              <span className="text-foreground font-medium">Password:</span>{' '}
+              {mounted ? 'admin123456' : '\u00a0'}
+            </p>
           </div>
 
           <div className="pt-1 flex items-center justify-between text-[11px] text-muted-foreground/65">

@@ -1,0 +1,123 @@
+<UserControl x:Class="Aegis.App.Views.ThreatIntelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Aegis.App.ViewModels"
+             Background="{StaticResource AppBackground}">
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="Threat Intelligence &amp; TTP Campaign Clusters" FontSize="22" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
+                <TextBlock Text="Ingest indicators of compromise (IOCs), track adversary clusters, and view MITRE ATT&amp;CK campaigns" FontSize="13" Foreground="{StaticResource TextSecondary}" Margin="0,4,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Content="Refresh Feeds" Command="{Binding LoadDataCommand}" Background="{StaticResource CardHover}" Foreground="{StaticResource TextPrimary}" Padding="14,6" FontSize="12"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Alerts -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,12">
+            <Border Background="#33EF4444" BorderBrush="{StaticResource AlertRed}" BorderThickness="1" CornerRadius="6" Padding="12,8" Margin="0,0,0,8"
+                    Visibility="{Binding ErrorMessage, Converter={StaticResource BoolToVis}}">
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="{StaticResource AlertRed}" FontWeight="SemiBold"/>
+            </Border>
+            <Border Background="#3322C55E" BorderBrush="{StaticResource SuccessGreen}" BorderThickness="1" CornerRadius="6" Padding="12,8" Margin="0,0,0,8"
+                    Visibility="{Binding StatusMessage, Converter={StaticResource BoolToVis}}">
+                <TextBlock Text="{Binding StatusMessage}" Foreground="{StaticResource SuccessGreen}" FontWeight="SemiBold"/>
+            </Border>
+        </StackPanel>
+
+        <!-- Ingest IOC Form -->
+        <Border Grid.Row="2" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Type:" VerticalAlignment="Center" Foreground="{StaticResource TextSecondary}" FontSize="12" Margin="0,0,8,0"/>
+                <ComboBox Grid.Column="1" SelectedValue="{Binding NewIocType}" SelectedValuePath="Content" VerticalAlignment="Center" Background="#1A1E2B" Foreground="{StaticResource TextPrimary}" Margin="0,0,16,0">
+                    <ComboBoxItem Content="ip" IsSelected="True"/>
+                    <ComboBoxItem Content="domain"/>
+                    <ComboBoxItem Content="sha256"/>
+                    <ComboBoxItem Content="url"/>
+                </ComboBox>
+
+                <TextBlock Grid.Column="2" Text="IOC Value:" VerticalAlignment="Center" Foreground="{StaticResource TextSecondary}" FontSize="12" Margin="0,0,8,0"/>
+                <TextBox Grid.Column="3" Text="{Binding NewIocValue, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="0,0,16,0"/>
+
+                <TextBlock Grid.Column="4" Text="Threat Type:" VerticalAlignment="Center" Foreground="{StaticResource TextSecondary}" FontSize="12" Margin="0,0,8,0"/>
+                <TextBox Grid.Column="5" Text="{Binding NewIocThreatType, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="0,0,16,0"/>
+
+                <Button Grid.Column="6" Content="Ingest IOC" Command="{Binding AddIocCommand}" Padding="16,8"/>
+            </Grid>
+        </Border>
+
+        <!-- Grids: IOCs and TTP Campaigns -->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.3*"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- IOC Table -->
+            <Border Grid.Column="0" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="14">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Active Indicators of Compromise (IOCs)" FontWeight="Bold" FontSize="13" Margin="0,0,0,10"/>
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Iocs}" AutoGenerateColumns="False" CanUserAddRows="False" EnableRowVirtualization="True"
+                              Background="Transparent" BorderThickness="0" Foreground="{StaticResource TextPrimary}" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{StaticResource CardBorder}" RowHeight="38">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Type" Binding="{Binding IocType}" Width="70"/>
+                            <DataGridTextColumn Header="Value" Binding="{Binding IocValue}" Width="*"/>
+                            <DataGridTextColumn Header="Threat" Binding="{Binding ThreatType}" Width="100"/>
+                            <DataGridTextColumn Header="Source" Binding="{Binding Source}" Width="100"/>
+                            <DataGridTextColumn Header="Conf." Binding="{Binding Confidence}" Width="50"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!-- TTP Campaigns -->
+            <Border Grid.Column="2" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="14">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Correlated TTP Campaigns" FontWeight="Bold" FontSize="13" Margin="0,0,0,10"/>
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Campaigns}" AutoGenerateColumns="False" CanUserAddRows="False" EnableRowVirtualization="True"
+                              Background="Transparent" BorderThickness="0" Foreground="{StaticResource TextPrimary}" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{StaticResource CardBorder}" RowHeight="38">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Cluster ID" Binding="{Binding ClusterId}" Width="110"/>
+                            <DataGridTextColumn Header="MITRE Technique" Binding="{Binding Technique}" Width="*"/>
+                            <DataGridTextColumn Header="Incidents" Binding="{Binding IncidentCount}" Width="70"/>
+                            <DataGridTextColumn Header="First Seen" Binding="{Binding FirstSeen}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Loading indicator -->
+        <ProgressBar Grid.Row="4" IsIndeterminate="True" Height="4" Margin="0,8,0,0"
+                     Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}" Foreground="{StaticResource PrimaryCyan}"/>
+    </Grid>
+</UserControl>

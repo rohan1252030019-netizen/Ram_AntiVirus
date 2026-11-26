@@ -1,0 +1,13 @@
+{
+  "token": "PLACEHOLDER_JWT_TOKEN_SAMPLE_DEV_ONLY",
+  "user": {
+    "id": "58f9f050-ee76-4f09-9256-5a8641e24950",
+    "email": "admin@aegis.local",
+    "name": "Admin",
+    "role": "admin",
+    "client_id": "33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "is_active": true,
+    "created_at": "2026-09-22T19:10:23",
+    "last_login": "2026-11-03T16:56:33.414722"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "systems": [
+    {
+      "name": "MSI",
+      "ip": "0.0.0.0",
+      "role": "Production",
+      "status": "online",
+      "cpu": 6,
+      "mem": 71,
+      "disk": 92,
+      "uptime": "1h 42m",
+      "services": [],
+      "pm2_processes": []
+    },
+    {
+      "name": "MSI",
+      "ip": "10.20.25.147",
+      "role": "Node Agent",
+      "node_type": "workspace",
+      "status": "offline",
+      "cpu": 0,
+      "mem": 0,
+      "disk": 0,
+      "uptime": "",
+      "services": [],
+      "pm2_processes": [],
+      "agent_id": "5d0b581f-d879-4411-9134-c025c5c86d5d",
+      "os": "Windows 11 (AMD64)"
+    },
+    {
+      "name": "MSI",
+      "ip": "127.0.0.1",
+      "role": "Server",
+      "node_type": "server",
+      "status": "online",
+      "cpu": 0,
+      "mem": 0,
+      "disk": 0,
+      "uptime": "",
+      "services": [],
+      "pm2_processes": [],
+      "agent_id": "aegis-msi",
+      "os": "Windows 11"
+    }
+  ]
+}

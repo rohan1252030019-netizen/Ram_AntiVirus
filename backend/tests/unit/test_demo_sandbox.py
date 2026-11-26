@@ -30,13 +30,17 @@ def test_read_only_methods_always_allowed():
     assert demo.is_write_allowed_for_demo("/api/v1/anything", "OPTIONS")
 
 
-def test_login_and_ask_are_the_only_write_allowlist():
+def test_write_allowlist_is_login_ask_and_simulated_scan():
     assert demo.is_write_allowed_for_demo("/api/v1/auth/login", "POST")
     assert demo.is_write_allowed_for_demo("/api/v1/auth/user/login", "POST")
     assert demo.is_write_allowed_for_demo("/api/v1/ask", "POST")
     assert demo.is_write_allowed_for_demo("/ask", "POST")
+    # Allowed only because ScanOrchestrator fabricates the result for the demo
+    # tenant before importing nmap/httpx (see test_demo_scan_is_never_executed).
+    assert demo.is_write_allowed_for_demo("/api/v1/surface/scan", "POST")
     # A path that merely shares the allowlisted prefix is not allowlisted.
     assert not demo.is_write_allowed_for_demo("/api/v1/ask/../response/incidents", "POST")
+    assert not demo.is_write_allowed_for_demo("/api/v1/surface/scan/../harden", "POST")
     assert not demo.is_write_allowed_for_demo("/api/v1/auth/change-password", "POST")
 
 
@@ -128,3 +132,75 @@ async def test_middleware_blocks_demo_writes_but_allows_reads_and_login(monkeypa
 
         # An unrelated key is not treated as the demo.
         assert (await http.post("/write", headers={"X-API-Key": "other"})).status_code == 200
+
+
+@pytest.mark.asyncio
+async def test_demo_scan_is_never_executed(monkeypatch):
+    """A demo scan must be fabricated, never run through nmap/httpx."""
+    from types import SimpleNamespace
+
+    from app.services import scanner as scanner_module
+
+    monkeypatch.setattr(settings, "AEGIS_DEMO_MODE", True)
+    demo.configure_demo_identity("tenant-1", published_key=True)
+
+    simulated: list[tuple] = []
+
+    async def fake_simulate(target, scan_type, client, db):
+        simulated.append((target, scan_type, client.id))
+        return {
+            "id": "scan_demo_test",
+            "target": target,
+            "type": scan_type,
+            "status": "completed",
+            "results": {"simulated": True},
+            "assets_found": 1,
+        }
+
+    # If the real path is taken, discovery would be imported and run. Fail loudly.
+    def explode(*_args, **_kwargs):
+        raise AssertionError("real discovery ran for the demo tenant")
+
+    monkeypatch.setattr(scanner_module.scan_orchestrator, "_simulate_demo_scan", fake_simulate)
+    monkeypatch.setattr(
+        scanner_module.ScanOrchestrator, "persist_scan", explode, raising=False
+    )
+
+    result = await scanner_module.scan_orchestrator.launch_scan(
+        "example.com", "full", SimpleNamespace(id="tenant-1"), None
+    )
+
+    assert result["status"] == "completed"
+    assert result["results"]["simulated"] is True
+    assert simulated == [("example.com", "full", "tenant-1")]
+
+
+@pytest.mark.asyncio
+async def test_non_demo_scan_still_runs_for_a_self_host(monkeypatch):
+    """The interception is scoped to the demo tenant, not every scan."""
+    from types import SimpleNamespace
+
+    from app.services import scanner as scanner_module
+
+    monkeypatch.setattr(settings, "AEGIS_DEMO_MODE", True)
+    demo.configure_demo_identity("tenant-1", published_key=True)
+
+    async def fail_simulate(*_args, **_kwargs):
+        raise AssertionError("self-host tenant must not be simulated")
+
+    monkeypatch.setattr(scanner_module.scan_orchestrator, "_simulate_demo_scan", fail_simulate)
+
+    async def fail_discovery(_target):
+        raise RuntimeError("stubbed discovery")
+
+    from app.modules.surface import discovery as discovery_module
+
+    monkeypatch.setattr(discovery_module.discovery_engine, "discover", fail_discovery)
+
+    # A non-demo tenant reaches the real path (stubbed here so no network), and
+    # the orchestrator records the failure instead of simulating success.
+    result = await scanner_module.scan_orchestrator.launch_scan(
+        "example.com", "full", SimpleNamespace(id="self-host"), None
+    )
+    assert result["status"] == "failed"
+    assert "stubbed discovery" in (result.get("error") or "")

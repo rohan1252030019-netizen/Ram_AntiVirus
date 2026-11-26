@@ -1,0 +1,1302 @@
+[
+  {
+    "id": "fb78c011-f0e2-40a8-a269-339c6ff42f85",
+    "ioc_type": "ip",
+    "ioc_value": "23.191.200.98",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fb8fa312-91e1-4477-b4f3-c62beba82bdc",
+    "ioc_type": "ip",
+    "ioc_value": "185.220.101.44",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fbb542c2-64ed-4d9f-9c16-de6be74c1b1b",
+    "ioc_type": "ip",
+    "ioc_value": "35.187.70.55",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-31T10:00:37",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fbb7d2d6-3966-4b0b-b9eb-eeae3fa9fca2",
+    "ioc_type": "ip",
+    "ioc_value": "185.220.101.1",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fc2a8d1c-14cb-4554-a054-593dcd401fee",
+    "ioc_type": "ip",
+    "ioc_value": "185.121.170.60",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fc4cd601-551b-469e-af31-024816b5da13",
+    "ioc_type": "ip",
+    "ioc_value": "93.95.227.37",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fc712d5d-0dae-4e85-b29b-6d5489f4801b",
+    "ioc_type": "ip",
+    "ioc_value": "207.175.64.233",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fc7a80f4-709a-486b-9652-59a630afb279",
+    "ioc_type": "ip",
+    "ioc_value": "23.129.64.151",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fced5fe9-84a0-4b03-af24-13875567effe",
+    "ioc_type": "ip",
+    "ioc_value": "109.70.100.15",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fd53cbc5-03f4-477e-b17a-6178a8bcc358",
+    "ioc_type": "ip",
+    "ioc_value": "185.220.101.0",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fdc7888c-fa35-4ae8-b392-bd5f9c00696e",
+    "ioc_type": "ip",
+    "ioc_value": "172.245.84.5",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-23T10:08:58",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fdce57c8-40b2-476c-a269-1ae2fc492ef7",
+    "ioc_type": "ip",
+    "ioc_value": "179.43.182.58",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fdd215f3-dd8a-45b9-8dd3-6317436170d1",
+    "ioc_type": "ip",
+    "ioc_value": "45.133.73.184",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fdef5e22-243a-4d07-ac96-0d43464b76c7",
+    "ioc_type": "ip",
+    "ioc_value": "118.163.74.160",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fe3a7169-03d2-4a3a-93a9-0f2386217e82",
+    "ioc_type": "ip",
+    "ioc_value": "176.65.139.131",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fe41509b-b946-4e37-aee4-4fe4405d54db",
+    "ioc_type": "ip",
+    "ioc_value": "147.90.235.154",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-13T10:16:25",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fea32355-cff1-436b-aad4-2de225a9cdd7",
+    "ioc_type": "ip",
+    "ioc_value": "159.65.60.217",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "feb1ee24-b8ca-4aca-8e6d-71c7f18b9fa3",
+    "ioc_type": "ip",
+    "ioc_value": "23.129.64.198",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fecb458b-6279-498d-91e3-c70f65c29780",
+    "ioc_type": "ip",
+    "ioc_value": "107.170.19.20",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-31T10:00:37",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fed5a95c-f2b6-4feb-993f-8d586ff0fcfd",
+    "ioc_type": "ip",
+    "ioc_value": "185.220.101.3",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "feefbae6-b393-4e41-9586-69acb6b2d441",
+    "ioc_type": "ip",
+    "ioc_value": "165.232.98.37",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "ff028ef3-6853-4229-af40-7315680ee566",
+    "ioc_type": "ip",
+    "ioc_value": "35.210.98.27",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-11-03T16:51:27",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "ff0e5c96-0c0d-4635-9509-1e80b44f0b1d",
+    "ioc_type": "ip",
+    "ioc_value": "192.42.116.44",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "ff6371b1-7c4b-4bbf-be73-9eb8829dfc1d",
+    "ioc_type": "ip",
+    "ioc_value": "193.189.100.206",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "ff83b678-807f-4ed8-bcc7-d198f979cc3b",
+    "ioc_type": "ip",
+    "ioc_value": "45.66.35.42",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "ff85e28c-30c1-4501-ad07-8cb9347265f6",
+    "ioc_type": "ip",
+    "ioc_value": "35.210.200.154",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-11-03T16:51:27",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "ff8860a0-f893-47a2-9ff3-7a2c56c78850",
+    "ioc_type": "ip",
+    "ioc_value": "176.120.22.61",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-13T10:16:25",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "ffa5ffdd-a9cf-45bc-a8f5-6d0a3a0cb4ed",
+    "ioc_type": "ip",
+    "ioc_value": "23.191.200.66",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "fff06600-195e-440f-9da1-c060b715522e",
+    "ioc_type": "ip",
+    "ioc_value": "70.34.202.108",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0012bdab-2792-4301-926c-752b6385070b",
+    "ioc_type": "ip",
+    "ioc_value": "78.141.219.102",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-11-01T23:30:39",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "00495083-550c-48e6-8817-1514f103ac97",
+    "ioc_type": "ip",
+    "ioc_value": "116.110.149.119",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-31T10:00:37",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0058d7c8-0bf9-45a2-ad6d-ed80316edb86",
+    "ioc_type": "ip",
+    "ioc_value": "23.191.200.3",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "00689720-8375-4707-8489-c6f2536868d8",
+    "ioc_type": "ip",
+    "ioc_value": "209.97.139.118",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "006fcf43-5587-4bf9-8889-b9d4eeeb0990",
+    "ioc_type": "ip",
+    "ioc_value": "51.15.15.81",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "00b1aa37-095f-41b2-9d66-7f02c09e2cbd",
+    "ioc_type": "ip",
+    "ioc_value": "2.56.10.36",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "00b234a9-d325-4f51-a368-ecca7e1a0188",
+    "ioc_type": "ip",
+    "ioc_value": "185.100.87.174",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "00ede6f9-2767-49d9-8d1c-41d9d975eb8b",
+    "ioc_type": "ip",
+    "ioc_value": "165.227.28.164",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "015a63dd-0fc1-4613-9eec-499fcd53819a",
+    "ioc_type": "ip",
+    "ioc_value": "204.8.96.157",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "01700e3c-b531-4aa8-b6df-77d281bf310a",
+    "ioc_type": "ip",
+    "ioc_value": "185.129.62.63",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0178ef50-ebe5-49b0-b970-cfd83113d1d8",
+    "ioc_type": "ip",
+    "ioc_value": "35.210.237.238",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-11-03T16:51:27",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "01992e80-19a9-4c31-97b4-df79ab985930",
+    "ioc_type": "ip",
+    "ioc_value": "204.8.96.119",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "019cc7bb-cf09-4f0c-9471-9b0bf8cc6085",
+    "ioc_type": "ip",
+    "ioc_value": "158.51.96.38",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-13T10:16:25",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "01b37b1d-fbb6-44d8-a40c-681663d13a57",
+    "ioc_type": "ip",
+    "ioc_value": "213.215.209.101",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "020ccb24-e22b-4a2a-a8b3-7a1661ca3701",
+    "ioc_type": "ip",
+    "ioc_value": "23.128.248.174",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "020e37b4-98a8-4653-98df-5ac11d240092",
+    "ioc_type": "ip",
+    "ioc_value": "45.148.10.240",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-13T10:16:25",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "020f3f00-e8bb-484a-9a09-7cd929bd8ba9",
+    "ioc_type": "ip",
+    "ioc_value": "147.90.235.40",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "021ac72d-66d1-4911-99ea-f3859e65906c",
+    "ioc_type": "ip",
+    "ioc_value": "45.9.156.183",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-23T10:08:58",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0221c0a6-74e9-4665-a04f-2b8e91156044",
+    "ioc_type": "ip",
+    "ioc_value": "23.129.64.207",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "022d19ab-8556-4c87-aca7-97917f058c97",
+    "ioc_type": "ip",
+    "ioc_value": "23.129.64.176",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "023fb6f1-9afd-49f4-8524-96a91dd938ba",
+    "ioc_type": "ip",
+    "ioc_value": "35.187.8.59",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-26T09:31:45",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "025a38fc-43ee-48ec-b55d-463f53d1cb3d",
+    "ioc_type": "ip",
+    "ioc_value": "35.210.11.30",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-31T10:00:37",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "02607b4a-95e2-46df-8ca4-1303dbf5747d",
+    "ioc_type": "ip",
+    "ioc_value": "64.227.34.152",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0270b74a-ca17-4f8c-bab2-cf0486aa6cc5",
+    "ioc_type": "ip",
+    "ioc_value": "185.136.15.111",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-26T09:31:45",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "02b6b2ee-a3b5-488c-b53a-621fa321b60d",
+    "ioc_type": "ip",
+    "ioc_value": "23.191.200.82",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "02ec0187-c3fd-4185-b101-514e223b8a49",
+    "ioc_type": "ip",
+    "ioc_value": "185.136.15.82",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-26T09:31:45",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "02f58742-3919-418b-92c6-e1545e774e4f",
+    "ioc_type": "ip",
+    "ioc_value": "35.210.122.110",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-11-03T16:51:27",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "035c791d-d83a-4175-8044-3bc9ff6287f1",
+    "ioc_type": "ip",
+    "ioc_value": "185.67.82.114",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "035fc223-e633-4ba2-9406-0bafc2337625",
+    "ioc_type": "ip",
+    "ioc_value": "192.42.116.143",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0372f20f-6cbb-4125-b4e8-417b7a64686d",
+    "ioc_type": "ip",
+    "ioc_value": "130.12.182.93",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-09-22T19:11:32",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "03752365-9009-4011-a0de-81725ece49cd",
+    "ioc_type": "ip",
+    "ioc_value": "207.246.62.85",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0378cf09-cd3e-45f6-91a2-1b93bff4133d",
+    "ioc_type": "ip",
+    "ioc_value": "23.129.64.222",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "037e063a-4793-4efe-8d71-bc90bb0c3a33",
+    "ioc_type": "ip",
+    "ioc_value": "103.228.36.205",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "03b6080a-4644-4ed9-a96b-5530ac314937",
+    "ioc_type": "ip",
+    "ioc_value": "103.83.87.185",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-13T10:16:25",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "03fec51e-265a-47b6-b098-7edf0940c644",
+    "ioc_type": "ip",
+    "ioc_value": "185.246.84.179",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "047d8b62-2dc3-4217-b89c-bd53043dc204",
+    "ioc_type": "ip",
+    "ioc_value": "35.205.228.238",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "048b6669-86f6-48ce-8ac2-6f43c4edefe9",
+    "ioc_type": "ip",
+    "ioc_value": "45.9.168.69",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-13T10:16:25",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "04e0fed7-7afa-4436-a3af-9312f21d86b5",
+    "ioc_type": "ip",
+    "ioc_value": "93.99.104.128",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "04ee1300-f182-4f01-a811-be2e15184b81",
+    "ioc_type": "ip",
+    "ioc_value": "134.209.185.7",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "04f290e7-6adf-4bf1-9eb8-0c06d91056c5",
+    "ioc_type": "ip",
+    "ioc_value": "206.189.74.44",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-23T10:08:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "04f43e04-6fa2-4dee-a7fc-0780ad97fd5c",
+    "ioc_type": "ip",
+    "ioc_value": "194.15.216.102",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-23T10:08:58",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "04f56e6f-236e-4460-a97e-c0e1dcbfac60",
+    "ioc_type": "ip",
+    "ioc_value": "23.129.64.142",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "051e88b8-a6d2-414c-be2e-21aa797ddd9f",
+    "ioc_type": "ip",
+    "ioc_value": "35.233.54.204",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-27T02:31:59",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "05548e79-0ed6-4c54-b304-8f59aee96a56",
+    "ioc_type": "ip",
+    "ioc_value": "185.132.53.58",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-27T02:32:07",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "055b3f2d-7158-44ca-bda7-ee56a0f97c93",
+    "ioc_type": "ip",
+    "ioc_value": "171.25.193.35",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "05b463f9-c5b9-49aa-93f4-3352b76c5c9b",
+    "ioc_type": "ip",
+    "ioc_value": "45.134.48.12",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-23T10:08:58",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "05b8d95f-d4de-4845-a885-1bd6ffd3e9cc",
+    "ioc_type": "ip",
+    "ioc_value": "23.191.200.91",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0629b65e-fa0c-4bd4-bc6a-29068a3a7a7d",
+    "ioc_type": "ip",
+    "ioc_value": "23.128.248.172",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "064f8fa7-7d54-4d16-b941-c501c2ef28de",
+    "ioc_type": "ip",
+    "ioc_value": "34.14.6.137",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-13T10:16:25",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0738c39e-b8e3-461f-ac00-47aed1f73a0a",
+    "ioc_type": "ip",
+    "ioc_value": "192.42.116.55",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "07524218-b247-4764-955a-7a11eebbb4a7",
+    "ioc_type": "ip",
+    "ioc_value": "23.191.200.81",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "076b19ed-4d22-4096-8474-940996d692c8",
+    "ioc_type": "ip",
+    "ioc_value": "14.34.249.175",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-26T09:31:45",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0786d8e1-5c0d-4640-b041-6a96eb29fdd6",
+    "ioc_type": "ip",
+    "ioc_value": "5.255.119.76",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "07b68f2a-bf13-4dbf-b159-e14530c0be65",
+    "ioc_type": "ip",
+    "ioc_value": "89.127.232.224",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-23T10:08:58",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "07bf4166-da7f-4b2a-9c65-f2e19c49fb59",
+    "ioc_type": "ip",
+    "ioc_value": "23.191.200.40",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "07cd012c-5aeb-4ab9-a04d-ff7ba2fbcaa4",
+    "ioc_type": "ip",
+    "ioc_value": "109.70.100.13",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "07cdb6fa-7af1-490a-8bd8-db0b9d2ac180",
+    "ioc_type": "ip",
+    "ioc_value": "23.129.64.210",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "080698f8-9e1e-440e-a73f-a05f5e968411",
+    "ioc_type": "ip",
+    "ioc_value": "150.40.127.237",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "080cd44c-7867-4056-9a78-a2d92a36459f",
+    "ioc_type": "ip",
+    "ioc_value": "185.220.101.179",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "080d11a8-c545-4b69-a2d8-9b103b69f521",
+    "ioc_type": "ip",
+    "ioc_value": "185.100.86.181",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-31T10:00:37",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "086caa30-fd95-413a-9720-94ad87c44d7f",
+    "ioc_type": "ip",
+    "ioc_value": "172.104.182.84",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "08e3eb3a-51fb-471d-ab00-3b8e068a5896",
+    "ioc_type": "ip",
+    "ioc_value": "95.211.239.220",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "08f503fe-ced0-427c-a92e-cd2e6eb3635a",
+    "ioc_type": "ip",
+    "ioc_value": "158.173.89.136",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-26T09:31:45",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "08ffae9f-8d68-458b-851e-c1cc35938ad1",
+    "ioc_type": "ip",
+    "ioc_value": "23.191.200.18",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0957f4e4-775b-47a2-b2d8-222ae46e0264",
+    "ioc_type": "ip",
+    "ioc_value": "5.255.102.26",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0970a4df-adeb-4db4-84c6-f9bbfc8fd8ef",
+    "ioc_type": "ip",
+    "ioc_value": "179.43.133.50",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0995227e-f8e4-45a3-a5de-286c96d918ea",
+    "ioc_type": "ip",
+    "ioc_value": "23.129.64.215",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0997cd87-4b2b-4885-80a8-eb51c13a9875",
+    "ioc_type": "ip",
+    "ioc_value": "44.30.4.69",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-10-26T09:31:45",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "09b39c86-864f-4f6d-bb0c-1a74fb247767",
+    "ioc_type": "ip",
+    "ioc_value": "77.90.185.93",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0a01c1b4-0fb9-47b7-9102-d880ad77dbab",
+    "ioc_type": "ip",
+    "ioc_value": "204.8.96.159",
+    "threat_type": "tor_exit",
+    "confidence": 0.7,
+    "source": "tor_exit_nodes",
+    "tags": [
+      "tor_exit_nodes"
+    ],
+    "first_seen": "2026-09-22T19:11:31",
+    "last_seen": "2026-11-03T16:51:27"
+  },
+  {
+    "id": "0a22f6ee-c000-428e-8d0b-f3e466141757",
+    "ioc_type": "ip",
+    "ioc_value": "34.22.152.86",
+    "threat_type": "compromised_host",
+    "confidence": 0.7,
+    "source": "emerging_threats",
+    "tags": [
+      "emerging_threats"
+    ],
+    "first_seen": "2026-10-13T10:16:25",
+    "last_seen": "2026-11-03T16:51:27"
+  }
+]

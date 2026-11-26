@@ -1,0 +1,19 @@
+{
+  "quantum_readiness_score": 26.0,
+  "grade": "D",
+  "summary": {
+    "total_algorithms_tracked": 25,
+    "quantum_safe": 13,
+    "already_vulnerable": 2,
+    "upcoming_vulnerabilities": 10,
+    "monitoring_active": false,
+    "urgent_migrations": 8
+  },
+  "assessed_at": "2026-11-03T16:56:39.251341",
+  "breakdown": {
+    "crypto_safety": 26.0,
+    "urgency_penalty": -20,
+    "adversarial_monitoring": 0.0,
+    "post_quantum_adoption": 20
+  }
+}

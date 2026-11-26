@@ -1,0 +1,53 @@
+[
+  {
+    "name": "fintech",
+    "label": "Fintech / Banking",
+    "description": "Fake banking/payment infrastructure: accounts, wallets, KYC docs, payment processors, fraud dashboards.",
+    "industry": "financial services",
+    "bait_kinds": [
+      "email",
+      "api_key",
+      "iban",
+      "card_number",
+      "password"
+    ]
+  },
+  {
+    "name": "healthcare",
+    "label": "Healthcare / Insurance",
+    "description": "Fake EHR / patient portal: patient records, insurance claims, medications, appointments.",
+    "industry": "healthcare",
+    "bait_kinds": [
+      "email",
+      "patient_id",
+      "insurance_id",
+      "api_key"
+    ]
+  },
+  {
+    "name": "ecommerce",
+    "label": "E-commerce / Retail",
+    "description": "Fake online store: orders, customers, carts, payment tokens, warehouse + inventory.",
+    "industry": "retail",
+    "bait_kinds": [
+      "email",
+      "order_id",
+      "card_number",
+      "coupon_code",
+      "api_key"
+    ]
+  },
+  {
+    "name": "devops",
+    "label": "DevOps / Infrastructure",
+    "description": "Fake infra: CI/CD secrets, Kubernetes configs, cloud API keys, Terraform state, internal wikis.",
+    "industry": "devops",
+    "bait_kinds": [
+      "api_key",
+      "ssh_key",
+      "aws_key",
+      "jwt",
+      "password"
+    ]
+  }
+]

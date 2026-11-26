@@ -1,0 +1,10 @@
+{
+  "shannon_entropy": 7.85,
+  "min_entropy": 6.92,
+  "renyi_orders": {
+    "order_0.5": 7.95,
+    "order_1.0": 7.85,
+    "order_2.0": 7.6
+  },
+  "classification": "Encrypted / Packed payload detected"
+}

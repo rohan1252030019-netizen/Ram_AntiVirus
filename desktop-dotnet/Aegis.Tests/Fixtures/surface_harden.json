@@ -1,0 +1,59 @@
+{
+  "target": "all",
+  "asset_type": "web",
+  "ai_recommendations": {
+    "remediation_steps": [
+      "Review and patch affected systems",
+      "Update firewall rules",
+      "Rotate credentials"
+    ],
+    "verification": [
+      "Re-scan after patching",
+      "Monitor for recurrence"
+    ],
+    "estimated_effort": "medium",
+    "priority": "high"
+  },
+  "checklist": [
+    {
+      "item": "Enable HTTPS/TLS 1.3",
+      "priority": "critical",
+      "category": "encryption"
+    },
+    {
+      "item": "Set security headers (CSP, HSTS, X-Frame-Options)",
+      "priority": "high",
+      "category": "headers"
+    },
+    {
+      "item": "Disable directory listing",
+      "priority": "medium",
+      "category": "configuration"
+    },
+    {
+      "item": "Remove server version banners",
+      "priority": "medium",
+      "category": "information_disclosure"
+    },
+    {
+      "item": "Enable rate limiting",
+      "priority": "high",
+      "category": "availability"
+    },
+    {
+      "item": "Configure CORS properly",
+      "priority": "high",
+      "category": "access_control"
+    },
+    {
+      "item": "Implement input validation",
+      "priority": "critical",
+      "category": "injection"
+    },
+    {
+      "item": "Enable WAF rules",
+      "priority": "high",
+      "category": "protection"
+    }
+  ]
+}

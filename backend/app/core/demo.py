@@ -33,12 +33,21 @@ from app.config import settings
 logger = logging.getLogger("aegis.demo")
 
 # The only write endpoints the public demo may call. Login keeps the demo
-# reachable; /ask keeps the AI assistant usable. Everything else is read-only.
+# reachable; /ask keeps the AI assistant usable.
+#
+# /surface/scan is allow-listed *only* because the scanner intercepts the demo
+# tenant before it imports nmap/httpx and returns a fabricated, already-complete
+# scan. Without that interception this path would let any anonymous visitor run
+# ``nmap -sT --top-ports 100 <arbitrary target>`` from this host's IP address,
+# turning the public demo into a port-scanning relay. The guard lives in
+# ``ScanOrchestrator.launch_scan`` and there is a unit test asserting the
+# discovery engine is never reached for a demo tenant.
 _DEMO_WRITE_ALLOWLIST: tuple[str, ...] = (
     "/api/v1/auth/login",
     "/api/v1/auth/user/login",
     "/api/v1/ask",
     "/ask",
+    "/api/v1/surface/scan",
 )
 
 _SAFE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})

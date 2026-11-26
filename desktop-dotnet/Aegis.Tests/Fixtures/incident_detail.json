@@ -1,0 +1,31 @@
+{
+  "id": "inc_001",
+  "title": "Ransomware Shadow Copy Inhibition (T1490)",
+  "description": "vssadmin delete shadows executed",
+  "severity": "critical",
+  "status": "open",
+  "source": null,
+  "mitre_technique": "T1490",
+  "mitre_tactic": null,
+  "source_ip": "185.220.101.42",
+  "ai_analysis": null,
+  "detected_at": null,
+  "contained_at": null,
+  "resolved_at": null,
+  "raw_alert": null,
+  "actions": [
+    {
+      "id": "act_01",
+      "incident_id": "inc_001",
+      "action_type": "block_ip",
+      "target": "185.220.101.42",
+      "status": "pending",
+      "requires_approval": true,
+      "approved_by": null,
+      "ai_reasoning": null,
+      "result": null,
+      "executed_at": null,
+      "created_at": "2026-11-03T00:01:00Z"
+    }
+  ]
+}

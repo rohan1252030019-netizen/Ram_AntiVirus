@@ -1,0 +1,17 @@
+{
+  "webhook_url": "",
+  "webhook_format": "generic",
+  "email_enabled": false,
+  "email_recipients": [],
+  "notify_on_critical": true,
+  "notify_on_high": true,
+  "notify_on_actions": true,
+  "notify_on_scan_completed": false,
+  "channels": [
+    "webhook"
+  ],
+  "telegram_enabled": false,
+  "telegram_bot_token": null,
+  "telegram_chat_id": null,
+  "telegram_connected": false
+}

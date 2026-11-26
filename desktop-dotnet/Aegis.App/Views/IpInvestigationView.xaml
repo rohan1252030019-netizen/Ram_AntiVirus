@@ -1,0 +1,160 @@
+<UserControl x:Class="Aegis.App.Views.IpInvestigationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Aegis.App.ViewModels"
+             Background="{StaticResource AppBackground}">
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="IP Deep Forensics &amp; Geolocation Intel" FontSize="22" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
+                <TextBlock Text="Autonomous threat reputation scoring, Tor/VPN/Datacenter egress detection, and ASN intelligence" FontSize="13" Foreground="{StaticResource TextSecondary}" Margin="0,4,0,0"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Error Banner -->
+        <Border Grid.Row="1" Background="#33EF4444" BorderBrush="{StaticResource AlertRed}" BorderThickness="1" CornerRadius="6" Padding="12,8" Margin="0,0,0,12"
+                Visibility="{Binding ErrorMessage, Converter={StaticResource BoolToVis}}">
+            <TextBlock Text="{Binding ErrorMessage}" Foreground="{StaticResource AlertRed}" FontWeight="SemiBold"/>
+        </Border>
+
+        <!-- Search Bar -->
+        <Border Grid.Row="2" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="260"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Investigate IP:" VerticalAlignment="Center" Foreground="{StaticResource TextSecondary}" FontSize="12" Margin="0,0,10,0"/>
+                <TextBox Grid.Column="1" Text="{Binding TargetIp, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="0,0,16,0"/>
+
+                <CheckBox Grid.Column="2" Content="Deep Reconnaissance (DNS + BGP + Abuse)" IsChecked="{Binding IsDeep}" VerticalAlignment="Center" Foreground="{StaticResource TextPrimary}" Margin="0,0,20,0"/>
+
+                <Button Grid.Column="3" Content="Execute Investigation" Command="{Binding InvestigateIpCommand}" Padding="18,8"/>
+            </Grid>
+        </Border>
+
+        <!-- Intel Dossier -->
+        <Grid Grid.Row="3" Visibility="{Binding Intel, Converter={StaticResource BoolToVis}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="340"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Risk & Anonymity Summary Card -->
+            <Border Grid.Column="0" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="20">
+                <StackPanel>
+                    <TextBlock Text="THREAT REPUTATION" FontWeight="Bold" FontSize="11" Foreground="{StaticResource PrimaryCyan}" Margin="0,0,0,14"/>
+
+                    <TextBlock Text="{Binding Intel.RiskScore}" FontSize="48" FontWeight="Bold" Foreground="{StaticResource AlertRed}" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Overall Risk Score (0-100)" FontSize="12" Foreground="{StaticResource TextMuted}" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                    <Grid Margin="0,4">
+                        <TextBlock Text="Autonomous System:" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Text="{Binding Intel.Asn}" FontWeight="Bold" HorizontalAlignment="Right"/>
+                    </Grid>
+                    <Grid Margin="0,4">
+                        <TextBlock Text="Internal IP:" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Text="{Binding Intel.Internal}" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <Separator Background="{StaticResource CardBorder}" Margin="0,16"/>
+
+                    <TextBlock Text="ANONYMIZATION &amp; REPUTATION" FontWeight="Bold" FontSize="11" Foreground="{StaticResource PrimaryCyan}" Margin="0,0,0,10"/>
+                    <WrapPanel Margin="0,6">
+                        <Border Background="#33EF4444" BorderBrush="{StaticResource AlertRed}" BorderThickness="1" CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
+                                Visibility="{Binding Intel.IsTor, Converter={StaticResource BoolToVis}}">
+                            <TextBlock Text="TOR EXIT NODE" FontSize="10" FontWeight="Bold" Foreground="{StaticResource AlertRed}"/>
+                        </Border>
+                        <Border Background="#33EAB308" BorderBrush="{StaticResource WarningYellow}" BorderThickness="1" CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
+                                Visibility="{Binding Intel.IsVpn, Converter={StaticResource BoolToVis}}">
+                            <TextBlock Text="VPN SERVICE" FontSize="10" FontWeight="Bold" Foreground="{StaticResource WarningYellow}"/>
+                        </Border>
+                        <Border Background="#3306B6D4" BorderBrush="{StaticResource PrimaryCyan}" BorderThickness="1" CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
+                                Visibility="{Binding Intel.IsDatacenter, Converter={StaticResource BoolToVis}}">
+                            <TextBlock Text="DATACENTER / HOSTING" FontSize="10" FontWeight="Bold" Foreground="{StaticResource PrimaryCyan}"/>
+                        </Border>
+                        <Border Background="#33EF4444" BorderBrush="{StaticResource AlertRed}" BorderThickness="1" CornerRadius="4" Padding="8,4" Margin="0,0,6,6"
+                                Visibility="{Binding Intel.IsMalicious, Converter={StaticResource BoolToVis}}">
+                            <TextBlock Text="MALICIOUS ACTOR" FontSize="10" FontWeight="Bold" Foreground="{StaticResource AlertRed}"/>
+                        </Border>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- Network & Geo Details Card -->
+            <Border Grid.Column="2" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="20">
+                <StackPanel>
+                    <TextBlock Text="NETWORK &amp; GEOLOCATION INTELLIGENCE" FontWeight="Bold" FontSize="11" Foreground="{StaticResource PrimaryCyan}" Margin="0,0,0,16"/>
+
+                    <Grid Margin="0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="IP Address:" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Intel.Ip}" FontWeight="Bold" FontSize="13"/>
+                    </Grid>
+
+                    <Grid Margin="0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Autonomous System (ASN):" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Intel.Asn}" FontWeight="SemiBold"/>
+                    </Grid>
+
+                    <Grid Margin="0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Organization / ISP:" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Intel.Org}"/>
+                    </Grid>
+
+                    <Grid Margin="0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Resolved Hostname:" Foreground="{StaticResource TextSecondary}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Intel.Hostname}"/>
+                    </Grid>
+
+                    <Grid Margin="0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="160"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Location:" Foreground="{StaticResource TextSecondary}"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Text="{Binding Intel.City}" Margin="0,0,4,0"/>
+                            <TextBlock Text="," Margin="0,0,4,0"/>
+                            <TextBlock Text="{Binding Intel.Region}" Margin="0,0,4,0"/>
+                            <TextBlock Text="," Margin="0,0,4,0"/>
+                            <TextBlock Text="{Binding Intel.Country}" Margin="0,0,6,0"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- Loading indicator -->
+        <ProgressBar Grid.Row="4" IsIndeterminate="True" Height="4" Margin="0,8,0,0"
+                     Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}" Foreground="{StaticResource PrimaryCyan}"/>
+    </Grid>
+</UserControl>

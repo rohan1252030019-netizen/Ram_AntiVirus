@@ -1,0 +1,141 @@
+<Application x:Class="Aegis.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Aegis.App.ViewModels"
+             xmlns:views="clr-namespace:Aegis.App.Views"
+             xmlns:conv="clr-namespace:Aegis.App.Converters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Converters -->
+            <conv:BooleanToVisibilityConverter x:Key="BoolToVis"/>
+            <conv:BooleanToVisibilityConverter x:Key="InverseBoolToVis" Invert="True"/>
+            <conv:NullToVisibilityConverter x:Key="NullToVis"/>
+            <conv:SeverityToBrushConverter x:Key="SeverityToBrush"/>
+
+            <!-- Colors & Theme Brushes -->
+            <SolidColorBrush x:Key="AppBackground" Color="#0B0D12"/>
+            <SolidColorBrush x:Key="CardBackground" Color="#13161F"/>
+            <SolidColorBrush x:Key="CardBorder" Color="#202433"/>
+            <SolidColorBrush x:Key="CardHover" Color="#1A1E2B"/>
+            <SolidColorBrush x:Key="PrimaryCyan" Color="#06B6D4"/>
+            <SolidColorBrush x:Key="PrimaryCyanHover" Color="#0891B2"/>
+            <SolidColorBrush x:Key="TextPrimary" Color="#F8FAFC"/>
+            <SolidColorBrush x:Key="TextSecondary" Color="#94A3B8"/>
+            <SolidColorBrush x:Key="TextMuted" Color="#64748B"/>
+            <SolidColorBrush x:Key="SuccessGreen" Color="#22C55E"/>
+            <SolidColorBrush x:Key="AlertRed" Color="#EF4444"/>
+            <SolidColorBrush x:Key="WarningYellow" Color="#EAB308"/>
+
+            <!-- Default Control Styles -->
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+                <Setter Property="FontFamily" Value="Segoe UI, Segoe UI Variable"/>
+            </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="Background" Value="#1A1E2B"/>
+                <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource CardBorder}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="10,8"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="PasswordBox">
+                <Setter Property="Background" Value="#1A1E2B"/>
+                <Setter Property="Foreground" Value="{StaticResource TextPrimary}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource CardBorder}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Padding" Value="10,8"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource PrimaryCyan}"/>
+                <Setter Property="Foreground" Value="#090B10"/>
+                <Setter Property="FontWeight" Value="SemiBold"/>
+                <Setter Property="Padding" Value="16,8"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="6" Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource PrimaryCyanHover}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- DataTemplate ViewModel -> View Mappings -->
+            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                <views:LoginView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:DashboardOverviewViewModel}">
+                <views:DashboardOverviewView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:IncidentQueueViewModel}">
+                <views:IncidentQueueView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:IncidentDetailViewModel}">
+                <views:IncidentDetailView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:RansomwareDefenseViewModel}">
+                <views:RansomwareDefenseView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:FirewallRulesViewModel}">
+                <views:FirewallRulesView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:InfrastructureHealthViewModel}">
+                <views:InfrastructureHealthView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                <views:SettingsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:EdrViewModel}">
+                <views:EdrView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AntivirusViewModel}">
+                <views:AntivirusView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:AttackSurfaceViewModel}">
+                <views:AttackSurfaceView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PhantomViewModel}">
+                <views:PhantomView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:DeceptionViewModel}">
+                <views:DeceptionView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ThreatIntelViewModel}">
+                <views:ThreatIntelView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:IpInvestigationViewModel}">
+                <views:IpInvestigationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:DosShieldViewModel}">
+                <views:DosShieldView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ComplianceMatrixViewModel}">
+                <views:ComplianceMatrixView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:QuantumAnalyticsViewModel}">
+                <views:QuantumAnalyticsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:NodeManagementViewModel}">
+                <views:NodeManagementView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:OperatorGuideViewModel}">
+                <views:OperatorGuideView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

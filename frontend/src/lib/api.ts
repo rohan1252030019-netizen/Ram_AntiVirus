@@ -289,7 +289,14 @@ export const api = {
         body: JSON.stringify({ name, email, password }),
         skipAuth: true,
       }),
-    me: () => request<{ name: string; slug: string }>('/auth/me'),
+    me: () =>
+      request<{
+        auth_type: 'user' | 'api_key';
+        /** Backend-computed: this caller is the public read-only demo tenant. */
+        is_demo: boolean;
+        client: { id: string; name: string; slug: string };
+        user: { id: string; email: string; name: string; role: string } | null;
+      }>('/auth/me'),
   },
 
   // Dashboard
@@ -817,6 +824,13 @@ export const api = {
 
   // Setup
   setup: {
+    status: () =>
+      request<{
+        setup_completed: boolean;
+        has_admin: boolean;
+        has_assets: boolean;
+        has_ai_provider: boolean;
+      }>('/setup/status'),
     discover: (target: string) =>
       request<{ assets: Array<{ id: string; hostname: string; ip_address: string; asset_type: string; ports: number[]; status: string }> }>('/setup/discover', {
         method: 'POST',
@@ -927,7 +941,15 @@ export const api = {
   quantum: {
     readiness: () => request<{ score: number; quantum_safe_count: number; total_assets: number; last_assessed: string | null }>('/quantum/readiness'),
     timeline: () => request<Array<{ algorithm: string; key_bits: number; type: string; vulnerable_by: number; status: string }>>('/quantum/crypto/timeline'),
-    assessAll: () => request<Array<{ algorithm: string; key_bits: number; type: string; classical_security: string; quantum_security: string; status: string; recommendation: string }>>('/quantum/crypto/assess'),
+    // GET /quantum/crypto/assess returns { total_algorithms, summary,
+    // assessments: [...] } — not a bare array. Assigning the envelope to an
+    // array state made `assessments.filter(...)` throw on first render and the
+    // whole page died behind the error boundary.
+    assessAll: () => request<{
+      total_algorithms: number;
+      summary: { critical: number; migrate: number; safe: number };
+      assessments: Array<{ algorithm: string; key_bits: number; type: string; classical_security: string; quantum_security: string; status: string; recommendation: string }>;
+    }>('/quantum/crypto/assess'),
     entropy: (data: string) => request<Array<{ timestamp: string; source: string; renyi_orders: Array<{ alpha: number; entropy: number }>; anomaly_detected: boolean; detection_type: string | null; confidence: number | null }>>('/quantum/entropy', {
       method: 'POST',
       body: JSON.stringify({ data }),

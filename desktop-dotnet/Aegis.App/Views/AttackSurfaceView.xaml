@@ -1,0 +1,117 @@
+<UserControl x:Class="Aegis.App.Views.AttackSurfaceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Aegis.App.ViewModels"
+             Background="{StaticResource AppBackground}">
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Margin="0,0,0,16">
+            <StackPanel>
+                <TextBlock Text="Attack Surface Management &amp; Exposure" FontSize="22" FontWeight="Bold" Foreground="{StaticResource TextPrimary}"/>
+                <TextBlock Text="Discover perimeter assets, map exposure vulnerabilities, and verify hardening checklists" FontSize="13" Foreground="{StaticResource TextSecondary}" Margin="0,4,0,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Button Content="Refresh" Command="{Binding LoadDataCommand}" Background="{StaticResource CardHover}" Foreground="{StaticResource TextPrimary}" Padding="14,6" FontSize="12"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Alerts -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,12">
+            <Border Background="#33EF4444" BorderBrush="{StaticResource AlertRed}" BorderThickness="1" CornerRadius="6" Padding="12,8" Margin="0,0,0,8"
+                    Visibility="{Binding ErrorMessage, Converter={StaticResource BoolToVis}}">
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="{StaticResource AlertRed}" FontWeight="SemiBold"/>
+            </Border>
+            <Border Background="#3322C55E" BorderBrush="{StaticResource SuccessGreen}" BorderThickness="1" CornerRadius="6" Padding="12,8" Margin="0,0,0,8"
+                    Visibility="{Binding StatusMessage, Converter={StaticResource BoolToVis}}">
+                <TextBlock Text="{Binding StatusMessage}" Foreground="{StaticResource SuccessGreen}" FontWeight="SemiBold"/>
+            </Border>
+        </StackPanel>
+
+        <!-- Scan Trigger Card -->
+        <Border Grid.Row="2" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="16" Margin="0,0,0,16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="Target IP/CIDR:" VerticalAlignment="Center" Foreground="{StaticResource TextSecondary}" FontSize="12" Margin="0,0,8,0"/>
+                <TextBox Grid.Column="1" Text="{Binding ScanTarget, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="0,0,16,0"/>
+
+                <TextBlock Grid.Column="2" Text="Scan Type:" VerticalAlignment="Center" Foreground="{StaticResource TextSecondary}" FontSize="12" Margin="0,0,8,0"/>
+                <ComboBox Grid.Column="3" SelectedValue="{Binding ScanType}" SelectedValuePath="Content" VerticalAlignment="Center" Background="#1A1E2B" Foreground="{StaticResource TextPrimary}" Margin="0,0,16,0">
+                    <ComboBoxItem Content="quick" IsSelected="True"/>
+                    <ComboBoxItem Content="full"/>
+                    <ComboBoxItem Content="vulnerability"/>
+                </ComboBox>
+
+                <Button Grid.Column="4" Content="Dispatch Scan" Command="{Binding TriggerScanCommand}" Padding="16,8"/>
+            </Grid>
+        </Border>
+
+        <!-- 3-Tab or Split Layout: Assets, Vulnerabilities, Hardening Recommendations -->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Discovered Assets -->
+            <Border Grid.Column="0" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="14">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Discovered Network Assets" FontWeight="Bold" FontSize="13" Margin="0,0,0,10"/>
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Assets}" AutoGenerateColumns="False" CanUserAddRows="False" EnableRowVirtualization="True"
+                              Background="Transparent" BorderThickness="0" Foreground="{StaticResource TextPrimary}" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{StaticResource CardBorder}" RowHeight="38">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Hostname" Binding="{Binding Hostname}" Width="*"/>
+                            <DataGridTextColumn Header="IP Address" Binding="{Binding IpAddress}" Width="120"/>
+                            <DataGridTextColumn Header="Asset Type" Binding="{Binding AssetType}" Width="100"/>
+                            <DataGridTextColumn Header="Risk Score" Binding="{Binding RiskScore}" Width="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+
+            <!-- Vulnerabilities & Hardening -->
+            <Border Grid.Column="2" Background="{StaticResource CardBackground}" BorderBrush="{StaticResource CardBorder}" BorderThickness="1" CornerRadius="8" Padding="14">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Active Vulnerabilities &amp; Hardening" FontWeight="Bold" FontSize="13" Margin="0,0,0,10"/>
+                    <DataGrid Grid.Row="1" ItemsSource="{Binding Vulnerabilities}" AutoGenerateColumns="False" CanUserAddRows="False" EnableRowVirtualization="True"
+                              Background="Transparent" BorderThickness="0" Foreground="{StaticResource TextPrimary}" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="{StaticResource CardBorder}" RowHeight="38">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Vulnerability Title" Binding="{Binding Title}" Width="*"/>
+                            <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="90"/>
+                            <DataGridTextColumn Header="CVSS" Binding="{Binding CvssScore}" Width="60"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="90"/>
+                            <DataGridTextColumn Header="Asset ID" Binding="{Binding AssetId}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Loading indicator -->
+        <ProgressBar Grid.Row="4" IsIndeterminate="True" Height="4" Margin="0,8,0,0"
+                     Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}" Foreground="{StaticResource PrimaryCyan}"/>
+    </Grid>
+</UserControl>

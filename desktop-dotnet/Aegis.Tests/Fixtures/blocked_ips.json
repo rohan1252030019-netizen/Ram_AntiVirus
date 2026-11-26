@@ -1,0 +1,12 @@
+{
+  "blocked_ips": [
+    {
+      "ip": "185.220.101.42",
+      "reason": "Ransomware C2 Beacon",
+      "blocked_at": "2026-11-03T00:00:00Z",
+      "expires_at": "2026-11-10T00:00:00Z",
+      "is_provisional": false
+    }
+  ],
+  "total": 1
+}

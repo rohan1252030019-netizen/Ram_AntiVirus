@@ -1,0 +1,16 @@
+{
+  "id": "int_01",
+  "honeypot_id": "hp_01",
+  "source_ip": "185.220.101.42",
+  "source_port": 51234,
+  "protocol": "ssh",
+  "commands": [
+    "uname -a"
+  ],
+  "credentials_tried": [
+    "root:root"
+  ],
+  "session_duration": 45,
+  "attacker_profile_id": "atk_01",
+  "timestamp": "2026-11-03T00:00:00Z"
+}

@@ -96,6 +96,36 @@ class TestEventOut(BaseModel):
 # Routes
 # ---------------------------------------------------------------------------
 
+def _rule_out(rule: Any) -> RuleOut:
+    """Normalise a correlation rule into the API schema.
+
+    ``list_rules()`` returns a mixture of plain dicts (YAML packs) and
+    :class:`app.schemas.rule.Rule` models (Sigma packs). The Rule model exposes
+    a ``RuleCondition`` object rather than a dict, and declares its title as
+    ``name``, so indexing the raw values straight into ``RuleOut`` raised a
+    pydantic ValidationError and made ``GET /correlation/rules`` return 500 for
+    every tenant.
+    """
+    condition = rule.get("condition") or {}
+    if hasattr(rule, "condition_dict"):
+        condition = rule.condition_dict
+    elif hasattr(condition, "model_dump"):
+        condition = condition.model_dump(exclude_none=True)
+    elif not isinstance(condition, dict):
+        condition = {}
+
+    return RuleOut(
+        id=str(rule["id"]),
+        title=rule.get("title") or rule.get("name") or str(rule["id"]),
+        description=rule.get("description") or "",
+        severity=str(rule.get("severity") or "medium"),
+        mitre=list(rule.get("mitre") or rule.get("techniques") or []),
+        enabled=bool(rule.get("enabled", True)),
+        source=str(rule.get("source") or rule.get("kind") or "builtin"),
+        condition=condition,
+    )
+
+
 @router.get("/rules", response_model=list[RuleOut])
 async def list_rules(
     enabled: Optional[bool] = None,
@@ -116,19 +146,7 @@ async def list_rules(
     if severity:
         rules = [r for r in rules if r.get("severity") == severity]
 
-    return [
-        RuleOut(
-            id=r["id"],
-            title=r["title"],
-            description=r.get("description", ""),
-            severity=r["severity"],
-            mitre=r.get("mitre", []),
-            enabled=r.get("enabled", True),
-            source=r.get("source", "builtin"),
-            condition=r["condition"],
-        )
-        for r in rules
-    ]
+    return [_rule_out(r) for r in rules]
 
 
 @router.post("/rules", response_model=RuleOut, status_code=201)

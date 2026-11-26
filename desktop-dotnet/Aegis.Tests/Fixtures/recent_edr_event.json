@@ -1,0 +1,11 @@
+{
+  "id": "edr_ev_01",
+  "category": "process",
+  "severity": "critical",
+  "title": "Suspicious child process spawned",
+  "details": {
+    "pid": 4820,
+    "user": "SYSTEM"
+  },
+  "timestamp": "2026-11-03T00:00:00Z"
+}

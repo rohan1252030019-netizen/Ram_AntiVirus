@@ -1,0 +1,26 @@
+[
+  {
+    "id": "4ba8e6d2-0dca-4fa4-bd0d-51f892a096e4",
+    "client_id": "33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "name": "Block SSH brute force",
+    "enabled": true,
+    "yaml_def": "name: Block SSH brute force\nenabled: true\npriority: 100\nmatch:\n  - port: 22\n  - protocol: tcp\n  - rate_limit: { count: 5, window_seconds: 60 }\naction: block_ip\nduration_seconds: 3600\n",
+    "priority": 100,
+    "hits": 0,
+    "last_hit_at": null,
+    "created_at": "2026-10-13T11:44:17",
+    "updated_at": "2026-10-13T11:44:17"
+  },
+  {
+    "id": "3e3114a3-ab70-430b-a4cc-e3f2de1ccd2b",
+    "client_id": "33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "name": "Allow only specific IPs",
+    "enabled": true,
+    "yaml_def": "name: Allow office network\nenabled: true\npriority: 200\nmatch:\n  - source_ip_in:\n      - 10.0.0.0/8\n      - 192.168.0.0/16\naction: allow\n",
+    "priority": 100,
+    "hits": 0,
+    "last_hit_at": null,
+    "created_at": "2026-10-13T11:43:41",
+    "updated_at": "2026-10-13T11:43:41"
+  }
+]

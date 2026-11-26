@@ -1,0 +1,54 @@
+[
+  {
+    "id": "77c4d0f7-7519-498c-8d2a-88642688fbbf",
+    "asset_id": "a5172422-1ca5-4a36-b250-6ff1d3f929a3",
+    "title": "TLS Certificate Information",
+    "description": "TLS certificate information disclosure",
+    "severity": "info",
+    "cvss_score": 0.0,
+    "cve_id": null,
+    "status": "open",
+    "ai_risk_score": null,
+    "remediation": null,
+    "found_at": "2026-10-23T10:50:16"
+  },
+  {
+    "id": "ebc13ecf-d3a7-4bc6-ae05-71ce25c9ad77",
+    "asset_id": "a5172422-1ca5-4a36-b250-6ff1d3f929a3",
+    "title": "Missing Security Headers",
+    "description": "The target is missing important security headers (X-Frame-Options, CSP, etc.)",
+    "severity": "info",
+    "cvss_score": 0.0,
+    "cve_id": null,
+    "status": "open",
+    "ai_risk_score": null,
+    "remediation": null,
+    "found_at": "2026-10-23T10:50:16"
+  },
+  {
+    "id": "7e58d793-818f-4540-b342-bd0574dc3cae",
+    "asset_id": "4c405ef4-fd06-49e9-8437-0d117752a0ff",
+    "title": "TLS Certificate Information",
+    "description": "TLS certificate information disclosure",
+    "severity": "info",
+    "cvss_score": 0.0,
+    "cve_id": null,
+    "status": "open",
+    "ai_risk_score": null,
+    "remediation": null,
+    "found_at": "2026-10-13T11:10:24"
+  },
+  {
+    "id": "9c1ef8f1-d787-4f21-9977-392de2a27a01",
+    "asset_id": "4c405ef4-fd06-49e9-8437-0d117752a0ff",
+    "title": "Missing Security Headers",
+    "description": "The target is missing important security headers (X-Frame-Options, CSP, etc.)",
+    "severity": "info",
+    "cvss_score": 0.0,
+    "cve_id": null,
+    "status": "open",
+    "ai_risk_score": null,
+    "remediation": null,
+    "found_at": "2026-10-13T11:10:24"
+  }
+]

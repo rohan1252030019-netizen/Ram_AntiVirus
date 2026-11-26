@@ -1,0 +1,13 @@
+{
+  "id": "vuln_01",
+  "asset_id": "ast_01",
+  "title": "SMBv1 Dialect Supported",
+  "description": "Legacy protocol dialect enabled",
+  "severity": "high",
+  "cvss_score": 7.5,
+  "cve_id": "CVE-2017-0144",
+  "status": "open",
+  "ai_risk_score": 8.0,
+  "remediation": "Disable SMBv1 via registry",
+  "found_at": "2026-11-01T00:00:00Z"
+}

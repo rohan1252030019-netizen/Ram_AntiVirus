@@ -23,6 +23,10 @@ from fastapi import WebSocket, WebSocketDisconnect
 
 logger = logging.getLogger("aegis.ws_push")
 
+# Per-connection subscription bounds (see subscribe_topics).
+MAX_TOPICS_PER_CLIENT = 64
+MAX_TOPIC_LENGTH = 96
+
 
 class WSClient:
     """Represents a connected WebSocket client with filtering preferences."""
@@ -110,10 +114,25 @@ class WSPushManager:
         logger.debug(f"WS filters updated for {ws_client.client_id}: {filters}")
 
     def subscribe_topics(self, ws_client: WSClient, topics: list[str]):
-        """Add topic subscriptions for a client. Topics are additive."""
+        """Add topic subscriptions for a client. Topics are additive.
+
+        Bounded on purpose: the set is per-connection and lives until the
+        socket closes, so an authenticated client could otherwise grow it
+        without limit with junk names (each WS frame can be up to 16 MB by
+        default). Names are only used for exact/prefix broadcast matching, so
+        dropping overlong or malformed entries loses nothing.
+        """
+        if not isinstance(topics, list):
+            return
         for t in topics:
-            if t:
-                ws_client.topics.add(t)
+            if not isinstance(t, str):
+                continue
+            t = t.strip()
+            if not t or len(t) > MAX_TOPIC_LENGTH:
+                continue
+            if len(ws_client.topics) >= MAX_TOPICS_PER_CLIENT:
+                break
+            ws_client.topics.add(t)
         logger.debug(f"WS topics for {ws_client.client_id}: {ws_client.topics}")
 
     def unsubscribe_topics(self, ws_client: WSClient, topics: list[str]):

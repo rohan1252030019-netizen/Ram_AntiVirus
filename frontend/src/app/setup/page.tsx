@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { setApiKey, setJwtToken, getJwtToken, api } from '@/lib/api';
+import { setApiKey, setJwtToken, getJwtToken, getAuthHeaders, hasAuth, api } from '@/lib/api';
 import { forwardRef } from 'react';
 import {
   User, Mail, Lock, KeyRound, ChevronRight, ChevronLeft,
@@ -256,10 +256,26 @@ export default function SetupWizard() {
   useEffect(() => {
     setTimeout(() => setMounted(true), 50);
 
+    // The wizard is a first-run flow. On an existing deployment (demo or a
+    // host that already has an admin + assets) it showed an "Create Account"
+    // step that could only fail, and it was reachable without signing in at
+    // all. Bounce anonymous visitors to /login and configured hosts to the
+    // dashboard.
+    if (!hasAuth()) {
+      router.replace('/login?next=%2Fsetup');
+      return;
+    }
+    api.setup
+      .status()
+      .then((s) => {
+        if (s?.has_admin && s?.has_assets) router.replace('/dashboard');
+      })
+      .catch(() => {});
+
     // Fetch available AI providers from API
     const loadProviders = () => {
       const BASE = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
-      fetch(`${BASE}/ai/providers`)
+      fetch(`${BASE}/ai/providers`, { headers: getAuthHeaders() })
         .then(r => r.ok ? r.json() : null)
         .then(data => {
           if (Array.isArray(data) && data.length > 0) {

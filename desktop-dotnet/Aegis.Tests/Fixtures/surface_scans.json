@@ -1,0 +1,2418 @@
+[
+  {
+    "id": "sched_quick_20261102_000013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-11-02T00:00:13",
+    "completed_at": "2026-11-02T00:00:16",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261101_233015_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-11-01T23:30:16",
+    "completed_at": "2026-11-01T23:30:19",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261101_023013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-11-01T02:30:13",
+    "completed_at": "2026-11-01T02:30:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261101_020013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-11-01T02:00:13",
+    "completed_at": "2026-11-01T02:00:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_213013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T21:30:13",
+    "completed_at": "2026-10-31T21:30:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_210013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T21:00:13",
+    "completed_at": "2026-10-31T21:00:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_203013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T20:30:13",
+    "completed_at": "2026-10-31T20:30:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_200013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T20:00:13",
+    "completed_at": "2026-10-31T20:00:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_193013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T19:30:13",
+    "completed_at": "2026-10-31T19:30:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_190013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T19:00:13",
+    "completed_at": "2026-10-31T19:00:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_183013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T18:30:13",
+    "completed_at": "2026-10-31T18:30:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_180013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T18:00:13",
+    "completed_at": "2026-10-31T18:00:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_173013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T17:30:13",
+    "completed_at": "2026-10-31T17:30:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_170013_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T17:00:13",
+    "completed_at": "2026-10-31T17:00:14",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_143845_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T14:38:46",
+    "completed_at": "2026-10-31T14:38:48",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_140846_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T14:08:47",
+    "completed_at": "2026-10-31T14:08:49",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_133845_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T13:38:46",
+    "completed_at": "2026-10-31T13:38:47",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_130845_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T13:08:46",
+    "completed_at": "2026-10-31T13:08:47",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_123845_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T12:38:46",
+    "completed_at": "2026-10-31T12:38:47",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_120845_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T12:08:46",
+    "completed_at": "2026-10-31T12:08:47",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_demo_20261031_113453_fd8434",
+    "target": "demo.local",
+    "type": "discovery",
+    "status": "completed",
+    "started_at": "2026-10-31T11:34:54",
+    "completed_at": "2026-10-31T11:34:54",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.192.168.140.155",
+            "technologies": []
+          }
+        ],
+        "source": "demo-simulation"
+      },
+      "simulated": true
+    },
+    "assets_found": 25,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261031_111309_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-31T11:13:10",
+    "completed_at": "2026-10-31T11:13:11",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_demo_20261031_104327_566aae",
+    "target": "scanme.example.com",
+    "type": "discovery",
+    "status": "completed",
+    "started_at": "2026-10-31T10:43:28",
+    "completed_at": "2026-10-31T10:43:28",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.192.168.140.155",
+            "technologies": []
+          }
+        ],
+        "source": "demo-simulation"
+      },
+      "simulated": true
+    },
+    "assets_found": 25,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_demo_20261031_104018",
+    "target": "example.com",
+    "type": "full",
+    "status": "completed",
+    "started_at": "2026-10-31T10:40:19",
+    "completed_at": "2026-10-31T10:40:19",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.192.168.140.155",
+            "technologies": []
+          }
+        ],
+        "source": "demo-simulation"
+      },
+      "simulated": true,
+      "vulnerabilities": {
+        "source": "demo-simulation",
+        "vulnerabilities": []
+      }
+    },
+    "assets_found": 25,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_demo_20261031_104017",
+    "target": "example.com",
+    "type": "full",
+    "status": "completed",
+    "started_at": "2026-10-31T10:40:18",
+    "completed_at": "2026-10-31T10:40:18",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.192.168.140.155",
+            "technologies": []
+          }
+        ],
+        "source": "demo-simulation"
+      },
+      "simulated": true,
+      "vulnerabilities": {
+        "source": "demo-simulation",
+        "vulnerabilities": []
+      }
+    },
+    "assets_found": 25,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261027_050139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-27T05:01:39",
+    "completed_at": "2026-10-27T05:01:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261027_043139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-27T04:31:39",
+    "completed_at": "2026-10-27T04:31:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261027_040139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-27T04:01:39",
+    "completed_at": "2026-10-27T04:01:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261027_033139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-27T03:31:39",
+    "completed_at": "2026-10-27T03:31:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261027_030139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-27T03:01:39",
+    "completed_at": "2026-10-27T03:01:39",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261027_023139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-27T02:31:39",
+    "completed_at": "2026-10-27T02:31:41",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261026_190139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T19:01:39",
+    "completed_at": "2026-10-26T19:01:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261026_183139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T18:31:39",
+    "completed_at": "2026-10-26T18:31:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261026_180139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T18:01:39",
+    "completed_at": "2026-10-26T18:01:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_full_20261026_173139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_full",
+    "status": "completed",
+    "started_at": "2026-10-26T17:31:39",
+    "completed_at": "2026-10-26T17:32:49",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261026_173139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T17:31:39",
+    "completed_at": "2026-10-26T17:31:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261026_170139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "28 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T17:01:39",
+    "completed_at": "2026-10-26T17:01:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 28,
+      "assets_scanned_ok": 28
+    },
+    "assets_found": 28,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_20261026_120815_cedar-kept-anywhere-immunology_trycloudflare_com",
+    "target": "cedar-kept-anywhere-immunology.trycloudflare.com",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-10-26T12:08:15",
+    "completed_at": "2026-10-26T12:08:16",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          }
+        ],
+        "target": "cedar-kept-anywhere-immunology.trycloudflare.com",
+        "open_ports": [
+          {
+            "port": 80,
+            "state": "unknown",
+            "service": "http",
+            "protocol": "tcp"
+          },
+          {
+            "port": 443,
+            "state": "unknown",
+            "service": "https",
+            "protocol": "tcp"
+          },
+          {
+            "port": 22,
+            "state": "unknown",
+            "service": "ssh",
+            "protocol": "tcp"
+          }
+        ],
+        "subdomains": [
+          "www.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "app.cedar-kept-anywhere-immunology.trycloudflare.com"
+        ],
+        "technologies": []
+      }
+    },
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "scan_20261026_120653_cedar-kept-anywhere-immunology_trycloudflare_com",
+    "target": "cedar-kept-anywhere-immunology.trycloudflare.com",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-10-26T12:06:53",
+    "completed_at": "2026-10-26T12:06:54",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          }
+        ],
+        "target": "cedar-kept-anywhere-immunology.trycloudflare.com",
+        "open_ports": [
+          {
+            "port": 80,
+            "state": "unknown",
+            "service": "http",
+            "protocol": "tcp"
+          },
+          {
+            "port": 443,
+            "state": "unknown",
+            "service": "https",
+            "protocol": "tcp"
+          },
+          {
+            "port": 22,
+            "state": "unknown",
+            "service": "ssh",
+            "protocol": "tcp"
+          }
+        ],
+        "subdomains": [
+          "www.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "app.cedar-kept-anywhere-immunology.trycloudflare.com"
+        ],
+        "technologies": []
+      }
+    },
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "scan_20261026_120257_cedar-kept-anywhere-immunology_trycloudflare_com",
+    "target": "cedar-kept-anywhere-immunology.trycloudflare.com",
+    "type": "discovery",
+    "status": "completed",
+    "started_at": "2026-10-26T12:02:58",
+    "completed_at": "2026-10-26T12:03:00",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.cedar-kept-anywhere-immunology.trycloudflare.com",
+            "technologies": []
+          }
+        ],
+        "target": "cedar-kept-anywhere-immunology.trycloudflare.com",
+        "open_ports": [
+          {
+            "port": 80,
+            "state": "unknown",
+            "service": "http",
+            "protocol": "tcp"
+          },
+          {
+            "port": 443,
+            "state": "unknown",
+            "service": "https",
+            "protocol": "tcp"
+          },
+          {
+            "port": 22,
+            "state": "unknown",
+            "service": "ssh",
+            "protocol": "tcp"
+          }
+        ],
+        "subdomains": [
+          "www.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "mail.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "api.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "admin.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "dev.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "staging.cedar-kept-anywhere-immunology.trycloudflare.com",
+          "app.cedar-kept-anywhere-immunology.trycloudflare.com"
+        ],
+        "technologies": []
+      }
+    },
+    "assets_found": 7,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261026_120139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "21 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T12:01:39",
+    "completed_at": "2026-10-26T12:01:39",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 21,
+      "assets_scanned_ok": 21
+    },
+    "assets_found": 21,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261026_113139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "21 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T11:31:39",
+    "completed_at": "2026-10-26T11:31:39",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 21,
+      "assets_scanned_ok": 21
+    },
+    "assets_found": 21,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261026_110139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "21 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T11:01:39",
+    "completed_at": "2026-10-26T11:01:39",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 21,
+      "assets_scanned_ok": 21
+    },
+    "assets_found": 21,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261026_103139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "21 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T10:31:39",
+    "completed_at": "2026-10-26T10:31:39",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 21,
+      "assets_scanned_ok": 21
+    },
+    "assets_found": 21,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_20261026_102404_localhost",
+    "target": "localhost",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-10-26T10:24:04",
+    "completed_at": "2026-10-26T10:24:05",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.localhost",
+            "technologies": []
+          }
+        ],
+        "target": "localhost",
+        "open_ports": [
+          {
+            "port": 80,
+            "state": "unknown",
+            "service": "http",
+            "protocol": "tcp"
+          },
+          {
+            "port": 443,
+            "state": "unknown",
+            "service": "https",
+            "protocol": "tcp"
+          },
+          {
+            "port": 22,
+            "state": "unknown",
+            "service": "ssh",
+            "protocol": "tcp"
+          }
+        ],
+        "subdomains": [
+          "www.localhost",
+          "mail.localhost",
+          "api.localhost",
+          "admin.localhost",
+          "dev.localhost",
+          "staging.localhost",
+          "app.localhost"
+        ],
+        "technologies": []
+      }
+    },
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "sched_quick_20261026_100139_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "21 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-26T10:01:39",
+    "completed_at": "2026-10-26T10:01:40",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 21,
+      "assets_scanned_ok": 21
+    },
+    "assets_found": 21,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261023_173138_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "21 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-23T17:31:38",
+    "completed_at": "2026-10-23T17:31:39",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 21,
+      "assets_scanned_ok": 21
+    },
+    "assets_found": 21,
+    "progress": 100.0
+  },
+  {
+    "id": "sched_quick_20261023_110852_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "21 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-23T11:08:53",
+    "completed_at": "2026-10-23T11:08:58",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 21,
+      "assets_scanned_ok": 21
+    },
+    "assets_found": 21,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_20261023_105011_255_255_224_0",
+    "target": "255.255.224.0",
+    "type": "full",
+    "status": "completed",
+    "started_at": "2026-10-23T10:50:11",
+    "completed_at": "2026-10-23T10:50:16",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.255.255.224.0",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.255.255.224.0",
+            "technologies": []
+          }
+        ],
+        "target": "255.255.224.0",
+        "open_ports": [
+          {
+            "port": 80,
+            "state": "unknown",
+            "service": "http",
+            "protocol": "tcp"
+          },
+          {
+            "port": 443,
+            "state": "unknown",
+            "service": "https",
+            "protocol": "tcp"
+          },
+          {
+            "port": 22,
+            "state": "unknown",
+            "service": "ssh",
+            "protocol": "tcp"
+          }
+        ],
+        "subdomains": [
+          "www.255.255.224.0",
+          "mail.255.255.224.0",
+          "api.255.255.224.0",
+          "admin.255.255.224.0",
+          "dev.255.255.224.0",
+          "staging.255.255.224.0",
+          "app.255.255.224.0"
+        ],
+        "technologies": []
+      },
+      "vulnerabilities": {
+        "note": "Simulated results - nuclei not installed",
+        "total": 2,
+        "target": "255.255.224.0",
+        "vulnerabilities": [
+          {
+            "title": "Missing Security Headers",
+            "cve_id": null,
+            "evidence": "https://255.255.224.0",
+            "severity": "info",
+            "cvss_score": 0.0,
+            "description": "The target is missing important security headers (X-Frame-Options, CSP, etc.)",
+            "template_id": "security-headers-missing"
+          },
+          {
+            "title": "TLS Certificate Information",
+            "cve_id": null,
+            "evidence": "https://255.255.224.0:443",
+            "severity": "info",
+            "cvss_score": 0.0,
+            "description": "TLS certificate information disclosure",
+            "template_id": "tls-certificate-info"
+          }
+        ]
+      }
+    },
+    "assets_found": 7,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_20261023_104634_localhost",
+    "target": "localhost",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-10-23T10:46:35",
+    "completed_at": "2026-10-23T10:46:39",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.localhost",
+            "technologies": []
+          }
+        ],
+        "target": "localhost",
+        "open_ports": [
+          {
+            "port": 80,
+            "state": "unknown",
+            "service": "http",
+            "protocol": "tcp"
+          },
+          {
+            "port": 443,
+            "state": "unknown",
+            "service": "https",
+            "protocol": "tcp"
+          },
+          {
+            "port": 22,
+            "state": "unknown",
+            "service": "ssh",
+            "protocol": "tcp"
+          }
+        ],
+        "subdomains": [
+          "www.localhost",
+          "mail.localhost",
+          "api.localhost",
+          "admin.localhost",
+          "dev.localhost",
+          "staging.localhost",
+          "app.localhost"
+        ],
+        "technologies": []
+      }
+    },
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "scan_20261023_104529_localhost",
+    "target": "localhost",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-10-23T10:45:29",
+    "completed_at": "2026-10-23T10:45:33",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.localhost",
+            "technologies": []
+          }
+        ],
+        "target": "localhost",
+        "open_ports": [
+          {
+            "port": 80,
+            "state": "unknown",
+            "service": "http",
+            "protocol": "tcp"
+          },
+          {
+            "port": 443,
+            "state": "unknown",
+            "service": "https",
+            "protocol": "tcp"
+          },
+          {
+            "port": 22,
+            "state": "unknown",
+            "service": "ssh",
+            "protocol": "tcp"
+          }
+        ],
+        "subdomains": [
+          "www.localhost",
+          "mail.localhost",
+          "api.localhost",
+          "admin.localhost",
+          "dev.localhost",
+          "staging.localhost",
+          "app.localhost"
+        ],
+        "technologies": []
+      }
+    },
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "scan_20261013_120021_localhost",
+    "target": "localhost",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-10-13T12:00:22",
+    "completed_at": "2026-10-13T12:00:22",
+    "results": {},
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "scan_20261013_115730_localhost",
+    "target": "localhost",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-10-13T11:57:30",
+    "completed_at": "2026-10-13T11:57:30",
+    "results": {},
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "scan_20261013_114549_localhost",
+    "target": "localhost",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-10-13T11:45:50",
+    "completed_at": "2026-10-13T11:45:50",
+    "results": {},
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "sched_quick_20261013_111643_33210c4a-cc90-4d8a-90c3-8ef9bdb207c6",
+    "target": "14 assets",
+    "type": "scheduled_quick",
+    "status": "completed",
+    "started_at": "2026-10-13T11:16:43",
+    "completed_at": "2026-10-13T11:16:46",
+    "results": {
+      "failures": [],
+      "vulns_found": 0,
+      "assets_total": 14,
+      "assets_scanned_ok": 14
+    },
+    "assets_found": 14,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_20261013_111023_192_168_140_155",
+    "target": "192.168.140.155",
+    "type": "full",
+    "status": "completed",
+    "started_at": "2026-10-13T11:10:23",
+    "completed_at": "2026-10-13T11:10:24",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.192.168.140.155",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.192.168.140.155",
+            "technologies": []
+          }
+        ],
+        "target": "192.168.140.155",
+        "open_ports": [
+          {
+            "port": 80,
+            "state": "unknown",
+            "service": "http",
+            "protocol": "tcp"
+          },
+          {
+            "port": 443,
+            "state": "unknown",
+            "service": "https",
+            "protocol": "tcp"
+          },
+          {
+            "port": 22,
+            "state": "unknown",
+            "service": "ssh",
+            "protocol": "tcp"
+          }
+        ],
+        "subdomains": [
+          "www.192.168.140.155",
+          "mail.192.168.140.155",
+          "api.192.168.140.155",
+          "admin.192.168.140.155",
+          "dev.192.168.140.155",
+          "staging.192.168.140.155",
+          "app.192.168.140.155"
+        ],
+        "technologies": []
+      },
+      "vulnerabilities": {
+        "note": "Simulated results - nuclei not installed",
+        "total": 2,
+        "target": "192.168.140.155",
+        "vulnerabilities": [
+          {
+            "title": "Missing Security Headers",
+            "cve_id": null,
+            "evidence": "https://192.168.140.155",
+            "severity": "info",
+            "cvss_score": 0.0,
+            "description": "The target is missing important security headers (X-Frame-Options, CSP, etc.)",
+            "template_id": "security-headers-missing"
+          },
+          {
+            "title": "TLS Certificate Information",
+            "cve_id": null,
+            "evidence": "https://192.168.140.155:443",
+            "severity": "info",
+            "cvss_score": 0.0,
+            "description": "TLS certificate information disclosure",
+            "template_id": "tls-certificate-info"
+          }
+        ]
+      }
+    },
+    "assets_found": 7,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_20261013_110740_localhost",
+    "target": "localhost",
+    "type": "discovery",
+    "status": "completed",
+    "started_at": "2026-10-13T11:07:40",
+    "completed_at": "2026-10-13T11:07:42",
+    "results": {
+      "discovery": {
+        "hosts": [
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "www.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "mail.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "api.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "admin.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "dev.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "staging.localhost",
+            "technologies": []
+          },
+          {
+            "ip": "",
+            "type": "web",
+            "ports": [],
+            "hostname": "app.localhost",
+            "technologies": []
+          }
+        ],
+        "target": "localhost",
+        "open_ports": [
+          {
+            "port": 80,
+            "state": "unknown",
+            "service": "http",
+            "protocol": "tcp"
+          },
+          {
+            "port": 443,
+            "state": "unknown",
+            "service": "https",
+            "protocol": "tcp"
+          },
+          {
+            "port": 22,
+            "state": "unknown",
+            "service": "ssh",
+            "protocol": "tcp"
+          }
+        ],
+        "subdomains": [
+          "www.localhost",
+          "mail.localhost",
+          "api.localhost",
+          "admin.localhost",
+          "dev.localhost",
+          "staging.localhost",
+          "app.localhost"
+        ],
+        "technologies": []
+      }
+    },
+    "assets_found": 7,
+    "progress": 100.0
+  },
+  {
+    "id": "scan_20260922_193949_localhost",
+    "target": "localhost",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-09-22T19:39:49",
+    "completed_at": "2026-09-22T19:39:49",
+    "results": {},
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "scan_20260922_191849_admin123456",
+    "target": "admin123456",
+    "type": "vuln",
+    "status": "failed",
+    "started_at": "2026-09-22T19:18:49",
+    "completed_at": "2026-09-22T19:18:50",
+    "results": {},
+    "assets_found": 0,
+    "progress": 0.0
+  },
+  {
+    "id": "scan_20260922_191816_localhost",
+    "target": "localhost",
+    "type": "discovery",
+    "status": "failed",
+    "started_at": "2026-09-22T19:18:17",
+    "completed_at": "2026-09-22T19:18:17",
+    "results": {},
+    "assets_found": 0,
+    "progress": 0.0
+  }
+]

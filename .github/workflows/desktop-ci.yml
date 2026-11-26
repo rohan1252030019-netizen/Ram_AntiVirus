@@ -1,0 +1,66 @@
+name: Ram Antivirus Desktop CI & Packaging
+
+on:
+  push:
+    branches: [ "master", "main" ]
+    paths:
+      - 'desktop-dotnet/**'
+      - '.github/workflows/desktop-ci.yml'
+  pull_request:
+    branches: [ "master", "main" ]
+    paths:
+      - 'desktop-dotnet/**'
+
+jobs:
+  build-and-package:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 8.0 SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Cache NuGet Packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('desktop-dotnet/**/*.csproj') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
+
+    - name: Restore Dependencies
+      run: dotnet restore desktop-dotnet/Aegis.Desktop.sln
+
+    - name: Build Solution (Zero Warnings Tolerance)
+      run: dotnet build desktop-dotnet/Aegis.Desktop.sln -c Release -warnaserror
+
+    - name: Run Test Suite & Generate Coverage
+      run: dotnet test desktop-dotnet/Aegis.Tests/Aegis.Tests.csproj -c Release --collect:"XPlat Code Coverage" --results-directory desktop-dotnet/TestResults
+
+    - name: Upload Test Coverage
+      uses: actions/upload-artifact@v4
+      with:
+        name: code-coverage-report
+        path: desktop-dotnet/TestResults/**/coverage.cobertura.xml
+
+    - name: Build & Publish Self-Contained Win-x64 Package
+      shell: powershell
+      run: |
+        powershell -ExecutionPolicy Bypass -File desktop-dotnet/publish.ps1 -Configuration Release
+
+    - name: Upload Single-File Desktop Executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: RamAntivirus-win-x64-v1.0.0
+        path: desktop-dotnet/publish/RamAntivirus.exe
+        if-no-files-found: error
+
+    - name: Upload Inno Setup Installer Script
+      uses: actions/upload-artifact@v4
+      with:
+        name: RamAntivirus-Installer-Script
+        path: desktop-dotnet/installer/ram_antivirus_installer.iss
